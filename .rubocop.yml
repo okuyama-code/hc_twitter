@@ -1,0 +1,25 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-hc
+Style/Documentation:
+  Enabled: false
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - 'db/migrate/*'
+Metrics/AbcSize:
+  Max: 32
+  Exclude:
+    - 'db/migrate/*'
+Metrics/BlockLength:
+  Exclude:
+    - config/environments/*.rb
+    - config/routes.rb
+Layout/LineLength:
+  Exclude:
+    - config/initializers/devise.rb
+    - db/migrate/*.rb
+Hc/RailsSpecificActionName:
+  Exclude:
+    - app/controllers/users/omniauth_callbacks_controller.rb

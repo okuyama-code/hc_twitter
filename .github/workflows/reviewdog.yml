@@ -1,0 +1,57 @@
+name: reviewdog
+on: [pull_request]
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  issues: write
+  pull-requests: write
+  statuses: write
+jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup reviewdog
+        run: |
+          curl -OL https://github.com/reviewdog/reviewdog/releases/download/v0.14.1/reviewdog_0.14.1_Linux_x86_64.tar.gz
+          tar -zxvf reviewdog_0.14.1_Linux_x86_64.tar.gz
+          mkdir -p $HOME/bin
+          mv reviewdog $HOME/bin/
+          echo "$HOME/bin/" >> $GITHUB_PATH
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Run rubocop with reviewdog
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: reviewdog --conf=./.reviewdog.yml -reporter=github-pr-check
+
+  rails_best_practices:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup reviewdog
+        run: |
+          curl -OL https://github.com/reviewdog/reviewdog/releases/download/v0.14.1/reviewdog_0.14.1_Linux_x86_64.tar.gz
+          tar -zxvf reviewdog_0.14.1_Linux_x86_64.tar.gz
+          mkdir -p $HOME/bin
+          mv reviewdog $HOME/bin/
+          echo "$HOME/bin/" >> $GITHUB_PATH
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Run rails best practice with reviewdog
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bundle exec rails_best_practices --without-color --silent . | reviewdog -efm="%f:%l - %m" -efm="%-G%.%#" \
+              -name="rails_best_practices" \
+              -reporter="github-pr-check" \
+              -filter-mode="nofilter" \
+              -fail-on-error="true" \
+              -level="info"
