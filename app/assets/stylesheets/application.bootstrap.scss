@@ -1,2 +1,20 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+body {
+  background: linear-gradient(to right, rgb(48, 133, 218), rgb(32, 216, 186));
+  color: #ebeaea;
+
+}
+i {
+  font-size: 2.5rem;
+  padding-bottom: 20px;
+}
+
+.type1 i {
+	margin-right: 20px;
+}
+
+.type1 span {
+  font-size: 2.5rem;
+}

@@ -1,10 +1,6 @@
-# README
+# よく使うコマンド
 
-課題用のrailsテンプレートです。
-
-## 前提
-
-- dockerが必要です。
+sudo chmod -R 777 /home/okuyama/hc_twitter_clone/
 
 ## setup
 
