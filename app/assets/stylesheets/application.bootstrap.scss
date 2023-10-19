@@ -4,29 +4,34 @@
 body {
   background: linear-gradient(to right, rgb(48, 133, 218), rgb(32, 216, 186));
   color: #ebeaea;
-
 }
+
+// ================= sidebar ===================
+
 i {
   font-size: 2.5rem;
   padding-bottom: 20px;
 }
 
-.type1 i {
+.item i {
 	margin-right: 20px;
 }
 
-.type1 span {
-  font-size: 2.5rem;
+.item span {
+  font-size: 1.5rem;
 }
 
 .sidebar {
   border-right: 1px solid #ccc;
 }
 
-.border_b {
-  border-bottom:1px solid;
-  padding-bottom: 30px;
+.side_img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
 }
+
+// ================== timeline ================
 
 .home_img {
   width: 50px;
@@ -37,3 +42,10 @@ i {
 .home-icon i {
   font-size: 20px;
 }
+
+.border_b {
+  border-bottom:1px solid;
+  padding-bottom: 30px;
+}
+// ================= profile ===============
+
