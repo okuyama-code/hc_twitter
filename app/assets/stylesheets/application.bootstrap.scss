@@ -11,6 +11,10 @@ body {
 i {
   font-size: 2.5rem;
   padding-bottom: 20px;
+  // background: linear-gradient(90deg, #4158D0, #C850C0 30%, #FFCC70);
+  // background: -webkit-linear-gradient(0deg, #4158D0, #C850C0 30%, #FFCC70);
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
 }
 
 .item i {
@@ -19,6 +23,10 @@ i {
 
 .item span {
   font-size: 1.5rem;
+  // background: linear-gradient(90deg, #7114c9, #e86f12 30%, #FFCC70);
+  // background: -webkit-linear-gradient(0deg, #4158D0, #C850C0 30%, #FFCC70);
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
 }
 
 .sidebar {
@@ -46,6 +54,53 @@ i {
 .border_b {
   border-bottom:1px solid;
   padding-bottom: 30px;
+}
+
+// ============= share =================
+
+.share {
+  width: 100%;
+  height: 160px;
+  box-shadow: 11px 13px 19px -9px #544a4a;
+  border-radius: 3px;
+}
+
+.shareWrapper {
+  padding: 15px;
+}
+
+.share_img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 5px;
+}
+
+.shareInput {
+  border: none;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.shareInput:focus {
+  outline: none;
+}
+
+.shareOptions {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.shareOption i {
+  font-size: 20px;
+  color: rgb(70, 67, 67);
+  // background: linear-gradient(90deg, #4158D0, #C850C0 30%, #FFCC70);
+  // background: -webkit-linear-gradient(0deg, #4158D0, #C850C0 30%, #FFCC70);
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
+
 }
 // ================= profile ===============
 
