@@ -62,6 +62,9 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-rails'
   gem 'htmlbeautifier'
   gem 'rails_best_practices'
   gem 'rubocop', require: false
