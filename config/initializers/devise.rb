@@ -313,4 +313,8 @@ Devise.setup do |config|
 
   # TODO herokuのURLに変更
   # OmniAuth.config.full_host = 'https://hoge.herokuapp.com' if Rails.env.production?
+
+  Devise.setup do |config|
+    config.omniauth :github, ENV['GITHUB_ID'], ENV['GITHUB_SECRET'], scope: 'user,public_repo'
+  end
 end

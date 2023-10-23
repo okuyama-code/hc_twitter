@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     :registrations => 'users/registrations',
     :sessions => 'users/sessions'
   }
+  # TODO githubでログインできない
+  # devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   devise_scope :user do
     get "user/:id", :to => "users/registrations#detail"
