@@ -25,14 +25,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_091019) do
     t.index ["user_id"], name: "index_authorizations_on_user_id"
   end
 
-  create_table "tasks", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.integer "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.date "date_of_birth", null: false
