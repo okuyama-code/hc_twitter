@@ -4,12 +4,11 @@ Rails.application.routes.draw do
   get 'home/top'
   root 'home#top'
   get '/profile' => 'home#profile'
-  # devise_for :users, :controllers => {
-  #   :registrations => 'users/registrations',
-  #   :sessions => 'users/sessions'
-  # }
-  # TODO githubでログインできない
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
 
   devise_scope :user do
     get "user/:id", :to => "users/registrations#detail"

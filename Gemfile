@@ -91,5 +91,6 @@ end
 
 gem 'devise'
 gem 'omniauth'
+gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
-gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-rails_csrf_protection', "~> 1.0"
