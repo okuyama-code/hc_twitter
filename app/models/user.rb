@@ -17,8 +17,9 @@ class User < ApplicationRecord
       user.date_of_birth = "1998-01-21"
       user.telephone = "08000001111"
       user.save!
-
     end
   end
+
+  enum role: { user: 0, admin: 1}
 
 end
