@@ -18,6 +18,8 @@ class Users::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  def after_sign_out_path_for(_)
+
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
