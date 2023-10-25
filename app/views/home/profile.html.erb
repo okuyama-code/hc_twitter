@@ -4,13 +4,19 @@
   <div class="row ">
     <%# ============== sidebar ==================== %>
     <div class="col-md-4 d-flex flex-column sidebar">
-      <i class="fa-brands fa-x-twitter"></i>
-      <p class="item mt-4"><i class="fa-solid fa-house-chimney-window"></i><span>ホーム</span ></p>
+      <%= link_to '/', class: 'sidebar-link' do %>
+        <i class="fa-brands fa-x-twitter"></i>
+      <% end %>
+      <%= link_to '/', class: 'sidebar-link' do %>
+        <p class="item mt-4"><i class="fa-solid fa-house-chimney-window"></i><span>ホーム</span ></p>
+      <% end %>
       <p class="item"><i class="fa-solid fa-magnifying-glass"></i><span class="h6">検索</span ></p>
       <p class="item"><i class="fa-regular fa-bell"></i><span class="h6">通知</span ></p>
       <p class="item"><i class="fa-regular fa-envelope"></i><span class="h6">ダイレクトメッセージ</span ></p>
       <p class="item"><i class="fa-regular fa-bookmark"></i><span class="h6">ブックマーク</span ></p>
-      <p class="item"><i class="fa-solid fa-id-card"></i><span class="h6">プロフィール</span ></p>
+      <%= link_to '/profile', class: 'sidebar-link' do %>
+        <p class="item"><i class="fa-solid fa-id-card"></i><span class="h6">プロフィール</span ></p>
+      <% end %>
       <p class="item"><i class="fa-brands fa-usps"></i><span class="h6">投稿</span ></p>
       <div class="d-flex">
         <img class="side_img me-3" src="/assets/EC1.jpg" >

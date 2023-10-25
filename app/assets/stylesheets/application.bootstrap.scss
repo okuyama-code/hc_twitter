@@ -47,6 +47,16 @@ i {
   border-radius: 50%;
 }
 
+.sidebar-link {
+  text-decoration: none;
+  color: #ebeaea;
+  transition: color 1s ease-in-out;
+  &:hover {
+    color: aquamarine;
+  }
+}
+
+
 // ================== timeline ================
 
 .home_img {
@@ -60,8 +70,13 @@ i {
 }
 
 .border_b {
-  border-bottom: 1px solid;
-  padding-bottom: 30px;
+  border: 2mm ridge rgba(240, 58, 228, 0.6);
+  padding-top: 10px;
+}
+
+.top p {
+  color: aquamarine;
+  font-weight: bold;
 }
 
 .post_img {
