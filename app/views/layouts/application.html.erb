@@ -10,6 +10,28 @@
     <script src="https://kit.fontawesome.com/3e9b46a6cb.js" crossorigin="anonymous"></script>
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between">
+      <div class="ml-2">
+        <%= link_to "Colorful SNS", root_path, class: "navbar-brand" %>
+      </div>
+
+      <%# deviseを使っているから使えるヘルパー　user_signed_in? %>
+      <ul class="navbar-nav d-flex flex-row">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link btn btn-primary text-white" %>
+          </li>
+        <% else %>
+          <li class="nav-item ">
+            <%= link_to 'ログイン', new_user_session_path, class: "nav-link btn btn-primary text-white" %>
+          </li>
+          <li class="nav-item ">
+            <%= link_to '新規登録', new_user_registration_path, class: "nav-link btn btn-primary text-white" %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+
    <% if flash[:notice] %>
       <div class="alert alert-primary" role="alert"><strong><%= notice %></strong></div>
     <% end %>
