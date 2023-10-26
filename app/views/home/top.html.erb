@@ -11,7 +11,10 @@
       <% end %>
       <p class="item"><i class="fa-solid fa-magnifying-glass"></i><span class="h6">検索</span ></p>
       <p class="item"><i class="fa-regular fa-bell"></i><span class="h6">通知</span ></p>
-      <p class="item"><i class="fa-regular fa-envelope"></i><span class="h6">ダイレクトメッセージ</span ></p>
+      <%= link_to '/message', class: 'sidebar-link' do %>
+        <p class="item"><i class="fa-regular
+        fa-envelope"></i><span class="h6">ダイレクトメッセージ</span ></p>
+      <% end %>
       <p class="item"><i class="fa-regular fa-bookmark"></i><span class="h6">ブックマーク</span ></p>
       <%= link_to '/profile', class: 'sidebar-link' do %>
         <p class="item"><i class="fa-solid fa-id-card"></i><span class="h6">プロフィール</span ></p>

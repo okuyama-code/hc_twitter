@@ -257,3 +257,100 @@ i {
     color: #544a4a;
   }
 }
+
+//  =========== message =================
+.message {
+  margin: 0 20px;
+}
+
+.message-header {
+  i {
+    font-size: 1.6rem;
+    margin-top: 10px;
+  }
+  .left {
+    margin-right: 15px;
+  }
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  width: 100%;
+
+  input {
+    flex-grow: 1;
+    padding: 0.7rem 0 0.7rem 0.8rem;
+    border: 1px solid #333;
+    border-radius: 1.5rem;
+  }
+
+  input::placeholder {
+    padding-left: 40px; /* 左にずらす幅を調整 */
+    font-size: 1.4rem;
+  }
+
+  button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    // padding: .8rem .9rem .8rem .8rem;
+    // border-radius: 0 1.5rem 1.5rem 0;
+    border: none;
+    background: none;
+    color: #333;
+    // transition: 0.5s;
+    i {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.message-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgb(203, 159, 63);
+}
+
+.message-list {
+  margin-left: 20px;
+  margin-top: 30px;
+
+  .message-list-item {
+    margin-left: 20px;
+
+    h4 {
+      margin-right: 10px;
+    }
+
+    .message-p {
+      margin-top: -10px;
+    }
+  }
+}
+
+// ============ message_box ==================
+.message-box-container {
+  .message-box-header {
+    display: flex;
+    align-items: center;
+    position:fixed;
+    background-color: #544a4a;
+    width: 100%;
+    padding-top: 5px;
+
+    i {
+      font-size: 1.7rem;
+      margin: 10px 60px 0 15px;  //「上」､「右」､「下」､「左」を指定（時計回り）
+    }
+
+    .info-item {
+      font-size: 1.4rem;
+      margin-left: 60px;
+      margin-top: 20px;
+    }
+  }
+}
