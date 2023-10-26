@@ -27,6 +27,84 @@
       </div>
     </div>
     <%# ================= profile =============== %>
-    <div></div>
+    <div class="col-md-8 border-profile">
+      <div class="d-flex">
+        <div>
+          <%= link_to "/" do %>
+          <i class="fa-solid fa-arrow-left arrow-left "></i>
+          <% end %>
+        </div>
+        <div class="profile-top-name">
+          <h2>okuyama</h2>
+          <p>320 posts</p>
+        </div>
+      </div>
+      <div class="profile-images">
+        <img class="header-img" src="/assets/header.jpg">
+        <img class="profile-img me-3" src="/assets/EC1.jpg" >
+        <%= link_to "Edit profile", "/", class: "edit" %>
+      </div>
+      <div class="profile-info">
+        <h2>okuyama</h2>
+        <p>@okuyama0121</p>
+        <p>千葉県在住。25歳。23/3~8/8まで独学(500h)。23/8/9~HC。英語も学習中。ゴルフ、筋トレ、ランニング、ママさんバレー、料理、ヨガ、瞑想、将棋、カラオケ、登山、スポーツ全般の試合動画の視聴🏃フットサルも始めました⚽️ 座右の銘 「努力の上の辛抱という棒を立てろ。この棒に花が咲く。」</p>
+        <div class="d-flex">
+          <div class="profile-details">
+            <i class="fa-solid fa-link profile-icon-link"></i>
+            <span>https://okucode-portfolio-site.vercel.app/</span>
+          </div>
+          <div class="profile-details">
+            <i class="fa-solid fa-cake-candles profile-icon"></i>
+            <span>Born January 21, 1998</span>
+          </div>
+        </div>
+        <div class="profile-details calender-icon">
+          <i class="fa-regular fa-calendar-days profile-icon"></i>
+          <span>Joined April 2023</span>
+        </div>
+        <div class="d-flex relationship">
+          <div class="follow">
+            <p><span>80</span> Following</p>
+          </div>
+          <div class="follow">
+            <p><span>80</span> Followers</p>
+          </div>
+        </div>
+      </div>
+      <%# ==========timeline(自分の投稿だけ)====== %>
+      <div class="d-flex border p-3">
+        <img class="home_img mx-3 me-4" src="/assets/EC1.jpg" >
+        <div>
+          <span class="fw-bold fs-3 me-2">okuyama</span>
+          <span>@okuyama0121</span>
+          <p>CSS難しいなーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー</p>
+          <img class="post_img" src="/assets/EC1.jpg" >
+          <div class="d-flex justify-content-around home-icon mt-5">
+            <div>
+              <i class="fa-regular fa-comment"></i>
+              <span class="">5</span>
+            </div>
+
+            <i class="fa-solid fa-repeat"></i>
+            <i class="fa-regular fa-heart"></i>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex border p-3">
+        <img class="home_img mx-3 me-4" src="/assets/EC1.jpg" >
+        <div>
+          <span class="fw-bold fs-3 me-2">okuyama</span>
+          <span>@okuyama0121</span>
+          <p>Happiness Chainはハイレベルです。しんどいけどめちゃくちゃ成長できてる感あります。雑談してくれる友人もできます。将来活躍するだろうなと感じる生徒がたくさんいます。関東にいれば普通にCEOとCTOに会えます。一緒に学習している知り合いができると楽しいですよ！印象としてはプログラミングスクールというよりも実務を見据えた訓練所みたいなところです。みなさんもプログラミングをまず数か月ほど触ってみて楽しいと感じたら入ってみることをお勧めします。</p>
+          <div class="d-flex justify-content-around home-icon">
+            <i class="fa-regular fa-comment"></i>
+            <i class="fa-solid fa-repeat"></i>
+            <i class="fa-regular fa-heart"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%# ============= ここまでprofile =========== %>
   </div>
 </div>
+

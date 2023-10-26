@@ -83,6 +83,7 @@ i {
   width: 100%;
   // height: 250px;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 // ============= share =================
@@ -165,3 +166,94 @@ i {
 }
 
 // ================= profile ===============
+.border-profile {
+  border: 1px solid;
+  margin: 0;
+  padding: 0;
+}
+.arrow-left {
+  color: #544a4a;
+  font-size: 1.5rem;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+.profile-top-name {
+  p {
+    color: #544a4a;
+  }
+}
+
+.profile-images {
+  position: relative;
+  height: 290px;
+}
+
+.header-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  position: absolute;
+  left: 40px;
+  top: 150px;
+  border: 2px solid black;
+}
+
+.edit {
+  position: absolute;
+  text-decoration: none;
+  color: #544a4a;
+  border: 1px solid#544a4a;
+  border-radius: 10px;
+  padding: 5px 20px;
+  right: 20px;
+  top: 210px;
+}
+
+.profile-info {
+  margin-left: 10px;
+  margin-right: 10px;
+  p {
+    margin-bottom: 15px;
+  }
+}
+
+.profile-details {
+  margin-right: 20px;
+  span {
+    color: #544a4a;
+  }
+}
+
+.profile-icon {
+  font-size: 18px;
+  color: #544a4a;
+  margin-right: 5px;
+}
+
+.profile-icon-link {
+  font-size: 16px;
+  color: #544a4a;
+}
+
+.calender-icon {
+  margin-top: -10px;
+}
+
+.follow {
+  margin-right: 10px;
+  span {
+    font-weight: 800;
+    color: #e0dada;
+  }
+  p {
+    color: #544a4a;
+  }
+}
