@@ -259,7 +259,7 @@ i {
 }
 
 //  =========== message =================
-.message {
+.message-html {
   margin: 0 20px;
 }
 
@@ -333,24 +333,60 @@ i {
 }
 
 // ============ message_box ==================
-.message-box-container {
-  .message-box-header {
-    display: flex;
-    align-items: center;
-    position:fixed;
-    background-color: #544a4a;
-    width: 100%;
-    padding-top: 5px;
+// TODO 消す
+.atag {
+  color: white;
+  font-size: 2rem;
+}
 
-    i {
-      font-size: 1.7rem;
-      margin: 10px 60px 0 15px;  //「上」､「右」､「下」､「左」を指定（時計回り）
-    }
+.message * {
+  margin: 0;
+  padding: 0;
+  line-height: 1.4!important;
+  color: #a9a2a2;
+  font-size: 14px;
+}
 
-    .info-item {
-      font-size: 1.4rem;
-      margin-left: 60px;
-      margin-top: 20px;
-    }
+.message p {
+  margin: 0;
+  padding: 0;
+}
+
+// iPhone幅のフレーム(高さ成り行き)
+.message .frame {
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+
+.message-box-header {
+  display: flex;
+  align-items: center;
+  background-color: #544a4a;
+  width: 100%;
+  padding: 5px;
+  color: #a9a2a2;
+
+  h3 {
+    font-size: 30px;
   }
+
+  i {
+    font-size: 1.7rem;
+    margin: 0 60px 0 10px;  //「上」､「右」､「下」､「左」を指定（時計回り）
+  }
+
+  .info-item {
+    font-size: 1.4rem;
+    margin-left: 60px;
+  }
+}
+
+
+
+.info {
+
 }
