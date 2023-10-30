@@ -386,7 +386,29 @@ i {
 }
 
 
+.message-box-body-info {
+  display: grid;
+  grid-template-columns: 2fr 1fr ;
 
-.info {
+}
 
+.message-box-body-info p {
+  background-color: rgb(56, 55, 55);
+  border: 1px solid beige;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 10px 40px 10px;
+}
+
+.message-box-body-info-other {
+  display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.message-box-body-info-other p {
+  background-color: rgb(91, 82, 82);
+  border: 1px solid beige;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
 }
