@@ -71,12 +71,17 @@ i {
 
 .border_b {
   border: 2mm ridge rgba(240, 58, 228, 0.6);
-  padding-top: 10px;
 }
 
-.top p {
-  color: aquamarine;
+.top a {
+  color: rgb(243, 243, 243);
   font-weight: bold;
+  text-decoration: none;
+  padding: 20px 80px;
+}
+
+.top a:hover {
+  background-color: #3a8d45;
 }
 
 .post_img {
