@@ -13,7 +13,7 @@
     <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between">
       <div class="ml-2">
         <%= link_to "Colorful SNS", root_path, class: "navbar-brand" %>
-        <% if user_signed_in? %>
+        <% if user_signed_in? && @user %>
           <span>「<%= @user.email %>」 がログインしています </span>
         <% end %>
       </div>
@@ -41,6 +41,11 @@
     <% if flash[:alert] %>
       <div class="alert alert-danger" role="alert"><strong><%= alert %></strong></div>
     <% end %>
+
+    <div class="link-flex">
+      <%= link_to 'ホームへ', root_path, class: 'btncss' %>
+      <%= link_to "http://localhost:3000/letter_opener" , "/letter_opener", class: 'btncss' %>
+    </div>
 
     <%= yield %>
   </body>

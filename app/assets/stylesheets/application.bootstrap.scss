@@ -7,6 +7,33 @@ body {
   // color: #0b0505;
 }
 
+.link-flex {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 20%;
+}
+
+
+.btncss {
+  display: inline-block;
+  border: 2mm ridge rgba(78, 123, 72, 0.6);
+  padding: 10px 20px;
+  text-decoration: none;
+  color: black;
+  background: linear-gradient(to bottom right, blue, pink);
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 5px 10px;
+
+  &:hover {
+    color: white;
+    background: linear-gradient(to bottom right, rgb(94, 255, 0), rgb(20, 25, 165));
+    transition: color 1s ease, background 2s ease;
+  }
+}
+
 
 // ==================== devise =======================================
 .card_css {
@@ -68,6 +95,10 @@ i {
 
 .home-icon i {
   font-size: 20px;
+}
+
+.home-icon-span {
+  margin-left: 7px;
 }
 
 .border_b {
