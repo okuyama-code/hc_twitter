@@ -20,6 +20,10 @@ class User < ApplicationRecord
     end
   end
 
-  enum role: { user: 0, admin: 1}
+  after_create :send_welcome_mail
+
+  def send_welcome_mail
+    UserNoticeMailer.send_signup_email(self).deliver_now
+  end
 
 end

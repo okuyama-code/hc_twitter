@@ -10,16 +10,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # super do |resource|のresourceは、Deviseにおいてユーザーオブジェクトを指します。Deviseが提供するコントローラーでは、resourceという名前で現在のユーザーオブジェクトが渡されます。
-  def create
-    super do |resource|
-    # ブロック内のコードは、デフォルトのユーザー登録処理が完了した後に実行される
-
-    # resourceはDeviseによって提供されるユーザーオブジェクト
-    # このブロック内でresourceを用いて、ユーザー登録後の追加の処理を実行できる
-      UserRegistrationService.call(resource)
-    end
-  end
+  # def create
+  #   super
+  # end
 
   # GET /resource/edit
   # def edit
