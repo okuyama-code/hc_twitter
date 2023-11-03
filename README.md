@@ -3,7 +3,7 @@
 sudo chmod -R 777 /home/okuyama/hc_twitter_clone/
 
 ## setup
-あ
+
 
 ```
 docker compose build
