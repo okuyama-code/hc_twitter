@@ -2,6 +2,13 @@
 
 sudo chmod -R 777 /home/okuyama/hc_twitter_clone/
 
+ブランチの削除
+ローカル
+git branch -d twitter-sub
+
+リモート
+git push origin --delete twitter-sub
+
 ## setup
 
 
