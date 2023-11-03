@@ -41,7 +41,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
@@ -93,4 +93,18 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # TODO twiiterのherokuドメインに変更すること
+  config.action_mailer.default_url_options = { protocol: 'https',
+                                               host: 'peaceful-waters-90263-196a9ea53a5c.herokuapp.com' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    enable_starttls_auto: true,
+    port: 587,
+    domain: 'gmail.com',
+    user_name: 'ooyy0121@gmail.com',
+    password: 'egjc ihty dgvg byhj',
+    authentication: :plain
+  }
 end
