@@ -8,12 +8,11 @@ class User < ApplicationRecord
 
   has_one_attached :image
 
+  # TODO https://qiita.com/bloom__fu/items/380100b2ab4b2e3e
   def self.from_omniauth(auth)
-    authorization = User.find_or_initialize_by(provider: auth.provider, uid: auth.uid)
-    authorization.assign_attributes(full_name: auth.info.name, email: auth.info.email)
-
-    where(email: auth.info.email).first_or_initialize.tap do |user|
+    where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
       user.full_name = auth.info.name
+      user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.date_of_birth = "1998-01-21"
       user.telephone = "08000001111"
