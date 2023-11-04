@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # validates :uid, uniqueness: { scope: :provider }, if: -> { uid.present? }
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:github]
@@ -8,7 +7,7 @@ class User < ApplicationRecord
 
   has_one_attached :image
 
-  # TODO https://qiita.com/bloom__fu/items/380100b2ab4b2e3e
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
       user.full_name = auth.info.name

@@ -14,4 +14,7 @@ class HomeController < ApplicationController
 
   def message_box
   end
+
+  def tweet_show
+  end
 end

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/profile' => 'home#profile'
   get '/message' => 'home#message'
   get '/message_box' => 'home#message_box'
+  get '/tweet_show' => 'home#tweet_show'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
