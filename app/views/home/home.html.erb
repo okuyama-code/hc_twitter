@@ -21,16 +21,19 @@
       <% end %>
       <p class="item"><i class="fa-brands fa-usps"></i><span class="h6">投稿</span ></p>
       <div class="d-flex">
-        <img class="side_img me-3" src="/assets/EC1.jpg" >
+        <% if @user.image.present?%>
+          <%= image_tag @user.image, class: "side_img me-3", alt: "..." %>
+        <% else %>
+          <img class="side_img me-3" src="/assets/default.png" >
+        <% end %>
         <div>
-          <h4>okuyama</h4>
-          <p>@okuyama0121</p>
+          <h4><%= @user.name %></h4>
+          <p>@<%= @user.username %></p>
         </div>
       </div>
     </div>
     <%# Timeline %>
     <div class="col-md-8 main-area">
-      <%# <h2 class="border_b">Home</h2> %>
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <a href="#osusume" class="nav-link active" data-bs-toggle="tab">おすすめ</a>
@@ -42,7 +45,11 @@
       <div class="share my-3">
         <div class="shareWrapper">
           <div class="shareTop d-flex">
-            <img class="share_img mx-3 me-4" src="/assets/EC1.jpg" >
+            <% if @user.image.present?%>
+              <%= image_tag @user.image, class: "share_img mx-3 me-4", alt: "..." %>
+            <% else %>
+              <img class="share_img mx-3 me-4" src="/assets/default.png" >
+            <% end %>
             <input type="text" class="shareInput" placeholder="投稿したい内容を入力" />
           </div>
           <hr class="shareHr" />
@@ -66,10 +73,14 @@
       <div class="tab-content">
         <div id="osusume" class="tab-pane active">
           <div class="d-flex border p-3">
-            <img class="home_img mx-3 me-4" src="/assets/EC1.jpg" >
+            <% if @user.image.present?%>
+              <%= image_tag @user.image, class: "home_img mx-3 me-4", alt: "..." %>
+            <% else %>
+              <img class="home_img mx-3 me-4" src="/assets/default.png" >
+            <% end %>
             <div>
-              <span class="fw-bold fs-3 me-2">okuyama</span>
-              <span>@okuyama0121</span>
+              <span class="fw-bold fs-3 me-2"><%= @user.name %></span>
+              <span>@<%= @user.username %></span>
               <p>おすすめの表示</p>
               <img class="post_img" src="/assets/EC1.jpg" >
               <div class="d-flex justify-content-around home-icon mt-5">

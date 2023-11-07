@@ -1,3 +1,11 @@
+# 仕様
+https://github.com/happiness-chain/practice/blob/main/11_Ruby_on_Rails/002_twitter_clone.md
+
+# TODO
+- ツイートするフォームの下部にツイート一覧を表示する
+
+- すぐに確認できるようにユーザーと、ツイート、フォロー関係のseedを用意すること
+
 # よく使うコマンド
 
 sudo chmod -R 777 /home/okuyama/hc_twitter_clone/
