@@ -52,12 +52,12 @@ gem 'bootsnap', require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem 'aws-sdk-s3'
-gem "image_processing", "~> 1.2"
+gem 'image_processing', '~> 1.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'dotenv-rails'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'rspec-rails'
 end
@@ -67,15 +67,15 @@ group :development do
 
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'pry-rails'
   gem 'htmlbeautifier'
+  gem 'letter_opener_web'
+  gem 'pry-rails'
   gem 'rails_best_practices'
   gem 'rubocop', require: false
   gem 'rubocop-hc', require: false, github: 'ihatov08/rubocop-hc'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'web-console'
-  gem 'letter_opener_web'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -92,9 +92,9 @@ group :test do
 end
 
 gem 'devise'
-gem 'omniauth'
-gem 'omniauth-github'
-gem 'omniauth-rails_csrf_protection', "~> 1.0"
-gem 'rails-i18n'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
+gem 'rails-i18n'

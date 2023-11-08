@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   get '/tweets' => 'home#tweets'
   root 'home#tweets'
   get '/profile' => 'home#profile'
@@ -17,10 +15,10 @@ Rails.application.routes.draw do
   }
 
   devise_scope :user do
-    get "user/:id", :to => "users/registrations#detail"
-    get "signup", :to => "users/registrations#new"
-    get "login", :to => "users/sessions#new"
-    get "logout", :to => "users/sessions#destroy"
+    get 'user/:id', to: 'users/registrations#detail'
+    get 'signup', to: 'users/registrations#new'
+    get 'login', to: 'users/sessions#new'
+    get 'logout', to: 'users/sessions#destroy'
     # root "users/sessions#new"
     # root "users/registrations#new"
   end

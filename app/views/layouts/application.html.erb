@@ -17,7 +17,6 @@
           <span><strong class="strong-nav"><%= @user.email %></strong>がログインしています </span>
         <% end %>
       </div>
-
       <%# deviseを使っているから使えるヘルパー　user_signed_in? %>
       <ul class="navbar-nav d-flex flex-row">
         <% if user_signed_in? %>
@@ -34,20 +33,17 @@
         <% end %>
       </ul>
     </nav>
-
-   <% if flash[:notice] %>
+    <% if flash[:notice] %>
       <div class="alert alert-primary" role="alert"><strong><%= notice %></strong></div>
     <% end %>
     <% if flash[:alert] %>
       <div class="alert alert-danger" role="alert"><strong><%= alert %></strong></div>
     <% end %>
-
     <div class="link-flex">
       <%= link_to 'ホームへ', root_path, class: 'btncss' %>
       <%= link_to "http://localhost:3000/letter_opener" , "/letter_opener", class: 'btncss' %>
       <%= link_to "tweet詳細ページへ", tweet_show_path, class: 'btncss' %>
     </div>
-
     <div class="container">
       <div class="row">
         <%# サイドバー(sidebar) %>
@@ -76,20 +72,21 @@
               <img class="side_img me-3" src="/assets/default.png" >
             <% end %>
             <% if @user %>
-            <div>
-              <h4><%= @user.name %></h4>
-              <p>@<%= @user.username %></p>
-            </div>
+              <div>
+                <h4><%= @user.name %></h4>
+                <p>@<%= @user.username %></p>
+              </div>
             <% end %>
           </div>
-        </div> <%# col-md-4 sidebar %>
-
+        </div>
+ <%# col-md-4 sidebar %>
         <%# コンポーネント　col-md-8 main-area %>
         <div class="col-md-8 main-area">
           <%= yield %>
         </div>
-
-      </div> <%# row %>
-    </div> <%# container %>
+      </div>
+ <%# row %>
+    </div>
+ <%# container %>
   </body>
 </html>

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HomeController < ApplicationController
   before_action :authenticate_user!
 
@@ -6,15 +8,11 @@ class HomeController < ApplicationController
     # console
   end
 
-  def profile
-  end
+  def profile; end
 
-  def message
-  end
+  def message; end
 
-  def message_box
-  end
+  def message_box; end
 
-  def tweet_show
-  end
+  def tweet_show; end
 end

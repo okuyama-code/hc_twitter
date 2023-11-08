@@ -25,7 +25,6 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
-  
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -312,10 +311,14 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 
-  # TODO herokuのURLに変更
+  # TODO: herokuのURLに変更
   # OmniAuth.config.full_host = 'https://hoge.herokuapp.com' if Rails.env.production?
 
-  Devise.setup do |config|
-    config.omniauth :github, ENV['GITHUB_ID'], ENV['GITHUB_SECRET'], scope: 'user,public_repo'
+  # Devise.setup do |config|
+  #   config.omniauth :github, ENV['GITHUB_ID'], ENV['GITHUB_SECRET'], scope: 'user,public_repo'
+  # end
+
+  Devise.setup do |divise_config|
+    divise_config.omniauth :github, ENV['GITHUB_ID'], ENV['GITHUB_SECRET'], scope: 'user,public_repo'
   end
 end
