@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   before_action :authenticate_user!
 
-  def home
+  def tweets
     @user = User.find_by(id: current_user.id)
     # console
   end

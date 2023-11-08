@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
-  get '/home' => 'home#home'
-  root 'home#home'
+  get '/tweets' => 'home#tweets'
+  root 'home#tweets'
   get '/profile' => 'home#profile'
   get '/message' => 'home#message'
   get '/message_box' => 'home#message_box'
