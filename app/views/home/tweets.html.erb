@@ -10,7 +10,7 @@
 <div class="share my-3">
   <div class="shareWrapper">
     <div class="shareTop d-flex">
-      <% if @user.image.present?%>
+      <% if @user.image.present? %>
         <%= image_tag @user.image, class: "share_img mx-3 me-4", alt: "..." %>
       <% else %>
         <img class="share_img mx-3 me-4" src="/assets/default.png" >

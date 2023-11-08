@@ -15,8 +15,9 @@ https://github.com/happiness-chain/practice/blob/main/11_Ruby_on_Rails/002_twitt
 - すぐに確認できるようにユーザーと、ツイート、フォロー関係のseedを用意すること
 
 # よく使うコマンド
-
+```
 sudo chmod -R 777 /home/okuyama/hc_twitter_clone/
+```
 
 ブランチの削除
 ローカル

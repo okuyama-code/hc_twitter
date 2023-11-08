@@ -71,12 +71,10 @@
             <% else %>
               <img class="side_img me-3" src="/assets/default.png" >
             <% end %>
-            <% if @user %>
-              <div>
-                <h4><%= @user.name %></h4>
-                <p>@<%= @user.username %></p>
-              </div>
-            <% end %>
+            <div>
+              <h4><%= @user.name %></h4>
+              <p>@<%= @user.username %></p>
+            </div>
           </div>
         </div>
  <%# col-md-4 sidebar %>
