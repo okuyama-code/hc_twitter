@@ -1,12 +1,21 @@
 ## よく使うコマンド
 ```
+sudo chmod -R 777 /home/okuyama/hc_twitter_clone/
+```
+
+```
 docker compose run --rm web bundle exec rubocop -A
 ```
 
 ```
 docker compose run --rm web bin/htmlbeautifier
 ```
-
+erbをslimに変換
+erbファイルの末尾に「_(アンダースコア)」をつけてください。こうすることでerbファイルは読み込まれなくなります。
+```
+bundle exec erb2slim views
+```
+bundle exec erb2slim viewsのコマンドに-dオプションをつけてください。そうすることで、変換後に元のerbファイルが削除されます。
 # 仕様
 https://github.com/happiness-chain/practice/blob/main/11_Ruby_on_Rails/002_twitter_clone.md
 

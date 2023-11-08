@@ -76,6 +76,7 @@ group :development do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'web-console'
+  gem 'html2slim'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -98,3 +99,5 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'rails-i18n'
+gem 'slim-rails'
+
