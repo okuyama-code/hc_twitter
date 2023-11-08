@@ -19,6 +19,10 @@ erb2slim app/views/
 ```
 erb2slim app/views/ -d
 ```
+これで元のファイルを編集できる。
+```
+vim /usr/local/bundle/gems/html2slim-0.2.0/lib/html2slim/converter.rb
+```
 
 
 
