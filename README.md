@@ -11,11 +11,17 @@ docker compose run --rm web bundle exec rubocop -A
 docker compose run --rm web bin/htmlbeautifier
 ```
 erbをslimに変換
-erbファイルの末尾に「_(アンダースコア)」をつけてください。こうすることでerbファイルは読み込まれなくなります。
+erbファイルの末尾に「_(アンダースコア)」をつける。こうすることでerbファイルは読み込まれなくなります。
 ```
-bundle exec erb2slim views
+erb2slim app/views/
 ```
-bundle exec erb2slim viewsのコマンドに-dオプションをつけてください。そうすることで、変換後に元のerbファイルが削除されます。
+元のerbファイルを削除
+```
+erb2slim app/views/ -d
+```
+
+
+
 # 仕様
 https://github.com/happiness-chain/practice/blob/main/11_Ruby_on_Rails/002_twitter_clone.md
 
