@@ -68,14 +68,18 @@
           <p class="item"><i class="fa-brands fa-usps"></i><span class="h6">投稿</span ></p>
           <div class="d-flex">
 
-            <% if @user.profile.icon.present? %>
+            <% if @user.profile %>
               <%= image_tag @user.profile.icon, class: "side_img me-3", alt: "..." %>
             <% else %>
-              <img class="side_img me-3" src="/assets/default.png" >
+              <img class="side_img me-3" src="/assets/icon.png" >
             <% end %>
             <div>
               <h4><%= @user.name %></h4>
-              <p>@<%= @user.profile.username %></p>
+              <% if @user.profile %>
+                <p>@<%= @user.profile.username %></p>
+              <% else %>
+                <p>@default01</p>
+              <% end%>
             </div>
           </div>
         </div>
