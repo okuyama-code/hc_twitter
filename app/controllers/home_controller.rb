@@ -10,7 +10,6 @@ class HomeController < ApplicationController
     # console
   end
 
-  def profile; end
 
   def message; end
 

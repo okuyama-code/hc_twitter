@@ -14,7 +14,8 @@
       <div class="ml-2">
         <%= link_to "Colorful SNS", root_path, class: "navbar-brand" %>
         <% if user_signed_in? && @user %>
-          <span><strong class="strong-nav"><%= @user.email %></strong>がログインしています </span>
+          <span><strong class="strong-nav"><%= @user.email %></strong>がログイン | ID: <strong class="strong-nav"><%= @user.id %></strong></span>
+
         <% end %>
       </div>
       <%# deviseを使っているから使えるヘルパー　user_signed_in? %>
@@ -62,7 +63,7 @@
             fa-envelope"></i><span class="h6">ダイレクトメッセージ</span ></p>
           <% end %>
           <p class="item"><i class="fa-regular fa-bookmark"></i><span class="h6">ブックマーク</span ></p>
-          <%= link_to '/profile', class: 'sidebar-link' do %>
+          <%= link_to profile_path(current_user), class: 'sidebar-link' do %>
             <p class="item"><i class="fa-solid fa-id-card"></i><span class="h6">プロフィール</span ></p>
           <% end %>
           <p class="item"><i class="fa-brands fa-usps"></i><span class="h6">投稿</span ></p>
