@@ -40,10 +40,11 @@
       <div class="alert alert-danger" role="alert"><strong><%= alert %></strong></div>
     <% end %>
     <div class="link-flex">
-      <%= link_to 'ホームへ', root_path, class: 'btncss' %>
-      <%= link_to "http://localhost:3000/letter_opener" , "/letter_opener", class: 'btncss' %>
+      <%= link_to "letter_openerへ" , "/letter_opener", class: 'btncss' %>
       <%= link_to "tweet詳細ページへ", tweet_show_path, class: 'btncss' %>
     </div>
+
+    <% if user_signed_in? %>
     <div class="container">
       <div class="row">
         <%# サイドバー(sidebar) %>
@@ -86,5 +87,8 @@
  <%# row %>
     </div>
  <%# container %>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>
