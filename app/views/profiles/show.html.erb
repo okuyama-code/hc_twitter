@@ -1,5 +1,4 @@
-
-<%# ================= profile =============== %>
+<%# ================= profile ユーザー詳細ページ =============== %>
 <div class="col-md-8 border-profile">
   <div class="d-flex">
     <div>
@@ -8,32 +7,46 @@
       <% end %>
     </div>
     <div class="profile-top-name">
-      <h2>okuyama</h2>
+      <h2><%= current_user.name %></h2>
       <p>320 posts</p>
     </div>
   </div>
   <div class="profile-images">
     <img class="header-img" src="/assets/header.jpg">
     <img class="profile-img me-3" src="/assets/EC1.jpg" >
-    <%= link_to "Edit profile", "/", class: "edit" %>
+    <% if current_user %>
+      <%= link_to "Edit profile", edit_profile_path(@profile) , class: "edit" %>
+    <% end %>
   </div>
   <div class="profile-info">
-    <h2>okuyama</h2>
-    <p>@okuyama0121</p>
-    <p>千葉県在住。25歳。23/3~8/8まで独学(500h)。23/8/9~HC。英語も学習中。ゴルフ、筋トレ、ランニング、ママさんバレー、料理、ヨガ、瞑想、将棋、カラオケ、登山、スポーツ全般の試合動画の視聴🏃フットサルも始めました⚽️ 座右の銘 「努力の上の辛抱という棒を立てろ。この棒に花が咲く。」</p>
+    <h2><%= current_user.name %></h2>
+    <p>@<%= current_user.profile.username %></p>
+    <% if current_user.profile.self_introduction.present? %>
+      <p><%= current_user.profile.self_introduction %></p>
+    <% else %>
+      <p class="dammy_self_introduction">(参考例 自己紹介文を登録したら消えます) 千葉県在住。25歳。23/3~8/8まで独学(500h)。23/8/9~HC。英語も学習中。ゴルフ、筋トレ、ランニング、ママさんバレー、料理、ヨガ、瞑想、将棋、カラオケ、登山です。よろしくお願いします！</p>
+    <% end %>
     <div class="d-flex">
+      <% if current_user.profile.location.present? %>
+      <div class="profile-details">
+        <i class="fa-solid fa-location-dot profile-icon-link"></i>
+        <span><%= current_user.profile.location %></span>
+      </div>
+      <% end %>
+      <% if current_user.profile.website.present? %>
       <div class="profile-details">
         <i class="fa-solid fa-link profile-icon-link"></i>
-        <span>https://okucode-portfolio-site.vercel.app/</span>
+        <span><%= current_user.profile.website %></span>
       </div>
+      <% end %>
       <div class="profile-details">
         <i class="fa-solid fa-cake-candles profile-icon"></i>
-        <span>Born January 21, 1998</span>
+        <span><%= current_user.date_of_birth.strftime('%Y年%m月%d日') %></span>
       </div>
     </div>
     <div class="profile-details calender-icon">
       <i class="fa-regular fa-calendar-days profile-icon"></i>
-      <span>Joined April 2023</span>
+      <span><%= current_user.created_at.strftime('%Y年%m月') %>からColorful SNSを利用しています</span>
     </div>
     <div class="d-flex relationship">
       <div class="follow">
@@ -48,8 +61,8 @@
   <div class="d-flex border p-3">
     <img class="home_img mx-3 me-4" src="/assets/EC1.jpg" >
     <div>
-      <span class="fw-bold fs-3 me-2">okuyama</span>
-      <span>@okuyama0121</span>
+      <span class="fw-bold fs-3 me-2"><%= current_user.name %></span>
+      <span>@<%= current_user.profile.username %></span>
       <p>CSS難しいなーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー</p>
       <img class="post_img" src="/assets/EC1.jpg" >
       <div class="d-flex justify-content-around home-icon mt-5">
@@ -76,4 +89,3 @@
     </div>
   </div>
 </div>
-<%# ============= ここまでprofile =========== %>

@@ -213,7 +213,7 @@ i {
   padding: 0;
 }
 .arrow-left {
-  color: #544a4a;
+  color: rgb(20, 105, 191);
   font-size: 1.5rem;
   margin-left: 20px;
   margin-right: 20px;
@@ -222,7 +222,7 @@ i {
 
 .profile-top-name {
   p {
-    color: #544a4a;
+    color: #aba3a3;
   }
 }
 
@@ -250,7 +250,7 @@ i {
 .edit {
   position: absolute;
   text-decoration: none;
-  color: #544a4a;
+  color: #aba3a3;
   border: 1px solid#544a4a;
   border-radius: 10px;
   padding: 5px 20px;
@@ -297,6 +297,10 @@ i {
   p {
     color: #544a4a;
   }
+}
+
+.dammy_self_introduction {
+  color: #aba3a3;
 }
 
 //  =========== message =================

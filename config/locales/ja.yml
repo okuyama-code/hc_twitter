@@ -3,6 +3,18 @@ ja:
     models:
       user: ユーザー
 
+      profile: プロフィール
+    attributes:
+      profile:
+        username: ユーザー名
+        self_introduction: 自己紹介
+        location: 住んでいる場所(location)
+        website: ウェブサイト
+        date_of_birth: 誕生日
+        icon: ユーザー画像
+        header: ヘッダー画像
+
+
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
