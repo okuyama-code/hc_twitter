@@ -67,14 +67,15 @@
           <% end %>
           <p class="item"><i class="fa-brands fa-usps"></i><span class="h6">投稿</span ></p>
           <div class="d-flex">
-            <% if @user.respond_to?(:image) && @user.image.present? %> <%# TODO 条件分岐で修正 %>
-              <%= image_tag @user.image, class: "side_img me-3", alt: "..." %>
+
+            <% if @user.profile.icon.present? %>
+              <%= image_tag @user.profile.icon, class: "side_img me-3", alt: "..." %>
             <% else %>
               <img class="side_img me-3" src="/assets/default.png" >
             <% end %>
             <div>
               <h4><%= @user.name %></h4>
-              <p>@<%= @user.username %></p>
+              <p>@<%= @user.profile.username %></p>
             </div>
           </div>
         </div>

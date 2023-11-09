@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  # validates :uid, uniqueness: { scope: :provider }, if: -> { uid.present? }
+  validates :uid, uniqueness: { scope: :provider }, if: -> { uid.present? }
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:github]
-  has_many :authorizations, dependent: :destroy
 
-  has_one_attached :image
+  # has_one_attached :image
+  has_one :profile, dependent: :destroy
+
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|

@@ -2,8 +2,11 @@ ja:
   activerecord:
     attributes:
       user:
+        name: "お名前(ローマ字か英語でお願いします)"
         current_password: "現在のパスワード"
         email: "メールアドレス"
+        telephone: "電話番号"
+        date_of_birth: "生年月日"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
