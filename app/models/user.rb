@@ -6,8 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:github]
 
-  # has_one_attached :image
-  has_one :profile, dependent: :destroy
+  has_one_attached :icon
+  has_one_attached :header
 
 
   def self.from_omniauth(auth)

@@ -9,6 +9,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.string :telephone,          null: false, unique: true
       t.string :encrypted_password, null: false, default: ''
       t.string :name
+      t.string :username
+      t.string :self_introduction
+      t.string :location
+      t.string :website
       t.string :uid
       t.string :provider
 

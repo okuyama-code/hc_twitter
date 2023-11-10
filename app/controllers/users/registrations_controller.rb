@@ -11,24 +11,9 @@ module Users
     # end
 
     # POST /resource
-    def create
-      super do |resource|
-        if resource.profile.nil?
-          pp "ifのほう"
-          profile = Profile.new(username: resource.name, user_id: resource.id)
-          profile.icon.attach(io: File.open(Rails.root.join('app/assets/images/icon.png')), filename: 'icon.png')
-          profile.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')), filename: 'header.jpg')
-          profile.save!
-        else
-          pp "elseのほう"
-          # 既存のプロフィールがあれば更新する
-          resource.profile.icon.attach(io: File.open(Rails.root.join('app/assets/images/icon.png')), filename: 'icon.png')
-          resource.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')), filename: 'header.jpg')
-          resource.profile.username = resource.name
-          resource.profile.save!
-        end
-      end
-    end
+    # def create
+    #   super
+    # end
 
     # GET /resource/edit
     # def edit

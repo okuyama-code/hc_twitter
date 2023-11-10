@@ -10,7 +10,7 @@
 <div class="share my-3">
   <div class="shareWrapper">
     <div class="shareTop d-flex">
-      <% if @user.profile %>
+      <% if @user.icon.attached? %>
         <%= image_tag current_user.profile.icon, class: "share_img mx-3 me-4", alt: "..." %>
       <% else %>
         <img class="share_img mx-3 me-4" src="/assets/icon.png" >
@@ -38,16 +38,15 @@
 <div class="tab-content">
   <div id="osusume" class="tab-pane active">
     <div class="d-flex border p-3">
-     <% if @user.profile %>
+     <% if @user.icon.attached? %>
         <%= image_tag current_user.profile.icon, class: "share_img mx-3 me-4", alt: "..." %>
       <% else %>
         <img class="home_img mx-3 me-4" src="/assets/icon.png" >
       <% end %>
       <div>
         <span class="fw-bold fs-3 me-2"><%= @user.name %></span>
-        <% if current_user.profile %>
-          <span>@<%= @user.profile.username %></span>
-        <% end %>
+
+          <span>@<%= @user.username %></span>
         <p>おすすめの表示</p>
         <img class="post_img" src="/assets/EC1.jpg" >
         <div class="d-flex justify-content-around home-icon mt-5">
