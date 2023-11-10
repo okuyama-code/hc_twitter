@@ -10,17 +10,12 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile = current_user.build_profile(profile_params)
+    # @profile = current_user.build_profile(profile_params)
+    @profile = current_user.profile.update(profile_params)
 
-    if @profile.save
-      pp "ifのほう"
+
       flash[:success] = 'プロフィール情報を編集しました。'
-      redirect_to profile_path(@profile)
-    else
-      pp "elseのほう"
-      flash[:alert] = 'まだ保存できていません'
-      render 'edit'
-    end
+      redirect_to profile_path
   end
 
   private
