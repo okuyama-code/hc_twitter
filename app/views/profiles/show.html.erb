@@ -12,8 +12,10 @@
     </div>
   </div>
   <div class="profile-images">
-    <img class="header-img" src="/assets/header.jpg">
-    <img class="profile-img me-3" src="/assets/EC1.jpg" >
+    <%= image_tag current_user.profile.header, class: "header-img", alt: "..." %>
+    <%= image_tag current_user.profile.icon, class: "profile-img me-3", alt: "..." %>
+
+
     <% if current_user %>
       <%= link_to "Edit profile", edit_profile_path(@profile) , class: "edit" %>
     <% end %>

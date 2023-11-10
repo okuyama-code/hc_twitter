@@ -17,7 +17,13 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
       user.date_of_birth = '1998-01-21'
       user.telephone = '08000001111'
-      user.save!
+
+      if user.profile.blank?
+        user.build_profile(username: auth.info.name)
+        user.profile.icon.attach(io: File.open(Rails.root.join('app/assets/images/icon.png')), filename: 'icon.png')
+        user.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')), filename: 'header.jpg')
+      end
+
     end
   end
 
