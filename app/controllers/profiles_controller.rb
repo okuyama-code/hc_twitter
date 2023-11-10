@@ -10,7 +10,6 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    # @profile = current_user.build_profile(username: params[:username], self_introduction: params[:self_introduction], location: params[:location], website: params[:website], icon: params[:icon], header: params[:header])
     @profile = current_user.build_profile(profile_params)
 
     if @profile.save
