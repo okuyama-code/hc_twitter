@@ -11,19 +11,17 @@ class User < ApplicationRecord
 
 
   def self.from_omniauth(auth)
+    pp "デバック！！！！！！！！！！！！！"
+    pp auth.info
     where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
       user.name = auth.info.name
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
-      user.date_of_birth = '1998-01-21'
+      user.date_of_birth = '1995-01-01'
       user.telephone = '08000001111'
-
-      if user.profile.blank?
-        user.build_profile(username: auth.info.name)
-        user.profile.icon.attach(io: File.open(Rails.root.join('app/assets/images/icon.png')), filename: 'icon.png')
-        user.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')), filename: 'header.jpg')
-      end
-
+      user.username = auth.info.nickname
+      user.icon.attach(io: File.open(Rails.root.join('app/assets/images/icon.png')), filename: 'icon.png')
+      user.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')), filename: 'header.jpg')
     end
   end
 

@@ -7,9 +7,16 @@ ja:
         email: "メールアドレス"
         telephone: "電話番号"
         date_of_birth: "生年月日"
-        password: "パスワード"
+        password: "パスワード(6文字以上)"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
+        username: ユーザー名
+        self_introduction: 自己紹介
+        location: 住んでいる場所(location)
+        website: ウェブサイト
+        date_of_birth: 誕生日
+        icon: ユーザー画像
+        header: ヘッダー画像
     models:
       user: "ユーザ"
   devise:

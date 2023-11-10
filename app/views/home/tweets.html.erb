@@ -11,7 +11,7 @@
   <div class="shareWrapper">
     <div class="shareTop d-flex">
       <% if @user.icon.attached? %>
-        <%= image_tag current_user.profile.icon, class: "share_img mx-3 me-4", alt: "..." %>
+        <%= image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..." %>
       <% else %>
         <img class="share_img mx-3 me-4" src="/assets/icon.png" >
       <% end %>
@@ -39,7 +39,7 @@
   <div id="osusume" class="tab-pane active">
     <div class="d-flex border p-3">
      <% if @user.icon.attached? %>
-        <%= image_tag current_user.profile.icon, class: "share_img mx-3 me-4", alt: "..." %>
+        <%= image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..." %>
       <% else %>
         <img class="home_img mx-3 me-4" src="/assets/icon.png" >
       <% end %>
