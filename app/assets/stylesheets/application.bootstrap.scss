@@ -38,6 +38,23 @@ body {
   }
 }
 
+// ============= nav tabの色
+/* アクティブなタブの文字の色 */
+.nav-tabs .nav-item .nav-link.active {
+  color: #211a1a;
+  background-color: #3a8d45;
+}
+
+/* タブの通常の文字の色 */
+.nav-tabs .nav-item .nav-link {
+  color: #f9f2f2;
+}
+
+/* タブのボタンの背景色 */
+// .nav-tabs .nav-item {
+//   background-color: #54a74c;
+// }
+
 
 // ==================== devise =======================================
 .card_css {

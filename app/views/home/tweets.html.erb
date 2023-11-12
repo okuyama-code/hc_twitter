@@ -11,9 +11,14 @@
   <div class="shareWrapper">
     <div class="shareTop d-flex">
       <% if @user.icon.attached? %>
+      <%= link_to user_path(current_user) do %>
         <%= image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..." %>
+      <% end %>
       <% else %>
-        <img class="share_img mx-3 me-4" src="/assets/icon.png" >
+        <%= link_to user_path(current_user) do %>
+          <img class="share_img mx-3 me-4" src="/assets/icon.png" >
+
+        <% end %>
       <% end %>
       <input type="text" class="shareInput" placeholder="投稿したい内容を入力" />
     </div>
@@ -35,18 +40,22 @@
   </div>
 </div>
  <%# share my-3%>
+
 <div class="tab-content">
   <div id="osusume" class="tab-pane active">
     <div class="d-flex border p-3">
-     <% if @user.icon.attached? %>
-        <%= image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..." %>
+      <% if @user.icon.attached? %>
+        <%= link_to user_path(current_user) do %>
+          <%= image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..." %>
+        <% end %>
       <% else %>
-        <img class="home_img mx-3 me-4" src="/assets/icon.png" >
+        <%= link_to user_path(current_user) do %>
+          <img class="home_img mx-3 me-4" src="/assets/icon.png" >
+        <% end %>
       <% end %>
       <div>
         <span class="fw-bold fs-3 me-2"><%= @user.name %></span>
-
-          <span>@<%= @user.username %></span>
+        <span>@<%= @user.username %></span>
         <p>おすすめの表示</p>
         <img class="post_img" src="/assets/EC1.jpg" >
         <div class="d-flex justify-content-around home-icon mt-5">
@@ -81,7 +90,15 @@
   </div>
   <div id="follow" class="tab-pane">
     <div class="d-flex border p-3">
-      <img class="home_img mx-3 me-4" src="/assets/EC1.jpg" >
+      <% if @user.icon.attached? %>
+        <%= link_to user_path(current_user) do %>
+          <%= image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..." %>
+        <% end %>
+      <% else %>
+        <%= link_to user_path(current_user) do %>
+          <img class="home_img mx-3 me-4" src="/assets/icon.png" >
+        <% end %>
+      <% end %>
       <div>
         <span class="fw-bold fs-3 me-2">okuyama</span>
         <span>@okuyama0121</span>
