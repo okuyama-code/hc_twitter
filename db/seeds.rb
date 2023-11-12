@@ -1,73 +1,20 @@
 # frozen_string_literal: true
 
-Rails.logger.debug '==================== user create ===================='
+# ================ sato =================
+sato = User.create!(name: "佐藤", username: "sato0101", email: "sato@gmail.com", password: "484848", date_of_birth: '1990-01-01', telephone: '09011112222', self_introduction: "はじめまして！佐藤です！", location: "東京", website: "sato-portfolio-site.vercel.app")
 
-users = [
-  { name: '奥山', email: 'okuyama@gmail.com', password: '484848', date_of_birth: '1998-01-21', telephone: '09011112222',
-    username: 'okuyama01' },
-  { name: '山田', email: 'yamada@gmail.com', password: '484848', date_of_birth: '1996-01-01', telephone: '08033334444',
-    username: 'yamada01' },
-  { name: '佐藤', email: 'sato@gmail.com', password: '484848', date_of_birth: '1990-08-01', telephone: '08066668888',
-    username: 'sato01' }
-]
+sato.icon.attach(io: File.open(Rails.root.join('app/assets/images/EC1.jpg')), filename: 'EC1.jpg')
+sato.header.attach(io: File.open(Rails.root.join('app/assets/images/suisu0.jpg')), filename: 'suisu0.jpg')
+sato.save!
 
-user1 = nil
-user2 = nil
-user3 = nil
+# =================== yamada =================
+yamada = User.create!(name: "山田", username: "yamada0101", email: "yamada@gmail.com", password: "484848", date_of_birth: '1990-01-01', telephone: '09011112222', self_introduction: "はじめまして！山田です！", location: "大阪", website: "yamada-portfolio-site.vercel.app")
 
-users.each do |user|
-  # 一度ユーザーをメールアドレスで検索
-  user_data = User.find_by(email: user[:email])
-  # 該当ユーザーがいなければ、createする
-  next unless user_data.nil?
+yamada.icon.attach(io: File.open(Rails.root.join('app/assets/images/EC2.jpg')), filename: 'EC2.jpg')
+yamada.header.attach(io: File.open(Rails.root.join('app/assets/images/suisu1.jpg')), filename: 'suisu1.jpg')
+yamada.save!
 
-  created_user = User.create(
-    name: user[:name],
-    email: user[:email],
-    password: user[:password],
-    date_of_birth: user[:date_of_birth],
-    telephone: user[:telephone],
-    username: user[:username]
-  )
-
-  # 作成したユーザーをそれぞれの変数に割り当てまる
-  case user[:email]
-  when 'okuyama@gmail.com'
-    user1 = created_user
-  when 'yamada@gmail.com'
-    user2 = created_user
-  when 'sato@gmail.com'
-    user3 = created_user
-  end
-end
-
-user1.image.attach(io: File.open(Rails.root.join('app/assets/images/EC1.jpg')), filename: 'EC1.jpg')
-user1.save!
-
-user2.image.attach(io: File.open(Rails.root.join('app/assets/images/EC2.jpg')), filename: 'EC2.jpg')
-user2.save!
-
-user3.image.attach(io: File.open(Rails.root.join('app/assets/images/EC3.jpg')), filename: 'EC2.jpg')
-user3.save!
-
-# user1、user2、user3 にそれぞれのユーザー レコードが含まれる
-
-# users = [
-#   {email: 'okuyama@gmail.com', password: '484848', date_of_birth: "1998-01-21", telephone: "09011112222"},
-#   {email: 'yamada@gmail.com', password: '484848', date_of_birth: "1996-01-01", telephone: "08033334444"},
-#   {email: 'sato@gmail.com', password: '484848', date_of_birth: "1990-08-01", telephone: "08066668888"},
-# ]
-
-# users.each do |user|
-#   # 一度ユーザーをメールアドレスで検索
-#   user_data = User.find_by(email: user[:email])
-#   #　該当ユーザーがいなければ、createする
-#   if user_data.nil?
-#     User.create(
-#       email: user[:email],
-#       password: user[:password],
-#       date_of_birth: user[:date_of_birth],
-#       telephone: user[:telephone]
-#     )
-#   end
-# end
+sato.posts.create!(post_content: "佐藤の１回目の投稿です")
+yamada.posts.create!(post_content: "山田の１回目の投稿です")
+sato.posts.create!(post_content: "佐藤の２回目の投稿です")
+yamada.posts.create!(post_content: "山田の２回目の投稿です")
