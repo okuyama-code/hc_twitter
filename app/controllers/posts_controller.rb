@@ -18,7 +18,7 @@ class PostsController < ApplicationController
       flash[:notice] = "投稿しました"
     else
       redirect_back fallback_location: root_path
-      flash[:alert] = "投稿に失敗しました"
+      flash[:alert] = @post.errors.full_messages
     end
   end
 

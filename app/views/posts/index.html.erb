@@ -1,4 +1,5 @@
  <%# Timeline %>
+ https://qiita.com/kurawo___D/items/d2fefdd329f5310113aa
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <a href="#osusume" class="nav-link active" data-bs-toggle="tab">おすすめ</a>
@@ -7,39 +8,7 @@
     <a href="#follow" class="nav-link" data-bs-toggle="tab">フォロー中</a>
   </li>
 </ul>
-<div class="share my-3">
-  <div class="shareWrapper">
-    <div class="shareTop d-flex">
-      <% if @user.icon.attached? %>
-        <%= link_to user_path(current_user) do %>
-          <%= image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..." %>
-        <% end %>
-      <% else %>
-        <%= link_to user_path(current_user) do %>
-          <img class="share_img mx-3 me-4" src="/assets/icon.png" >
-        <% end %>
-      <% end %>
-      <%= form_with(model: @post) do |f| %>
-        <%= f.text_area :post_content, class: "shareInput", placeholder: '投稿したい内容を入力' %>
-    </div>
-    <hr class="shareHr" />
-    <div class="shareButtons">
-      <div class="shareOptions">
-        <div class="shareOption">
-          <i class="fa-regular fa-image"></i>
-        </div>
-        <div class="shareOption">
-          <i class="fa-solid fa-gift"></i>
-        </div>
-        <div class="shareOption">
-          <i class="fa-regular fa-face-smile"></i>
-        </div>
-      </div>
-      <%= f.submit "投稿", class: "shareButton" %>
-    </div>
-    <% end %>
-  </div>
-</div>
+<%= render "posts/form", post: @post %>
  <%# share my-3%>
 
 <div class="tab-content">
