@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_back fallback_location: root_path  #コメント送信後は、一つ前のページへリダイレクトさせる。
+      redirect_to root_path
       flash[:notice] = "投稿しました"
     else
       redirect_back fallback_location: root_path
@@ -24,6 +24,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:post_content)
+    params.require(:post).permit(:post_content, :image)
   end
 end

@@ -13,6 +13,4 @@ Rails.application.routes.draw do
   root 'posts#index'
   get '/message' => 'home#message'
   get '/message_box' => 'home#message_box'
-  get '/tweet_show' => 'home#tweet_show'
-
 end

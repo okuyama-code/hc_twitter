@@ -31,7 +31,11 @@
           <%= link_to post_path(post.id), class: "post-link" do %>
             <p><%= post.post_content %></p>
           <% end %>
-          <img class="post_img" src="/assets/EC1.jpg" >
+          <% if post.image.attached? %>
+            <%= image_tag post.image, class: "post_img" %>
+          <% end %>
+          <%# <img class="post_img" src="/assets/EC1.jpg" > %>
+
           <div class="d-flex justify-content-around home-icon mt-5">
             <div>
               <i class="fa-regular fa-comment"></i>
