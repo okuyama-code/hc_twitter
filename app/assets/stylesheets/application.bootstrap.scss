@@ -1,9 +1,16 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 
+:root {
+  --hover-white: rgb(205, 196, 196);
+  --backcolor-green: linear-gradient(to right, rgb(58, 116, 17), rgb(202, 64, 110));
+  --backcolor-blue: linear-gradient(to right, rgb(76, 48, 189), rgb(103, 21, 120));
+  --icon-braun: rgb(133, 125, 125);
+}
+
 body {
-  background: linear-gradient(to right, rgb(58, 116, 17), rgb(202, 64, 110));
-  color: #ebeaea;
+  background: var(--backcolor-blue);
+  color: #e7e5e5;
   // color: #0b0505;
 }
 
@@ -215,7 +222,7 @@ i {
 
 .shareOption i {
   font-size: 20px;
-  color: rgb(70, 67, 67);
+  color: var(--icon-braun);
   // background: linear-gradient(90deg, #4158D0, #C850C0 30%, #FFCC70);
   // background: -webkit-linear-gradient(0deg, #4158D0, #C850C0 30%, #FFCC70);
   // -webkit-background-clip: text;
@@ -286,19 +293,19 @@ i {
 .profile-details {
   margin-right: 20px;
   span {
-    color: #544a4a;
+    color: var(--icon-braun);
   }
 }
 
 .profile-icon {
   font-size: 18px;
-  color: #544a4a;
+  color: var(--icon-braun);
   margin-right: 5px;
 }
 
 .profile-icon-link {
   font-size: 16px;
-  color: #544a4a;
+  color: var(--icon-braun);
 }
 
 .calender-icon {
@@ -309,10 +316,10 @@ i {
   margin-right: 10px;
   span {
     font-weight: 800;
-    color: #e0dada;
+    color: var(--icon-braun);
   }
   p {
-    color: #544a4a;
+    color: var(--icon-braun);
   }
 }
 
@@ -484,4 +491,13 @@ i {
   width: 100%;
   border: 1px solid white;
   border-radius: 3px;
+}
+
+.post-link {
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--hover-white);
+  }
 }

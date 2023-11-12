@@ -14,7 +14,7 @@
       <div class="ml-2">
         <%= link_to "Colorful SNS", root_path, class: "navbar-brand" %>
         <% if user_signed_in? && @user %>
-          <span><strong class="strong-nav"><%= @user.email %></strong>がログイン | ID: <strong class="strong-nav"><%= @user.id %></strong></span>
+          <span><strong class="strong-nav"><%= current_user.email %></strong>がログイン | ID: <strong class="strong-nav"><%= current_user.id %></strong></span>
 
         <% end %>
       </div>

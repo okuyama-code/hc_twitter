@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def set_user
+  def set_current_user
     @user = User.find_by(id: current_user.id)
   end
 end
