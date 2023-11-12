@@ -9,6 +9,9 @@ class User < ApplicationRecord
   has_one_attached :icon
   has_one_attached :header
 
+  has_many :posts, dependent: :destroy
+  has_many :comments #User.commentsで、ユーザーの所有するコメントを取得できる。
+
 
   def self.from_omniauth(auth)
     pp "デバック！！！！！！！！！！！！！"
