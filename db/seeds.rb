@@ -31,5 +31,9 @@ yamada.posts.create!(post_content: "山田の１回目の投稿です")
 sato.posts.create!(post_content: "佐藤の２回目の投稿です")
 suzuki.posts.create!(post_content: "鈴木の1回目の投稿です")
 yamada.posts.create!(post_content: "山田の２回目の投稿です")
-sato.posts.create!(post_content: "佐藤の3回目の投稿です")
-suzuki.posts.create!(post_content: "鈴木の2回目の投稿です")
+sato_post3 = sato.posts.create!(post_content: "佐藤の3回目の投稿です")
+suzuki_post2 = suzuki.posts.create!(post_content: "鈴木の2回目の投稿です")
+
+# ================= comment =====================
+sato.comments.create!(comment_content: "佐藤が鈴木にコメントしました", post_id: suzuki_post2.id)
+yamada.comments.create!(comment_content: "山田が佐藤にコメントしました", post_id: sato_post3.id)

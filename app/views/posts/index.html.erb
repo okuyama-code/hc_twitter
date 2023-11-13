@@ -39,10 +39,12 @@
           <%# <img class="post_img" src="/assets/EC1.jpg" > %>
 
           <div class="d-flex justify-content-around home-icon mt-5">
-            <div>
-              <i class="fa-regular fa-comment"></i>
-              <span class="home-icon-span">2</span>
-            </div>
+            <%= link_to post_path(post.id), class: "post-link" do %>
+              <div>
+                <i class="fa-regular fa-comment"></i>
+                <span class="home-icon-span"><%= post.comments.count %></span>
+              </div>
+             <% end %>
             <div>
               <i class="fa-solid fa-repeat"></i>
               <span class="home-icon-span">3</span>
