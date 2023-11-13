@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [:show, :edit, :update]
-  resources :posts
+  resources :posts do
+    resources :comments, only: [:create]
+  end
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   root 'posts#index'

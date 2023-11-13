@@ -23,7 +23,7 @@
 <div class="share-comment-box">
   <div class="shareWrapper">
     <div class="shareTop d-flex">
-      <% if @user.icon.attached? %>
+      <% if current_user.icon.attached? %>
         <%= link_to user_path(current_user) do %>
           <%= image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..." %>
         <% end %>
@@ -32,12 +32,16 @@
           <img class="share_img mx-3 me-4" src="/assets/icon.png" >
         <% end %>
       <% end %>
-      <input type="text" class="shareInput" placeholder="コメントを入力" />
+      <%= form_with model: [@post, @comment], url: post_comments_path(@post), method: :post  do |f| %>
+        <%= f.text_area :comment_content, class: "shareInput", placeholder: '投稿したい内容を入力', rows: 3, cols: 80 %>
     </div>
     <div class="shareButtons share-comment">
       <div class="shareOptions">
         <div class="shareOption">
-          <i class="fa-regular fa-image"></i>
+          <%= f.file_field :comment_img, class: 'form-control visually-hidden', accept: 'image/*', id: 'file-input-comment' %>
+          <label for="file-input-comment" >
+           <i class="fa-regular fa-image"></i>
+          </label>
         </div>
         <div class="shareOption">
           <i class="fa-solid fa-gift"></i>
@@ -46,34 +50,27 @@
           <i class="fa-regular fa-face-smile"></i>
         </div>
       </div>
-      <button class="shareButton">コメント送信</button>
+      <%= f.submit "コメント送信", class: "shareButton" %>
     </div>
+    <% end %>
   </div>
 </div>
 <%# コメント部分 %>
-<div class="d-flex border p-3">
-  <img class="home_img mx-3 me-4" src="/assets/avater3.png" >
-  <div>
-    <span class="fw-bold fs-3 me-2">yamada</span>
-    <span>@yamada01</span>
-    <p>勉強になるな～</p>
-    <div class="d-flex justify-content-around home-icon">
-      <i class="fa-regular fa-comment"></i>
-      <i class="fa-solid fa-repeat"></i>
-      <i class="fa-regular fa-heart"></i>
+<% @comments.reverse_each do |comment| %>
+  <div class="d-flex border p-3">
+    <img class="home_img mx-3 me-4" src="/assets/avater3.png" >
+    <div>
+      <span class="fw-bold fs-3 me-2"><%= comment.user.name %></span>
+      <span>@<%= comment.user.username %></span>
+      <p><%= comment.comment_content %></p>
+      <% if comment.comment_img.attached? %>
+        <%= image_tag comment.comment_img, class: "post_img" %>
+      <% end %>
+      <div class="d-flex justify-content-around home-icon">
+        <i class="fa-regular fa-comment"></i>
+        <i class="fa-solid fa-repeat"></i>
+        <i class="fa-regular fa-heart"></i>
+      </div>
     </div>
   </div>
-</div>
-<div class="d-flex border p-3">
-  <img class="home_img mx-3 me-4" src="/assets/EC4.jpg" >
-  <div>
-    <span class="fw-bold fs-3 me-2">suzuki</span>
-    <span>@suzuki01</span>
-    <p>僕も入ってみたい！でも怖いなー</p>
-    <div class="d-flex justify-content-around home-icon">
-      <i class="fa-regular fa-comment"></i>
-      <i class="fa-solid fa-repeat"></i>
-      <i class="fa-regular fa-heart"></i>
-    </div>
-  </div>
-</div>
+<% end %>
