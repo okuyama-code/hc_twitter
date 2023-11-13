@@ -11,7 +11,7 @@
         <% end %>
       <% end %>
       <%= form_with(model: post) do |f| %>
-        <%= f.text_area :post_content, class: "shareInput", placeholder: '投稿したい内容を入力' %>
+        <%= f.text_area :post_content, class: "shareInput", placeholder: '投稿したい内容を入力', rows: 3, cols: 80 %>
     </div>
     <hr class="shareHr" />
     <div class="shareButtons">

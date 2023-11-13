@@ -1,6 +1,7 @@
  <%# Timeline %>
  https://qiita.com/kurawo___D/items/d2fefdd329f5310113aa
- 
+
+<% if current_user %>
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <a href="#osusume" class="nav-link active" data-bs-toggle="tab">おすすめ</a>
@@ -58,10 +59,10 @@
   </div>
   <%# <div id="osusume" class="tab-pane active"> %>
 
-
+<%# 自分がフォローしている人のみの投稿一覧を作成 %>
   <div id="follow" class="tab-pane">
     <div class="d-flex border p-3">
-      <% if @user.icon.attached? %>
+      <% if current_user.icon.attached? %>
         <%= link_to user_path(current_user) do %>
           <%= image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..." %>
         <% end %>
@@ -94,3 +95,50 @@
   </div>
 </div>
  <%# tab-content %>
+
+<% else  %>  <%# current_userがいなかった時の処理 %>
+<div class="post-index-sub">
+  <%# TODO このdivタグをツイート詳細ページに行くように囲む %>
+  <% @posts.each do |post| %>
+    <div class="post-body d-flex border-sub p-3">
+      <% if post.user.icon.attached? %>
+        <%= link_to user_path(post.user) do %>
+          <%= image_tag post.user.icon, class: "share_img mx-3 me-4", alt: "..." %>
+        <% end %>
+      <% else %>
+        <%= link_to user_path(post.user) do %>
+          <img class="home_img mx-3 me-4" src="/assets/icon.png" >
+        <% end %>
+      <% end %>
+      <div>
+        <span class="fw-bold fs-3 me-2"><%= post.user.name %></span>
+        <span>@<%= post.user.username %></span>
+        <%= link_to post_path(post.id), class: "post-link" do %>
+          <p><%= post.post_content %></p>
+        <% end %>
+        <% if post.image.attached? %>
+          <%= image_tag post.image, class: "post_img" %>
+        <% end %>
+        <%# <img class="post_img" src="/assets/EC1.jpg" > %>
+
+        <div class="d-flex justify-content-around home-icon mt-5">
+          <div>
+            <i class="fa-regular fa-comment"></i>
+            <span class="home-icon-span">2</span>
+          </div>
+          <div>
+            <i class="fa-solid fa-repeat"></i>
+            <span class="home-icon-span">3</span>
+          </div>
+          <div>
+            <i class="fa-regular fa-heart"></i>
+            <span class="home-icon-span">10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+ <%# post-index-sub %>
+
+<% end %>

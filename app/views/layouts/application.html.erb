@@ -74,8 +74,10 @@
               <img class="side_img me-3" src="/assets/icon.png" >
             <% end %>
             <div>
-              <h4><%= current_user.name %></h4>
-              <p>@<%= current_user.username %></p>
+              <% if current_user %>
+                <h4><%= current_user.name %></h4>
+                <p>@<%= current_user.username %></p>
+              <% end %>
             </div>
           </div>
         </div>

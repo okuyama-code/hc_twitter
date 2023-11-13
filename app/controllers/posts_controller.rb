@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_current_user
+  before_action :authenticate_user!, only: [:show, :create]
+  # before_action :set_current_user, only: [:show, :create]
 
   def index
     @posts = Post.all.order(created_at: :desc)
-    @post = current_user.posts.new   #投稿一覧画面で新規投稿を行うので、formのパラメータ用にPostオブジェクトを取得
+    if current_user
+      @post = current_user.posts.new   #投稿一覧画面で新規投稿を行うので、formのパラメータ用にPostオブジェクトを取得
+    end
   end
 
   def show
