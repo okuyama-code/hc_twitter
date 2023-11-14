@@ -1,6 +1,4 @@
- <%# Timeline %>
- https://qiita.com/kurawo___D/items/d2fefdd329f5310113aa
-
+<%# Timeline %>
 <% if current_user %>
 <ul class="nav nav-tabs">
   <li class="nav-item">
@@ -142,5 +140,8 @@
   <% end %>
 </div>
  <%# post-index-sub %>
-
 <% end %>
+
+<div class="paginate-margin">
+  <%= paginate @posts, theme: 'bootstrap-5' %>
+</div>

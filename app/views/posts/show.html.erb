@@ -56,9 +56,15 @@
   </div>
 </div>
 <%# コメント部分 %>
-<% @comments.reverse_each do |comment| %>
+<% @comments.each do |comment| %>
   <div class="d-flex border p-3">
-    <img class="home_img mx-3 me-4" src="/assets/avater3.png" >
+    <% if comment.user.icon.attached? %>
+      <%= link_to user_path(comment.user) do %>
+        <%= image_tag comment.user.icon, class: "share_img mx-3 me-4", alt: "..." %>
+      <% end %>
+    <% else %>
+      <img class="home_img mx-3 me-4" src="/assets/icon.png" >
+    <% end %>
     <div>
       <span class="fw-bold fs-3 me-2"><%= comment.user.name %></span>
       <span>@<%= comment.user.username %></span>
@@ -74,3 +80,7 @@
     </div>
   </div>
 <% end %>
+
+<div class="paginate-margin">
+  <%= paginate @comments, theme: 'bootstrap-5' %>
+</div>
