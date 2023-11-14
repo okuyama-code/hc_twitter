@@ -28,7 +28,7 @@ vim /usr/local/bundle/gems/html2slim-0.2.0/lib/html2slim/converter.rb
 
 ## TODO branchの派生の順番
 現在 プロフィール編集画面まで終わっている。user終了
-現在のブランチの位置 tweet
+現在のブランチの位置 likes
 user → tweet → like → retweet → follow → bookmark message → notification
 
 https://github.com/happiness-chain/practice/blob/main/11_Ruby_on_Rails/002_twitter_clone.md
