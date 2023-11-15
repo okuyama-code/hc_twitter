@@ -45,6 +45,14 @@ body {
   }
 }
 
+.mr-1 {
+  margin-right: 20px;
+}
+
+.text-deco-no {
+  text-decoration: none;
+}
+
 // ============= nav tabの色
 /* アクティブなタブの文字の色 */
 .nav-tabs .nav-item .nav-link.active {
@@ -165,6 +173,14 @@ i {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.like-color {
+  color: rgb(236, 93, 93);
+}
+
+.no-like-color {
+  color: white;
 }
 
 

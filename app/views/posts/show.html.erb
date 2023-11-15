@@ -15,7 +15,23 @@
     <div class="d-flex justify-content-around home-icon">
       <i class="fa-regular fa-comment"></i>
       <i class="fa-solid fa-repeat"></i>
-      <i class="fa-regular fa-heart"></i>
+      <div>
+        <% if current_user.already_liked?(@post) %>
+          <%= link_to  post_likes_path(@post), data: { "turbo-method": :delete } do %>
+            <i class="fa-regular fa-heart like-color"></i>
+          <% end %>
+          <%# recipe_idを指定しなければいけないので引数にrecipeを書く %>
+        <% else %>
+          <%= link_to  post_likes_path(@post), data: { "turbo-method": :post } do %>
+            <i class="fa-regular fa-heart no-like-color"></i>
+          <% end %>
+        <% end %>
+        <span class="home-icon-span"><%= @post.likes.count %></span>
+      </div>
+      <div>
+        <i class="fa-solid fa-bookmark"></i>
+        <span class="home-icon-span">3</span>
+      </div>
     </div>
   </div>
 </div>

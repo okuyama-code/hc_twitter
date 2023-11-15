@@ -37,20 +37,39 @@ https://github.com/okuyama-code/rails_favorite-follow_app/tree/main/app
           <% end %>
           <%# <img class="post_img" src="/assets/EC1.jpg" > %>
 
-          <div class="d-flex justify-content-around home-icon mt-5">
+          <div class="d-flex justify-content-around home-icon mt-5  ">
             <%= link_to post_path(post.id), class: "post-link" do %>
-              <div>
+              <div class="mr-1">
                 <i class="fa-regular fa-comment"></i>
                 <span class="home-icon-span"><%= post.comments.count %></span>
               </div>
              <% end %>
-            <div>
+            <div class="mr-1">
               <i class="fa-solid fa-repeat"></i>
               <span class="home-icon-span">3</span>
             </div>
             <div>
-              <i class="fa-regular fa-heart"></i>
-              <span class="home-icon-span">10</span>
+              <% if current_user.already_liked?(post) %>
+                <%= link_to  post_likes_path(post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+                  <div class="mr-1">
+                    <i class="fa-regular fa-heart like-color"></i>
+                <% end %>
+                    <span class="home-icon-span"><%= post.likes.count %></span>
+                  </div>
+
+                <%# recipe_idを指定しなければいけないので引数にrecipeを書く %>
+              <% else %>
+                <%= link_to  post_likes_path(post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
+                  <div class="mr-1">
+                    <i class="fa-regular fa-heart no-like-color"></i>
+                <% end %>
+                    <span class="home-icon-span"><%= post.likes.count %></span>
+                  </div>
+              <% end %>
+            </div>
+            <div>
+              <i class="fa-solid fa-bookmark"></i>
+              <span class="home-icon-span">3</span>
             </div>
           </div>
         </div>

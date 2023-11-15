@@ -5,12 +5,20 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:github]
+  validates :name, presence: true
 
   has_one_attached :icon
   has_one_attached :header
 
   has_many :posts, dependent: :destroy
   has_many :comments #User.commentsで、ユーザーの所有するコメントを取得できる。
+  has_many :likes, dependent: :destroy
+
+  def already_liked?(post)
+    self.likes.exists?(post_id: post.id)
+    # selfにはcurrent_userが入る
+  end
+
 
 
   def self.from_omniauth(auth)

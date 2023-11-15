@@ -109,38 +109,69 @@
                 <span class="home-icon-span">3</span>
               </div>
               <div>
-                <i class="fa-regular fa-heart"></i>
-                <span class="home-icon-span">10</span>
+                <div>
+                  <% if current_user.already_liked?(post) %>
+                    <%= link_to  post_likes_path(post), data: { "turbo-method": :delete } do %>
+                      <i class="fa-regular fa-heart like-color"></i>
+                    <% end %>
+                    <%# recipe_idを指定しなければいけないので引数にrecipeを書く %>
+                  <% else %>
+                    <%= link_to  post_likes_path(post), data: { "turbo-method": :post } do %>
+                      <i class="fa-regular fa-heart no-like-color"></i>
+                    <% end %>
+                  <% end %>
+                  <span class="home-icon-span"><%= post.likes.count %></span>
+                </div>
+              </div>
+              <div>
+                <i class="fa-solid fa-bookmark"></i>
+                <span class="home-icon-span">3</span>
               </div>
             </div>
           </div>
         </div>
       <% end %>
+      <div class="paginate-margin">
+        <%= paginate @posts, theme: 'bootstrap-5' %>
+      </div>
     </div>
 
     <div id="my_likes" class="tab-pane">
-      <div class="d-flex border p-3">
-        <img class="home_img mx-3 me-4" src="/assets/EC1.jpg" >
-        <div>
-          <span class="fw-bold fs-3 me-2">okuyama</span>
-          <span>@okuyama0121</span>
-          <p>自分の全いいねしたツイート表示</p>
-          <img class="post_img" src="/assets/EC1.jpg" >
-          <div class="d-flex justify-content-around home-icon mt-5">
-            <div>
-              <i class="fa-regular fa-comment"></i>
-              <span class="home-icon-span">2</span>
-            </div>
-            <div>
-              <i class="fa-solid fa-repeat"></i>
-              <span class="home-icon-span">3</span>
-            </div>
-            <div>
-              <i class="fa-regular fa-heart"></i>
-              <span class="home-icon-span">10</span>
+      <% @like_posts.each do |like| %>
+        <div class="d-flex border p-3">
+          <% if like.post.user.icon.attached? %>
+            <%= image_tag like.post.user.icon, class: "home_img mx-3 me-4", alt: "..." %>
+          <% else %>
+            <img class="home_img mx-3 me-4" src="/assets/EC1.jpg" >
+          <% end %>
+          <div>
+            <span class="fw-bold fs-3 me-2"><%= like.post.user.name %></span>
+            <span>@<%= like.post.user.username %></span>
+            <p><%= like.post.post_content %></p>
+            <img class="post_img" src="/assets/EC1.jpg" >
+            <div class="d-flex justify-content-around home-icon mt-5">
+              <div>
+                <i class="fa-regular fa-comment"></i>
+                <span class="home-icon-span">2</span>
+              </div>
+              <div>
+                <i class="fa-solid fa-repeat"></i>
+                <span class="home-icon-span">3</span>
+              </div>
+              <div>
+                <i class="fa-regular fa-heart"></i>
+                <span class="home-icon-span">10</span>
+              </div>
+              <div>
+                <i class="fa-solid fa-bookmark"></i>
+                <span class="home-icon-span">3</span>
+              </div>
             </div>
           </div>
         </div>
+      <% end %>
+      <div class="paginate-margin">
+        <%= paginate @like_posts, theme: 'bootstrap-5' %>
       </div>
     </div>
     <div id="my_retweets" class="tab-pane">
@@ -163,6 +194,10 @@
             <div>
               <i class="fa-regular fa-heart"></i>
               <span class="home-icon-span">10</span>
+            </div>
+            <div>
+              <i class="fa-solid fa-bookmark"></i>
+              <span class="home-icon-span">3</span>
             </div>
           </div>
         </div>
@@ -189,6 +224,10 @@
               <i class="fa-regular fa-heart"></i>
               <span class="home-icon-span">10</span>
             </div>
+            <div>
+              <i class="fa-solid fa-bookmark"></i>
+              <span class="home-icon-span">3</span>
+            </div>
           </div>
         </div>
       </div>
@@ -197,6 +236,6 @@
  <%# tab-content %>
 </div>
 
-<div class="paginate-margin">
-  <%= paginate @posts, theme: 'bootstrap-5' %>
-</div>
+
+
+
