@@ -111,12 +111,12 @@
               <div>
                 <div>
                   <% if current_user.already_liked?(post) %>
-                    <%= link_to  post_likes_path(post), data: { "turbo-method": :delete } do %>
+                    <%= link_to  post_likes_path(post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
                       <i class="fa-regular fa-heart like-color"></i>
                     <% end %>
                     <%# recipe_idを指定しなければいけないので引数にrecipeを書く %>
                   <% else %>
-                    <%= link_to  post_likes_path(post), data: { "turbo-method": :post } do %>
+                    <%= link_to  post_likes_path(post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
                       <i class="fa-regular fa-heart no-like-color"></i>
                     <% end %>
                   <% end %>
@@ -145,9 +145,13 @@
             <img class="home_img mx-3 me-4" src="/assets/EC1.jpg" >
           <% end %>
           <div>
-            <span class="fw-bold fs-3 me-2"><%= like.post.user.name %></span>
+            <%= link_to user_path(like.post.user), class: "text-deco-no" do %>
+              <span class="fw-bold fs-3 me-2"><%= like.post.user.name %></span>
+            <% end %>
             <span>@<%= like.post.user.username %></span>
-            <p><%= like.post.post_content %></p>
+            <%= link_to post_path(like.post), class: "text-deco-no" do %>
+              <p><%= like.post.post_content %></p>
+            <% end %>
             <img class="post_img" src="/assets/EC1.jpg" >
             <div class="d-flex justify-content-around home-icon mt-5">
               <div>
@@ -158,9 +162,25 @@
                 <i class="fa-solid fa-repeat"></i>
                 <span class="home-icon-span">3</span>
               </div>
+              <%# いいねボタン %>
               <div>
-                <i class="fa-regular fa-heart"></i>
-                <span class="home-icon-span">10</span>
+                <% if current_user.already_liked?(like.post) %>
+                  <%= link_to  post_likes_path(like.post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+                    <div class="mr-1">
+                      <i class="fa-regular fa-heart like-color"></i>
+                  <% end %>
+                      <span class="home-icon-span"><%= like.post.likes.count %></span>
+                    </div>
+
+                  <%# recipe_idを指定しなければいけないので引数にrecipeを書く %>
+                <% else %>
+                  <%= link_to  post_likes_path(like.post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
+                    <div class="mr-1">
+                      <i class="fa-regular fa-heart no-like-color"></i>
+                  <% end %>
+                      <span class="home-icon-span"><%= like.post.likes.count %></span>
+                    </div>
+                <% end %>
               </div>
               <div>
                 <i class="fa-solid fa-bookmark"></i>
@@ -224,6 +244,7 @@
               <i class="fa-regular fa-heart"></i>
               <span class="home-icon-span">10</span>
             </div>
+
             <div>
               <i class="fa-solid fa-bookmark"></i>
               <span class="home-icon-span">3</span>

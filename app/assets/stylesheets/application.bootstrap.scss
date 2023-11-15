@@ -51,6 +51,11 @@ body {
 
 .text-deco-no {
   text-decoration: none;
+  color: white;
+
+  &:hover {
+    color: var(--hover-white);
+  }
 }
 
 // ============= nav tabの色
