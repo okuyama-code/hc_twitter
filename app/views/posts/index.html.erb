@@ -14,72 +14,88 @@
   <div id="osusume" class="tab-pane active">
     <%# TODO このdivタグをツイート詳細ページに行くように囲む %>
     <% @posts.each do |post| %>
-      <div class="post-body d-flex border p-3">
-        <% if post.user.icon.attached? %>
-          <%= link_to user_path(post.user) do %>
-            <%= image_tag post.user.icon, class: "share_img mx-3 me-4", alt: "..." %>
-          <% end %>
-        <% else %>
-          <%= link_to user_path(post.user) do %>
-            <img class="home_img mx-3 me-4" src="/assets/icon.png" >
-          <% end %>
-        <% end %>
-        <div>
-          <span class="fw-bold fs-3 me-2"><%= post.user.name %></span>
-          <span>@<%= post.user.username %></span>
-          <%= link_to post_path(post.id), class: "post-link" do %>
-            <p><%= post.post_content %></p>
-          <% end %>
-          <% if post.image.attached? %>
-            <%= image_tag post.image, class: "post_img" %>
-          <% end %>
-
-          <div class="d-flex justify-content-around home-icon mt-5  ">
-            <%= link_to post_path(post.id), class: "post-link" do %>
-              <div class="mr-1">
-                <i class="fa-regular fa-comment"></i>
-                <span class="home-icon-span"><%= post.comments.count %></span>
-              </div>
-            <% end %>
-            <% if current_user.reposted?(post.id) %>
-              <div class="mr-1">
-                <%= link_to post_repost_path(post, post.reposts.first), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
-                  <i class="fa-solid fa-repeat repost-color "></i>
+        <div class="post-body border p-3">
+          <div class="flex-between">
+            <div>
+              <%# icon %>
+              <% if post.user.icon.attached? %>
+                <%= link_to user_path(post.user) do %>
+                  <%= image_tag post.user.icon, class: "share_img mx-3 me-4", alt: "..." %>
                 <% end %>
-                <span class="home-icon-span"><%= post.reposts.count %></span>
-              </div>
-            <% else %>
-               <div class="mr-1">
-                  <%= link_to post_reposts_path(post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
-                    <i class="fa-solid fa-repeat no-repost-color "></i>
+              <% else %>
+                <%= link_to user_path(post.user) do %>
+                  <img class="home_img mx-3 me-4" src="/assets/icon.png" >
+                <% end %>
+              <% end %>
+          <%# usernameなど %>
+              <span class="fw-bold fs-3 me-2"><%= post.user.name %></span>
+              <span>@<%= post.user.username %></span>
+
+              <%= link_to user_relationships_path(post.user), data: { "turbo-method": :post }, class: "follow-link" do %>
+                <%= post.user.name %>をフォロー
+              <% end %>
+
+            </div>
+          </div>
+
+          <div class="margin-left">
+            <%= link_to post_path(post.id), class: "post-link" do %>
+              <p><%= post.post_content %></p>
+            <% end %>
+            <% if post.image.attached? %>
+              <%= image_tag post.image, class: "post_img" %>
+            <% end %>
+
+            <div class="d-flex justify-content-around home-icon mt-5  ">
+              <%= link_to post_path(post.id), class: "post-link" do %>
+                <div class="mr-1">
+                  <i class="fa-regular fa-comment"></i>
+                  <span class="home-icon-span"><%= post.comments.count %></span>
+                </div>
+              <% end %>
+              <% if current_user.reposted?(post.id) %>
+                <div class="mr-1">
+                  <%= link_to post_repost_path(post, post.reposts.first), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+                    <i class="fa-solid fa-repeat repost-color "></i>
                   <% end %>
                   <span class="home-icon-span"><%= post.reposts.count %></span>
                 </div>
-            <% end %>
-            <div>
-              <% if current_user.already_liked?(post) %>
-                <%= link_to  post_likes_path(post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
-                  <div class="mr-1">
-                    <i class="fa-regular fa-heart like-color"></i>
-                <% end %>
-                    <span class="home-icon-span"><%= post.likes.count %></span>
-                  </div>
               <% else %>
-                <%= link_to  post_likes_path(post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
                   <div class="mr-1">
-                    <i class="fa-regular fa-heart no-like-color"></i>
-                <% end %>
-                    <span class="home-icon-span"><%= post.likes.count %></span>
+                    <%= link_to post_reposts_path(post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
+                      <i class="fa-solid fa-repeat no-repost-color "></i>
+                    <% end %>
+                    <span class="home-icon-span"><%= post.reposts.count %></span>
                   </div>
               <% end %>
-            </div>
-            <div>
-              <i class="fa-solid fa-bookmark"></i>
-              <span class="home-icon-span">3</span>
+              <div>
+                <% if current_user.already_liked?(post) %>
+                  <%= link_to  post_likes_path(post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+                    <div class="mr-1">
+                      <i class="fa-regular fa-heart like-color"></i>
+                  <% end %>
+                      <span class="home-icon-span"><%= post.likes.count %></span>
+                    </div>
+                <% else %>
+                  <%= link_to  post_likes_path(post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
+                    <div class="mr-1">
+                      <i class="fa-regular fa-heart no-like-color"></i>
+                  <% end %>
+                      <span class="home-icon-span"><%= post.likes.count %></span>
+                    </div>
+                <% end %>
+              </div>
+              <div>
+                <i class="fa-solid fa-bookmark"></i>
+                <span class="home-icon-span">3</span>
+              </div>
             </div>
           </div>
+
         </div>
-      </div>
+        <%# 投稿のborderのなか %>
+
+
     <% end %>
 
   </div>

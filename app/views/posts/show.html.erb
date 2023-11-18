@@ -1,3 +1,6 @@
+<div class="flex-around">
+
+</div>
 <div class="d-flex border p-3">
   <% if @post.user.icon.attached? %>
     <%= link_to user_path(@post.user) do %>
@@ -28,7 +31,7 @@
             <span class="home-icon-span"><%= @post.reposts.count %></span>
           </div>
       <% end %>
-      
+
       <div>
         <% if current_user.already_liked?(@post) %>
           <%= link_to  post_likes_path(@post), data: { "turbo-method": :delete } do %>

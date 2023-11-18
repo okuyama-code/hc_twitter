@@ -58,6 +58,19 @@ body {
   }
 }
 
+a {
+  text-decoration: none;
+}
+
+.margin-left {
+  margin-left: 85px;
+}
+
+.inline-block {
+  display: inline-block;
+  margin-right: 10px; /* 各要素の右側の余白 */
+}
+
 // ============= nav tabの色
 /* アクティブなタブの文字の色 */
 .nav-tabs .nav-item .nav-link.active {
@@ -126,7 +139,33 @@ i {
 
 
 // ================== post ================
+.flex {
+  display: flex;
+  align-items: center;
+}
 
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.follow-link {
+  margin-left: 5px;
+  border: 1px solid green;
+  border-radius: 5px;
+  padding: 10px 5px;
+  background: green;
+  color: #e7e5e5;
+
+  &:hover {
+    color: rgb(182, 177, 177);
+  }
+}
+
+.fa-bars {
+  font-size: 15px;
+}
 
 .home_img {
   width: 50px;
