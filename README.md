@@ -25,7 +25,6 @@ vim /usr/local/bundle/gems/html2slim-0.2.0/lib/html2slim/converter.rb
 ```
 
 ## TODO branchの派生の順番
-現在 プロフィール編集画面まで終わっている。user終了
 現在のブランチの位置 follow
 
 user → tweet → like → repost → follow → bookmark message → notification
@@ -39,10 +38,9 @@ https://github.com/happiness-chain/practice/blob/main/11_Ruby_on_Rails/002_twitt
 
 - すぐに確認できるようにユーザーと、ツイート、フォロー関係のseedを用意すること
 
-# よく使うコマンド
-```
-sudo chmod -R 777 /home/okuyama/hc_twitter_clone/
-```
+# ショートカット
+tab　複製 (chome)
+Alt + D + Enter
 
 ブランチの削除
 ローカル

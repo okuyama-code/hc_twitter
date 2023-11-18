@@ -1,4 +1,5 @@
 <%= form_with model: post, local: true do |f| %>
+  <%= render "layouts/error_messages", model: post %>
   <div class="share my-3">
     <div class="shareWrapper">
       <div class="shareTop d-flex">

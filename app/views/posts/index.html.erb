@@ -1,5 +1,3 @@
-https://github.com/okuyama-code/rails_favorite-follow_app/tree/main/app
-<%# Timeline %>
 <% if current_user %>
 <ul class="nav nav-tabs">
   <li class="nav-item">
@@ -35,7 +33,6 @@ https://github.com/okuyama-code/rails_favorite-follow_app/tree/main/app
           <% if post.image.attached? %>
             <%= image_tag post.image, class: "post_img" %>
           <% end %>
-          <%# <img class="post_img" src="/assets/EC1.jpg" > %>
 
           <div class="d-flex justify-content-around home-icon mt-5  ">
             <%= link_to post_path(post.id), class: "post-link" do %>
@@ -67,8 +64,6 @@ https://github.com/okuyama-code/rails_favorite-follow_app/tree/main/app
                 <% end %>
                     <span class="home-icon-span"><%= post.likes.count %></span>
                   </div>
-
-                <%# recipe_idを指定しなければいけないので引数にrecipeを書く %>
               <% else %>
                 <%= link_to  post_likes_path(post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
                   <div class="mr-1">

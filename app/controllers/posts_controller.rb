@@ -17,12 +17,12 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(3)
     if @post.save
       redirect_to root_path
       flash[:notice] = "投稿しました"
     else
-      redirect_back fallback_location: root_path
-      flash[:alert] = @post.errors.full_messages
+      render :index, status: :unprocessable_entity
     end
   end
 
