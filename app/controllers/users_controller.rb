@@ -10,6 +10,18 @@ class UsersController < ApplicationController
     @commnet_posts = @user.comments.order(created_at: :desc).page(params[:page]).per(3)
   end
 
+  def followings
+    # フォローしている人の一覧
+    user = User.find(params[:id])
+    @users = user.followings
+  end
+
+  def followers
+    # フォローされている人の一覧
+    user = User.find(params[:id])
+    @users = user.followers
+  end
+
   def edit
   end
 

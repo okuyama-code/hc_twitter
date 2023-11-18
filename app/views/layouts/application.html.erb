@@ -48,7 +48,7 @@
     <div class="container">
       <div class="row">
         <%# サイドバー(sidebar) %>
-        <div class="col-md-4 d-flex flex-column sidebar">
+        <div class="col-md-3 d-flex flex-column sidebar">
           <%= link_to '/', class: 'sidebar-link' do %>
             <i class="fa-brands fa-x-twitter"></i>
           <% end %>
@@ -59,7 +59,7 @@
           <p class="item"><i class="fa-regular fa-bell"></i><span class="h6">通知</span ></p>
           <%= link_to '/message', class: 'sidebar-link' do %>
             <p class="item"><i class="fa-regular
-            fa-envelope"></i><span class="h6">ダイレクトメッセージ</span ></p>
+            fa-envelope"></i><span class="h6">DM</span ></p>
           <% end %>
           <p class="item"><i class="fa-regular fa-bookmark"></i><span class="h6">ブックマーク</span ></p>
           <%= link_to user_path(current_user), class: 'sidebar-link' do %>
@@ -85,7 +85,7 @@
         </div>
  <%# col-md-4 sidebar %>
         <%# コンポーネント　col-md-8 main-area %>
-        <div class="col-md-8 main-area">
+        <div class="col-md-9 main-area">
           <%= yield %>
         </div>
       </div>
