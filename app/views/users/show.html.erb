@@ -193,7 +193,7 @@
         <%= paginate @like_posts, theme: 'bootstrap-5' %>
       </div>
     </div>
-
+    <%# retweets まとめ %>
     <div id="my_retweets" class="tab-pane">
       <% @repost_posts.each do |repost| %>
         <div class="d-flex border p-3">
@@ -265,35 +265,74 @@
     <div class="paginate-margin">
         <%= paginate @repost_posts, theme: 'bootstrap-5' %>
       </div>
+    <%# commentまとめ %>
     <div id="my_comment" class="tab-pane">
-      <div class="d-flex border p-3">
-        <img class="home_img mx-3 me-4" src="/assets/EC1.jpg" >
-        <div>
-          <span class="fw-bold fs-3 me-2">okuyama</span>
-          <span>@okuyama0121</span>
-          <p>自分の全コメントしたツイート表示</p>
-          <img class="post_img" src="/assets/EC1.jpg" >
-          <div class="d-flex justify-content-around home-icon mt-5">
+      <% @commnet_posts.each do |comment| %>
+        <div class="d-flex border p-3">
+          <% if comment.post.user.icon.attached? %>
+            <%= image_tag comment.post.user.icon, class: "home_img mx-3 me-4", alt: "..." %>
+          <% else %>
+            <img class="home_img mx-3 me-4" src="/assets/EC1.jpg" >
+          <% end %>
+          <div>
+            <%= link_to user_path(comment.post.user), class: "text-deco-no" do %>
+              <span class="fw-bold fs-3 me-2"><%= comment.post.user.name %></span>
+            <% end %>
+            <span>@<%= comment.post.user.username %></span>
+            <%= link_to post_path(comment.post), class: "text-deco-no" do %>
+              <p><%= comment.post.post_content %></p>
+            <% end %>
+            <% if comment.post.image.attached? %>
+              <%= image_tag comment.post.image, class: "post_img", alt: "..." %>
+            <% end %>
+            <%# icon %>
+            <div class="d-flex justify-content-around home-icon mt-5  ">
+            <%= link_to post_path(comment.post.id), class: "post-link" do %>
+              <div class="mr-1">
+                <i class="fa-regular fa-comment"></i>
+                <span class="home-icon-span"><%= comment.post.comments.count %></span>
+              </div>
+            <% end %>
+            <% if current_user.reposted?(comment.post.id) %>
+              <div class="mr-1">
+                <%= link_to post_repost_path(comment.post, comment.post.reposts.first), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+                  <i class="fa-solid fa-repeat repost-color "></i>
+                <% end %>
+                <span class="home-icon-span"><%= comment.post.reposts.count %></span>
+              </div>
+            <% else %>
+               <div class="mr-1">
+                  <%= link_to post_reposts_path(comment.post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
+                    <i class="fa-solid fa-repeat no-repost-color "></i>
+                  <% end %>
+                  <span class="home-icon-span"><%= comment.post.reposts.count %></span>
+                </div>
+            <% end %>
             <div>
-              <i class="fa-regular fa-comment"></i>
-              <span class="home-icon-span">2</span>
+              <% if current_user.already_liked?(comment.post) %>
+                <%= link_to  post_likes_path(comment.post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+                  <div class="mr-1">
+                    <i class="fa-regular fa-heart like-color"></i>
+                <% end %>
+                    <span class="home-icon-span"><%= comment.post.likes.count %></span>
+                  </div>
+              <% else %>
+                <%= link_to  post_likes_path(comment.post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
+                  <div class="mr-1">
+                    <i class="fa-regular fa-heart no-like-color"></i>
+                <% end %>
+                    <span class="home-icon-span"><%= comment.post.likes.count %></span>
+                  </div>
+              <% end %>
             </div>
-            <div>
-              <i class="fa-solid fa-repeat"></i>
-              <span class="home-icon-span">3</span>
-            </div>
-            <div>
-              <i class="fa-regular fa-heart"></i>
-              <span class="home-icon-span">10</span>
-            </div>
-
             <div>
               <i class="fa-solid fa-bookmark"></i>
               <span class="home-icon-span">3</span>
             </div>
           </div>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
  <%# tab-content %>
