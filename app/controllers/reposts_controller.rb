@@ -6,6 +6,8 @@ class RepostsController < ApplicationController
       redirect_to root_path, alert: 'すでにリポスト済みです'
     else
       @repost = Repost.create(user_id: current_user.id, post_id: @post.id)
+      redirect_to request.referer, notice: 'リポストしました'
+
     end
   end
 
@@ -13,6 +15,7 @@ class RepostsController < ApplicationController
     @repost = current_user.reposts.find_by(post_id: @post.id)
     if @repost.present?
       @repost.destroy
+      redirect_to request.referer, notice: 'リポストを取り消しました'
     else
       redirect_to root_path, alert: '既にリポストを取り消し済みです'
     end

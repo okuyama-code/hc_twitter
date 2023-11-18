@@ -43,11 +43,25 @@ https://github.com/okuyama-code/rails_favorite-follow_app/tree/main/app
                 <i class="fa-regular fa-comment"></i>
                 <span class="home-icon-span"><%= post.comments.count %></span>
               </div>
-             <% end %>
-            <div class="mr-1">
-              <i class="fa-solid fa-repeat"></i>
-              <span class="home-icon-span">3</span>
-            </div>
+            <% end %>
+            <% if current_user.reposted?(post.id) %>
+              <div class="mr-1">
+                <%= link_to post_repost_path(post, post.reposts.first), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+                  <i class="fa-solid fa-repeat repost-color "></i>
+                <% end %>
+                <span class="home-icon-span"><%= post.reposts.count %></span>
+              </div>
+            <% else %>
+               <div class="mr-1">
+                  <%= link_to post_reposts_path(post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
+                    <i class="fa-solid fa-repeat no-repost-color "></i>
+                  <% end %>
+                  <span class="home-icon-span"><%= post.reposts.count %></span>
+                </div>
+
+            <% end %>
+              <span class="home-icon-span"><%= post.reposts.count %></span>
+
             <div>
               <% if current_user.already_liked?(post) %>
                 <%= link_to  post_likes_path(post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
