@@ -58,10 +58,7 @@ https://github.com/okuyama-code/rails_favorite-follow_app/tree/main/app
                   <% end %>
                   <span class="home-icon-span"><%= post.reposts.count %></span>
                 </div>
-
             <% end %>
-              <span class="home-icon-span"><%= post.reposts.count %></span>
-
             <div>
               <% if current_user.already_liked?(post) %>
                 <%= link_to  post_likes_path(post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>

@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(3)
     @like_posts = @user.likes.order(created_at: :desc).page(params[:page]).per(3)
+    @repost_posts = @user.reposts.order(created_at: :desc).page(params[:page]).per(3)
   end
 
   def edit
