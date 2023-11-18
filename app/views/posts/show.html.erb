@@ -36,41 +36,41 @@
   </div>
 </div>
 <%# コメント投稿フォーム %>
-<div class="share-comment-box">
-  <div class="shareWrapper">
-    <div class="shareTop d-flex">
-      <% if current_user.icon.attached? %>
-        <%= link_to user_path(current_user) do %>
-          <%= image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..." %>
+<%= form_with model: [@post, @comment], url: post_comments_path(@post), method: :post  do |f| %>
+  <div class="share-comment-box">
+    <div class="shareWrapper">
+      <div class="shareTop d-flex">
+        <% if current_user.icon.attached? %>
+          <%= link_to user_path(current_user) do %>
+            <%= image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..." %>
+          <% end %>
+        <% else %>
+          <%= link_to user_path(current_user) do %>
+            <img class="share_img mx-3 me-4" src="/assets/icon.png" >
+          <% end %>
         <% end %>
-      <% else %>
-        <%= link_to user_path(current_user) do %>
-          <img class="share_img mx-3 me-4" src="/assets/icon.png" >
-        <% end %>
-      <% end %>
-      <%= form_with model: [@post, @comment], url: post_comments_path(@post), method: :post  do |f| %>
-        <%= f.text_area :comment_content, class: "shareInput", placeholder: '投稿したい内容を入力', rows: 3, cols: 80 %>
-    </div>
-    <div class="shareButtons share-comment">
-      <div class="shareOptions">
-        <div class="shareOption">
-          <%= f.file_field :comment_img, class: 'form-control visually-hidden', accept: 'image/*', id: 'file-input-comment' %>
-          <label for="file-input-comment" >
-           <i class="fa-regular fa-image"></i>
-          </label>
-        </div>
-        <div class="shareOption">
-          <i class="fa-solid fa-gift"></i>
-        </div>
-        <div class="shareOption">
-          <i class="fa-regular fa-face-smile"></i>
-        </div>
+          <%= f.text_area :comment_content, class: "shareInput", placeholder: '投稿したい内容を入力', rows: 3, cols: 80 %>
       </div>
-      <%= f.submit "コメント送信", class: "shareButton" %>
+      <div class="shareButtons share-comment">
+        <div class="shareOptions">
+          <div class="shareOption">
+            <%= f.file_field :comment_img, class: 'form-control visually-hidden', accept: 'image/*', id: 'file-input-comment' %>
+            <label for="file-input-comment" >
+            <i class="fa-regular fa-image"></i>
+            </label>
+          </div>
+          <div class="shareOption">
+            <i class="fa-solid fa-gift"></i>
+          </div>
+          <div class="shareOption">
+            <i class="fa-regular fa-face-smile"></i>
+          </div>
+        </div>
+        <%= f.submit "コメント送信", class: "shareButton" %>
+      </div>
     </div>
-    <% end %>
   </div>
-</div>
+<% end %>
 <%# コメント部分 %>
 <% @comments.each do |comment| %>
   <div class="d-flex border p-3">

@@ -1,36 +1,36 @@
-<div class="share my-3">
-  <div class="shareWrapper">
-    <div class="shareTop d-flex">
-      <% if current_user.icon.attached? %>
-        <%= link_to user_path(current_user) do %>
-          <%= image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..." %>
+<%= form_with model: post, local: true do |f| %>
+  <div class="share my-3">
+    <div class="shareWrapper">
+      <div class="shareTop d-flex">
+        <% if current_user.icon.attached? %>
+          <%= link_to user_path(current_user) do %>
+            <%= image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..." %>
+          <% end %>
+        <% else %>
+          <%= link_to user_path(current_user) do %>
+            <img class="share_img mx-3 me-4" src="/assets/icon.png" >
+          <% end %>
         <% end %>
-      <% else %>
-        <%= link_to user_path(current_user) do %>
-          <img class="share_img mx-3 me-4" src="/assets/icon.png" >
-        <% end %>
-      <% end %>
-      <%= form_with(model: post) do |f| %>
-        <%= f.text_area :post_content, class: "shareInput", placeholder: '投稿したい内容を入力', rows: 3, cols: 80 %>
-    </div>
-    <hr class="shareHr" />
-    <div class="shareButtons">
-      <div class="shareOptions">
-        <div class="shareOption">
-          <%= f.file_field :image, class: 'form-control visually-hidden', accept: 'image/*', id: 'file-input' %>
-          <label for="file-input" >
-           <i class="fa-regular fa-image"></i>
-          </label>
-        </div>
-        <div class="shareOption">
-          <i class="fa-solid fa-gift"></i>
-        </div>
-        <div class="shareOption">
-          <i class="fa-regular fa-face-smile"></i>
-        </div>
+          <%= f.text_area :post_content, class: "shareInput", placeholder: '投稿したい内容を入力', rows: 3, cols: 80 %>
       </div>
-      <%= f.submit "投稿", class: "shareButton" %>
+      <hr class="shareHr" />
+      <div class="shareButtons">
+        <div class="shareOptions">
+          <div class="shareOption">
+            <%= f.file_field :image, class: 'form-control visually-hidden', accept: 'image/*', id: 'file-input' %>
+            <label for="file-input" >
+            <i class="fa-regular fa-image"></i>
+            </label>
+          </div>
+          <div class="shareOption">
+            <i class="fa-solid fa-gift"></i>
+          </div>
+          <div class="shareOption">
+            <i class="fa-regular fa-face-smile"></i>
+          </div>
+        </div>
+        <%= f.submit "投稿", class: "shareButton" %>
+      </div>
     </div>
-    <% end %>
   </div>
-</div>
+<% end %>
