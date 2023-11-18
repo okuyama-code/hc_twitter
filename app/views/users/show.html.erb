@@ -104,10 +104,21 @@
                   <span class="home-icon-span"><%= post.comments.count %></span>
                 </div>
               <% end %>
-              <div>
-                <i class="fa-solid fa-repeat"></i>
-                <span class="home-icon-span">3</span>
-              </div>
+              <% if current_user.reposted?(post.id) %>
+                <div class="mr-1">
+                  <%= link_to post_repost_path(post, post.reposts.first), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+                    <i class="fa-solid fa-repeat repost-color "></i>
+                  <% end %>
+                  <span class="home-icon-span"><%= post.reposts.count %></span>
+                </div>
+              <% else %>
+                  <div class="mr-1">
+                    <%= link_to post_reposts_path(post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
+                      <i class="fa-solid fa-repeat no-repost-color "></i>
+                    <% end %>
+                    <span class="home-icon-span"><%= post.reposts.count %></span>
+                  </div>
+              <% end %>
               <div>
                 <div>
                   <% if current_user.already_liked?(post) %>
@@ -135,7 +146,7 @@
         <%= paginate @posts, theme: 'bootstrap-5' %>
       </div>
     </div>
-
+    <%# いいね まとめ %>
     <div id="my_likes" class="tab-pane">
       <% @like_posts.each do |like| %>
         <div class="d-flex border p-3">
@@ -153,19 +164,34 @@
               <p><%= like.post.post_content %></p>
             <% end %>
             <img class="post_img" src="/assets/EC1.jpg" >
+
+            <%# icon ================ %>
             <div class="d-flex justify-content-around home-icon mt-5">
-              <div>
+              <%= link_to post_path(like.post.id), class: "post-link" do %>
+              <div class="mr-1">
                 <i class="fa-regular fa-comment"></i>
-                <span class="home-icon-span">2</span>
+                <span class="home-icon-span"><%= like.post.comments.count %></span>
               </div>
-              <div>
-                <i class="fa-solid fa-repeat"></i>
-                <span class="home-icon-span">3</span>
+            <% end %>
+            <% if current_user.reposted?(like.post.id) %>
+              <div class="mr-1">
+                <%= link_to post_repost_path(like.post, like.post.reposts.first), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+                  <i class="fa-solid fa-repeat repost-color "></i>
+                <% end %>
+                <span class="home-icon-span"><%= like.post.reposts.count %></span>
               </div>
-              <%# いいねボタン %>
+            <% else %>
+               <div class="mr-1">
+                  <%= link_to post_reposts_path(like.post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
+                    <i class="fa-solid fa-repeat no-repost-color "></i>
+                  <% end %>
+                  <span class="home-icon-span"><%= like.post.reposts.count %></span>
+                </div>
+            <% end %>
+
               <div>
                 <% if current_user.already_liked?(like.post) %>
-                  <%= link_to  post_likes_path(like.post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+                  <%= link_to post_likes_path(like.post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
                     <div class="mr-1">
                       <i class="fa-regular fa-heart like-color"></i>
                   <% end %>
@@ -213,6 +239,7 @@
             <% if repost.post.image.attached? %>
               <%= image_tag repost.post.image, class: "post_img", alt: "..." %>
             <% end %>
+
             <%# icon %>
             <div class="d-flex justify-content-around home-icon mt-5  ">
             <%= link_to post_path(repost.post.id), class: "post-link" do %>
@@ -286,7 +313,7 @@
               <%= image_tag comment.post.image, class: "post_img", alt: "..." %>
             <% end %>
             <%# icon %>
-            <div class="d-flex justify-content-around home-icon mt-5  ">
+          <div class="d-flex justify-content-around home-icon mt-5  ">
             <%= link_to post_path(comment.post.id), class: "post-link" do %>
               <div class="mr-1">
                 <i class="fa-regular fa-comment"></i>
@@ -334,6 +361,7 @@
         </div>
       <% end %>
     </div>
+
   </div>
  <%# tab-content %>
 </div>

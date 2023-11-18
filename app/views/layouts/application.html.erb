@@ -69,7 +69,9 @@
           <div class="d-flex">
 
             <% if current_user.icon.attached? %>
-              <%= image_tag current_user.icon, class: "side_img me-3", alt: "..." %>
+              <%= link_to user_path(current_user) do %>
+                <%= image_tag current_user.icon, class: "side_img me-3", alt: "..." %>
+              <% end %>
             <% else %>
               <img class="side_img me-3" src="/assets/icon.png" >
             <% end %>
