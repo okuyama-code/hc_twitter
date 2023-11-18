@@ -26,7 +26,7 @@ vim /usr/local/bundle/gems/html2slim-0.2.0/lib/html2slim/converter.rb
 
 ## TODO branchの派生の順番
 現在 プロフィール編集画面まで終わっている。user終了
-現在のブランチの位置 repost
+現在のブランチの位置 follow
 
 user → tweet → like → repost → follow → bookmark message → notification
 
