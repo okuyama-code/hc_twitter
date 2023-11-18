@@ -114,7 +114,7 @@
                     <%= link_to  post_likes_path(post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
                       <i class="fa-regular fa-heart like-color"></i>
                     <% end %>
-                    <%# recipe_idを指定しなければいけないので引数にrecipeを書く %>
+                    <%# repost_idを指定しなければいけないので引数にrepostを書く %>
                   <% else %>
                     <%= link_to  post_likes_path(post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
                       <i class="fa-regular fa-heart no-like-color"></i>
@@ -172,7 +172,6 @@
                       <span class="home-icon-span"><%= like.post.likes.count %></span>
                     </div>
 
-                  <%# recipe_idを指定しなければいけないので引数にrecipeを書く %>
                 <% else %>
                   <%= link_to  post_likes_path(like.post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
                     <div class="mr-1">
@@ -194,35 +193,78 @@
         <%= paginate @like_posts, theme: 'bootstrap-5' %>
       </div>
     </div>
+
     <div id="my_retweets" class="tab-pane">
-      <div class="d-flex border p-3">
-        <img class="home_img mx-3 me-4" src="/assets/EC1.jpg" >
-        <div>
-          <span class="fw-bold fs-3 me-2">okuyama</span>
-          <span>@okuyama0121</span>
-          <p>自分の全リツイートしたツイート表示</p>
-          <img class="post_img" src="/assets/EC1.jpg" >
-          <div class="d-flex justify-content-around home-icon mt-5">
+      <% @repost_posts.each do |repost| %>
+        <div class="d-flex border p-3">
+          <% if repost.post.user.icon.attached? %>
+            <%= image_tag repost.post.user.icon, class: "home_img mx-3 me-4", alt: "..." %>
+          <% else %>
+            <img class="home_img mx-3 me-4" src="/assets/EC1.jpg" >
+          <% end %>
+          <div>
+            <%= link_to user_path(repost.post.user), class: "text-deco-no" do %>
+              <span class="fw-bold fs-3 me-2"><%= repost.post.user.name %></span>
+            <% end %>
+            <span>@<%= repost.post.user.username %></span>
+            <%= link_to post_path(repost.post), class: "text-deco-no" do %>
+              <p><%= repost.post.post_content %></p>
+            <% end %>
+            <% if repost.post.image.attached? %>
+              <%= image_tag repost.post.image, class: "post_img", alt: "..." %>
+            <% end %>
+            <%# icon %>
+            <div class="d-flex justify-content-around home-icon mt-5  ">
+            <%= link_to post_path(repost.post.id), class: "post-link" do %>
+              <div class="mr-1">
+                <i class="fa-regular fa-comment"></i>
+                <span class="home-icon-span"><%= repost.post.comments.count %></span>
+              </div>
+            <% end %>
+            <% if current_user.reposted?(repost.post.id) %>
+              <div class="mr-1">
+                <%= link_to post_repost_path(repost.post, repost.post.reposts.first), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+                  <i class="fa-solid fa-repeat repost-color "></i>
+                <% end %>
+                <span class="home-icon-span"><%= repost.post.reposts.count %></span>
+              </div>
+            <% else %>
+               <div class="mr-1">
+                  <%= link_to post_reposts_path(repost.post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
+                    <i class="fa-solid fa-repeat no-repost-color "></i>
+                  <% end %>
+                  <span class="home-icon-span"><%= repost.post.reposts.count %></span>
+                </div>
+            <% end %>
             <div>
-              <i class="fa-regular fa-comment"></i>
-              <span class="home-icon-span">2</span>
-            </div>
-            <div>
-              <i class="fa-solid fa-repeat"></i>
-              <span class="home-icon-span">3</span>
-            </div>
-            <div>
-              <i class="fa-regular fa-heart"></i>
-              <span class="home-icon-span">10</span>
+              <% if current_user.already_liked?(repost.post) %>
+                <%= link_to  post_likes_path(repost.post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+                  <div class="mr-1">
+                    <i class="fa-regular fa-heart like-color"></i>
+                <% end %>
+                    <span class="home-icon-span"><%= repost.post.likes.count %></span>
+                  </div>
+              <% else %>
+                <%= link_to  post_likes_path(repost.post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
+                  <div class="mr-1">
+                    <i class="fa-regular fa-heart no-like-color"></i>
+                <% end %>
+                    <span class="home-icon-span"><%= repost.post.likes.count %></span>
+                  </div>
+              <% end %>
             </div>
             <div>
               <i class="fa-solid fa-bookmark"></i>
               <span class="home-icon-span">3</span>
             </div>
           </div>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
+    <div class="paginate-margin">
+        <%= paginate @repost_posts, theme: 'bootstrap-5' %>
+      </div>
     <div id="my_comment" class="tab-pane">
       <div class="d-flex border p-3">
         <img class="home_img mx-3 me-4" src="/assets/EC1.jpg" >
