@@ -20,6 +20,9 @@ class User < ApplicationRecord
     # selfにはcurrent_userが入る
   end
 
+  def reposted?(post_id)
+    self.reposts.where(post_id: post_id).exists?
+  end
 
 
   def self.from_omniauth(auth)
