@@ -290,8 +290,8 @@
       <% end %>
     </div>
     <div class="paginate-margin">
-        <%= paginate @repost_posts, theme: 'bootstrap-5' %>
-      </div>
+      <%= paginate @repost_posts, theme: 'bootstrap-5' %>
+    </div>
     <%# commentまとめ %>
     <div id="my_comment" class="tab-pane">
       <% @commnet_posts.each do |comment| %>
@@ -360,8 +360,10 @@
           </div>
         </div>
       <% end %>
+      <div class="paginate-margin">
+        <%= paginate @commnet_posts, theme: 'bootstrap-5' %>
+      </div>
     </div>
-
   </div>
  <%# tab-content %>
 </div>
