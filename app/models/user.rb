@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments #User.commentsで、ユーザーの所有するコメントを取得できる。
   has_many :likes, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+
   has_many :reposts, dependent: :destroy
 
   has_many :relationships, foreign_key: :following_id
