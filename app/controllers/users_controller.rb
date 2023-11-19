@@ -14,12 +14,14 @@ class UsersController < ApplicationController
     # フォローしている人の一覧
     user = User.find(params[:id])
     @users = user.followings
+    @user = User.find_by(id: params[:id])
   end
 
   def followers
     # フォローされている人の一覧
     user = User.find(params[:id])
     @users = user.followers
+    @user = User.find_by(id: params[:id])
   end
 
   def edit
