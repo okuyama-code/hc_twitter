@@ -163,6 +163,19 @@ i {
   }
 }
 
+.follow-link-delete {
+  margin-left: 5px;
+  border: 1px solid green;
+  border-radius: 5px;
+  padding: 10px 5px;
+  background: rgb(189, 100, 100);
+  color: #e7e5e5;
+
+  &:hover {
+    color: rgb(182, 177, 177);
+  }
+}
+
 .fa-bars {
   font-size: 15px;
 }
