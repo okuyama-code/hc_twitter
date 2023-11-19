@@ -30,7 +30,7 @@ sato.posts.create!(post_content: "佐藤の１回目の投稿です")
 yamada.posts.create!(post_content: "山田の１回目の投稿です")
 sato.posts.create!(post_content: "佐藤の２回目の投稿です")
 suzuki.posts.create!(post_content: "鈴木の1回目の投稿です")
-yamada.posts.create!(post_content: "山田の２回目の投稿です")
+yamada_post2 = yamada.posts.create!(post_content: "山田の２回目の投稿です")
 sato_post3 = sato.posts.create!(post_content: "佐藤の3回目の投稿です")
 suzuki_post2 = suzuki.posts.create!(post_content: "鈴木の2回目の投稿です")
 suzuki_post3 = suzuki.posts.create!(post_content: "鈴木3回目の投稿です")
@@ -43,3 +43,17 @@ yamada.comments.create!(comment_content: "山田が鈴木にコメントしま�
 yamada.comments.create!(comment_content: "山田が鈴木に2回目のコメントしました", post_id: suzuki_post5.id)
 sato.comments.create!(comment_content: "佐藤が鈴木に2回目のコメントしました", post_id: suzuki_post5.id)
 yamada.comments.create!(comment_content: "山田が佐藤にコメントしました", post_id: sato_post3.id)
+
+
+# ================= likes =================
+sato.likes.create!(post_id: suzuki_post5.id)
+sato.likes.create!(post_id: yamada_post2.id)
+
+
+# ============= reposts ===================
+sato.reposts.create!(post_id: suzuki_post4.id)
+sato.reposts.create!(post_id: suzuki_post5.id)
+
+# ============= followする =====================
+sato.relationships.create!(following_id: yamada.id, follower_id: yamada.id)
+yamada.relationships.create!(following_id: suzuki.id, follower_id: suzuki.id)
