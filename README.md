@@ -25,18 +25,13 @@ vim /usr/local/bundle/gems/html2slim-0.2.0/lib/html2slim/converter.rb
 ```
 
 ## TODO branchの派生の順番
-現在のブランチの位置 follow
+現在のブランチの位置 bookmark
 
-user → tweet → like → repost → follow → bookmark message → notification
-
-https://github.com/happiness-chain/practice/blob/main/11_Ruby_on_Rails/002_twitter_clone.md
+user → tweet → like → repost → follow → bookmark　→ message(DM) → notification
 
 # 仕様
 https://github.com/happiness-chain/practice/blob/main/11_Ruby_on_Rails/002_twitter_clone.md
 
-# TODO
-
-- すぐに確認できるようにユーザーと、ツイート、フォロー関係のseedを用意すること
 
 # ショートカット
 tab　複製 (chome)
