@@ -176,6 +176,14 @@ i {
   }
 }
 
+.follow-link-count {
+  color: white;
+
+  &:hover {
+    color: #aba3a3;
+  }
+}
+
 .fa-bars {
   font-size: 15px;
 }

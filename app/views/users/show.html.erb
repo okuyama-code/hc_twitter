@@ -58,10 +58,10 @@
     </div>
     <div class="d-flex relationship">
       <div class="follow">
-        <p><span>80</span> Following</p>
+        <p><span><%= link_to @user.followings.count, followings_user_path(@user), class: "follow-link-count" %></span> Following</p>
       </div>
       <div class="follow">
-        <p><span>80</span> Followers</p>
+        <p><span><%= link_to @user.followers.count, followers_user_path(@user), class: "follow-link-count" %></span> Followers</p>
       </div>
     </div>
   </div>
