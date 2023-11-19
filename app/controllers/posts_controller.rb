@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order(created_at: :desc).page(params[:page]).per(3)
+    @following_posts = Post.where(user_id: current_user.followings.pluck(:id)).order(created_at: :desc).page(params[:page]).per(3)
     if current_user
       @post = current_user.posts.new   #投稿一覧画面で新規投稿を行うので、formのパラメータ用にPostオブジェクトを取得
     end
