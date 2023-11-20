@@ -30,7 +30,18 @@
         <button>ユーザー情報を編集</button>
       <% end %>
     <% else %>
-      <i class="fa-solid fa-message edit"></i>
+      <% if @isRoom == true %>
+        <i class="fa-solid fa-message edit"></i>(既存のもの)
+      <% else %>
+        <%= form_for @room do |f| %>
+          <% fields_for @entry do |e| %>
+             <%= e.text_field :user_id, value: @user.id, style: "display:none;" %>
+          <% end %>
+          <%= button_tag type: "submit", class: "btn btn-default" do %>
+             <i class="fa-solid fa-message edit"></i>
+          <% end %>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
   <div class="profile-info">
