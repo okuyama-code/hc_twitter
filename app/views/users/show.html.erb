@@ -26,7 +26,11 @@
 
 
     <% if @user.id == current_user.id %>
-      <%= link_to "Edit profile", edit_user_path(@user) , class: "edit" %>
+      <%= link_to edit_user_path(@user) , class: "edit" do %>
+        <button>ユーザー情報を編集</button>
+      <% end %>
+    <% else %>
+      <i class="fa-solid fa-message edit"></i>
     <% end %>
   </div>
   <div class="profile-info">

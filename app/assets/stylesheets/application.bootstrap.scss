@@ -348,6 +348,7 @@ i {
   margin: 0;
   padding: 0;
 }
+
 .arrow-left {
   color: rgb(20, 105, 191);
   font-size: 1.5rem;
@@ -392,6 +393,16 @@ i {
   padding: 5px 20px;
   right: 20px;
   top: 210px;
+
+  button {
+    padding: 10px;
+    border-radius: 10px;
+    background: rgb(217, 214, 214);
+
+    &:hover {
+      background: #3a8d45;
+    }
+  }
 }
 
 .profile-info {
@@ -438,6 +449,16 @@ i {
 .dammy_self_introduction {
   color: #aba3a3;
 }
+
+.fa-message {
+  font-size: 30px;
+
+  &:hover {
+    color: rgb(20, 158, 25)
+  }
+}
+
+
 
 //  =========== message =================
 .message-html {
