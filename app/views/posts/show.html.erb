@@ -31,13 +31,11 @@
             <span class="home-icon-span"><%= @post.reposts.count %></span>
           </div>
       <% end %>
-
-      <div>
+      <div class="mr-1">
         <% if current_user.already_liked?(@post) %>
           <%= link_to  post_likes_path(@post), data: { "turbo-method": :delete } do %>
             <i class="fa-regular fa-heart like-color"></i>
           <% end %>
-          <%# recipe_idを指定しなければいけないので引数にrecipeを書く %>
         <% else %>
           <%= link_to  post_likes_path(@post), data: { "turbo-method": :post } do %>
             <i class="fa-regular fa-heart no-like-color"></i>
@@ -46,8 +44,21 @@
         <span class="home-icon-span"><%= @post.likes.count %></span>
       </div>
       <div>
-        <i class="fa-solid fa-bookmark"></i>
-        <span class="home-icon-span">3</span>
+        <% if current_user.already_bookmark?(@post) %>
+          <%= link_to  post_bookmarks_path(@post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+            <div class="mr-1">
+              <i class="fa-solid fa-bookmark like-color"></i>
+          <% end %>
+              <span class="home-icon-span"><%= @post.bookmarks.count %></span>
+            </div>
+        <% else %>
+          <%= link_to  post_bookmarks_path(@post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
+            <div class="mr-1">
+              <i class="fa-solid fa-bookmark no-like-color"></i>
+          <% end %>
+              <span class="home-icon-span"><%= @post.bookmarks.count %></span>
+            </div>
+        <% end %>
       </div>
     </div>
   </div>

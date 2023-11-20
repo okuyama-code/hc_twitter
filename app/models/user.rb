@@ -29,6 +29,11 @@ class User < ApplicationRecord
     # selfにはcurrent_userが入る
   end
 
+  def already_bookmark?(post)
+    self.bookmarks.exists?(post_id: post.id)
+    # selfにはcurrent_userが入る
+  end
+
   def reposted?(post_id)
     self.reposts.where(post_id: post_id).exists?
   end

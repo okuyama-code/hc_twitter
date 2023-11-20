@@ -135,8 +135,21 @@
                 </div>
               </div>
               <div>
-                <i class="fa-solid fa-bookmark"></i>
-                <span class="home-icon-span">3</span>
+                <% if current_user.already_bookmark?(post) %>
+                  <%= link_to  post_bookmarks_path(post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+                    <div class="mr-1">
+                      <i class="fa-solid fa-bookmark like-color"></i>
+                  <% end %>
+                      <span class="home-icon-span"><%= post.bookmarks.count %></span>
+                    </div>
+                <% else %>
+                  <%= link_to  post_bookmarks_path(post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
+                    <div class="mr-1">
+                      <i class="fa-solid fa-bookmark no-like-color"></i>
+                  <% end %>
+                      <span class="home-icon-span"><%= post.bookmarks.count %></span>
+                    </div>
+                <% end %>
               </div>
             </div>
           </div>
@@ -208,8 +221,21 @@
                 <% end %>
               </div>
               <div>
-                <i class="fa-solid fa-bookmark"></i>
-                <span class="home-icon-span">3</span>
+                <% if current_user.already_bookmark?(like.post) %>
+                  <%= link_to  post_bookmarks_path(like.post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+                    <div class="mr-1">
+                      <i class="fa-solid fa-bookmark like-color"></i>
+                  <% end %>
+                      <span class="home-icon-span"><%= like.post.bookmarks.count %></span>
+                    </div>
+                <% else %>
+                  <%= link_to  post_bookmarks_path(like.post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
+                    <div class="mr-1">
+                      <i class="fa-solid fa-bookmark no-like-color"></i>
+                  <% end %>
+                      <span class="home-icon-span"><%= like.post.bookmarks.count %></span>
+                    </div>
+                <% end %>
               </div>
             </div>
           </div>
@@ -281,9 +307,22 @@
               <% end %>
             </div>
             <div>
-              <i class="fa-solid fa-bookmark"></i>
-              <span class="home-icon-span">3</span>
-            </div>
+                <% if current_user.already_bookmark?(repost.post) %>
+                  <%= link_to  post_bookmarks_path(repost.post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+                    <div class="mr-1">
+                      <i class="fa-solid fa-bookmark like-color"></i>
+                  <% end %>
+                      <span class="home-icon-span"><%= repost.post.bookmarks.count %></span>
+                    </div>
+                <% else %>
+                  <%= link_to  post_bookmarks_path(repost.post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
+                    <div class="mr-1">
+                      <i class="fa-solid fa-bookmark no-like-color"></i>
+                  <% end %>
+                      <span class="home-icon-span"><%= repost.post.bookmarks.count %></span>
+                    </div>
+                <% end %>
+              </div>
           </div>
           </div>
         </div>
@@ -292,6 +331,7 @@
     <div class="paginate-margin">
       <%= paginate @repost_posts, theme: 'bootstrap-5' %>
     </div>
+
     <%# commentまとめ %>
     <div id="my_comment" class="tab-pane">
       <% @commnet_posts.each do |comment| %>
@@ -313,50 +353,63 @@
               <%= image_tag comment.post.image, class: "post_img", alt: "..." %>
             <% end %>
             <%# icon %>
-          <div class="d-flex justify-content-around home-icon mt-5  ">
-            <%= link_to post_path(comment.post.id), class: "post-link" do %>
-              <div class="mr-1">
-                <i class="fa-regular fa-comment"></i>
-                <span class="home-icon-span"><%= comment.post.comments.count %></span>
-              </div>
-            <% end %>
-            <% if current_user.reposted?(comment.post.id) %>
-              <div class="mr-1">
-                <%= link_to post_repost_path(comment.post, comment.post.reposts.first), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
-                  <i class="fa-solid fa-repeat repost-color "></i>
-                <% end %>
-                <span class="home-icon-span"><%= comment.post.reposts.count %></span>
-              </div>
-            <% else %>
-               <div class="mr-1">
-                  <%= link_to post_reposts_path(comment.post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
-                    <i class="fa-solid fa-repeat no-repost-color "></i>
+            <div class="d-flex justify-content-around home-icon mt-5  ">
+              <%= link_to post_path(comment.post.id), class: "post-link" do %>
+                <div class="mr-1">
+                  <i class="fa-regular fa-comment"></i>
+                  <span class="home-icon-span"><%= comment.post.comments.count %></span>
+                </div>
+              <% end %>
+              <% if current_user.reposted?(comment.post.id) %>
+                <div class="mr-1">
+                  <%= link_to post_repost_path(comment.post, comment.post.reposts.first), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+                    <i class="fa-solid fa-repeat repost-color "></i>
                   <% end %>
                   <span class="home-icon-span"><%= comment.post.reposts.count %></span>
                 </div>
-            <% end %>
-            <div>
-              <% if current_user.already_liked?(comment.post) %>
-                <%= link_to  post_likes_path(comment.post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
-                  <div class="mr-1">
-                    <i class="fa-regular fa-heart like-color"></i>
-                <% end %>
-                    <span class="home-icon-span"><%= comment.post.likes.count %></span>
-                  </div>
               <% else %>
-                <%= link_to  post_likes_path(comment.post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
-                  <div class="mr-1">
-                    <i class="fa-regular fa-heart no-like-color"></i>
-                <% end %>
-                    <span class="home-icon-span"><%= comment.post.likes.count %></span>
+                <div class="mr-1">
+                    <%= link_to post_reposts_path(comment.post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
+                      <i class="fa-solid fa-repeat no-repost-color "></i>
+                    <% end %>
+                    <span class="home-icon-span"><%= comment.post.reposts.count %></span>
                   </div>
               <% end %>
+              <div>
+                <% if current_user.already_liked?(comment.post) %>
+                  <%= link_to  post_likes_path(comment.post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+                    <div class="mr-1">
+                      <i class="fa-regular fa-heart like-color"></i>
+                  <% end %>
+                      <span class="home-icon-span"><%= comment.post.likes.count %></span>
+                    </div>
+                <% else %>
+                  <%= link_to  post_likes_path(comment.post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
+                    <div class="mr-1">
+                      <i class="fa-regular fa-heart no-like-color"></i>
+                  <% end %>
+                      <span class="home-icon-span"><%= comment.post.likes.count %></span>
+                    </div>
+                <% end %>
+              </div>
+              <div>
+                <% if current_user.already_bookmark?(comment.post) %>
+                  <%= link_to  post_bookmarks_path(comment.post), data: { "turbo-method": :delete }, class: "text-deco-no" do %>
+                    <div class="mr-1">
+                      <i class="fa-solid fa-bookmark like-color"></i>
+                  <% end %>
+                      <span class="home-icon-span"><%= comment.post.bookmarks.count %></span>
+                    </div>
+                <% else %>
+                  <%= link_to  post_bookmarks_path(comment.post), data: { "turbo-method": :post }, class: "text-deco-no" do %>
+                    <div class="mr-1">
+                      <i class="fa-solid fa-bookmark no-like-color"></i>
+                  <% end %>
+                      <span class="home-icon-span"><%= comment.post.bookmarks.count %></span>
+                    </div>
+                <% end %>
+              </div>
             </div>
-            <div>
-              <i class="fa-solid fa-bookmark"></i>
-              <span class="home-icon-span">3</span>
-            </div>
-          </div>
           </div>
         </div>
       <% end %>
