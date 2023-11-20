@@ -1,4 +1,4 @@
-https://zenn.dev/goldsaya/articles/71758cf3024dc
+https://zenn.dev/goldsaya/articles/71758cf3024dc1
 <% if current_user %>
   <ul class="nav nav-tabs">
     <li class="nav-item">
@@ -12,7 +12,6 @@ https://zenn.dev/goldsaya/articles/71758cf3024dc
 
 <div class="tab-content">
   <div id="osusume" class="tab-pane active">
-    <%# TODO このdivタグをツイート詳細ページに行くように囲む %>
     <% @posts.each do |post| %>
         <div class="post-body border p-3">
           <div class="flex-between">
@@ -225,9 +224,8 @@ https://zenn.dev/goldsaya/articles/71758cf3024dc
 </div>
  <%# tab-content %>
 
-<% else  %>  <%# current_userがいなかった時の処理 %>
+<% else  %>
   <div class="post-index-sub">
-    <%# TODO このdivタグをツイート詳細ページに行くように囲む %>
     <% @posts.each do |post| %>
       <div class="post-body d-flex border-sub p-3">
         <% if post.user.icon.attached? %>

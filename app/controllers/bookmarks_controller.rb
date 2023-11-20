@@ -1,6 +1,5 @@
 class BookmarksController < ApplicationController
 
-# TODO こことlink_toとmodelへ判別メソッドを作成
   def create
     @bookmark = current_user.bookmarks.create(post_id: params[:post_id])
     redirect_back fallback_location: root_path
