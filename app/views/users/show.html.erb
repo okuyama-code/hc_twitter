@@ -30,8 +30,11 @@
         <button>ユーザー情報を編集</button>
       <% end %>
     <% else %>
-      <% if @isRoom == true %>
-        <i class="fa-solid fa-message edit"></i>(既存のもの)
+      <%# DM機能の記述 %>
+      <% if @is_room == true %>
+        <%= link_to room_path(@room_id) do %>
+          <i class="fa-solid fa-message edit"></i>(既存のもの)
+        <% end %>
       <% else %>
         <%= form_for @room do |f| %>
           <% fields_for @entry do |e| %>
