@@ -1,7 +1,9 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
+  # users/showページで@is_roomがない時にformでパラメーターが送られてきてcreateアクションが走る。
+  # 現在ログインしているユーザーとメッセージ相手のユーザーそれぞれの情報をroom_idで紐付けてEntryテーブルに２つレコードを作成している。
   def create
-    room = Room.create
+    room = Room.create(user_id: current_user.id)
     current_entry = Entry.create!(user_id: current_user.id, room_id: room.id)
     another_entry = Entry.create!(user_id: params[:entry][:user_id], room_id: room.id)
     redirect_to room_path(room), notice: "roomのcreateアクションが実行されました。"
@@ -20,5 +22,10 @@ class RoomsController < ApplicationController
   end
 
   def show
+    @room = Room.find(params[:id])
+    @messages = @room.messages.all
+    @message = Message.new
+    @entries = @room.entries
+    @another_entry = @entries.where.not(user_id: current_user.id).first
   end
 end

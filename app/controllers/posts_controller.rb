@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   # before_action :set_current_user, only: [:show, :create]
 
   def index
-    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(3)
+    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(6)
     if current_user
       @following_posts = Post.where(user_id: current_user.followings.pluck(:id)).order(created_at: :desc).page(params[:page]).per(5)
     end

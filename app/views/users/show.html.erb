@@ -33,13 +33,11 @@
       <%# DM機能の記述 %>
       <% if @is_room == true %>
         <%= link_to room_path(@room_id) do %>
-          <i class="fa-solid fa-message edit"></i>(既存のもの)
+          <i class="fa-solid fa-message edit"></i>
         <% end %>
       <% else %>
         <%= form_for @room do |f| %>
-          <% fields_for @entry do |e| %>
-             <%= e.text_field :user_id, value: @user.id, style: "display:none;" %>
-          <% end %>
+          <%= number_field_tag 'entry[user_id]', @user.id, style: "display: none;" %>
           <%= button_tag type: "submit", class: "btn btn-default" do %>
              <i class="fa-solid fa-message edit"></i>
           <% end %>
