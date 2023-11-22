@@ -5,41 +5,8 @@
   <i class="fa-solid fa-circle-info info-item"></i>
 </div>
  <%# /.message-box-header %>
-<%# メッセージ本文 %>
-<% @messages.each do |m| %>
-  <div class="message-box-body">
-    <%# if文で投稿が自分なら %>
-    <% if m.user_id == current_user.id %>
-      <div class="message-box-body-info">
-        <div class="blank-div"></div>
-        <p>
-          <%= m.body %></p>
-      </div>
-    <% end %>
-    <%# else文　投稿が自分以外なら%>
-    <div class="message-box-body-info-other">
-      <p>(相手)<br />
-        結構です！普通ご飯から誘うと思うんだけど。</p>
-      <div class="blank-div"></div>
-    </div>
-    <%# end %>
-    <%# if文で投稿が自分なら %>
-    <div class="message-box-body-info">
-      <div class="blank-div"></div>
-      <p>(自分)<br />
-        じゃあご飯行きましょうよ！！</p>
-    </div>
-    <%# else文　投稿が自分以外なら%>
-    <div class="message-box-body-info-other">
-      <p>(相手)<br />
-        考えておきます！(お前みたいなチャラい奴と行くわけないだろ。早くどっかいけ！)</p>
-      <div class="blank-div"></div>
-    </div>
-    <%# end %>
-  </div>
-<% end %>
 
-<%# messages_controllerに渡す %>
+ <%# messages_controllerに渡す %>
 <%# messages_pathをポストで飛ばす。messagesのcreate %>
 <%= form_with model: @message, url: messages_path(room_id: params[:id])  do |f| %>
   <div class="messageForm">
@@ -47,3 +14,22 @@
     <%= f.submit "送信する", class: "message" %>
   </div>
 <% end %>
+<%# メッセージ本文 %>
+<% @messages.each do |m| %>
+  <div class="message-box-body">
+    <%# if文で投稿が自分なら %>
+    <% if m.user_id == current_user.id %>
+      <div class="message-box-body-info">
+        <div class="blank-div"></div>
+        <p><%= m.body %></p>
+      </div>
+    <% else %>
+    <%# else文　投稿が自分以外なら%>
+      <div class="message-box-body-info-other">
+        <p><%= m.body %></p>
+        <div class="blank-div"></div>
+      </div>
+    <% end %>
+<% end %>
+
+
