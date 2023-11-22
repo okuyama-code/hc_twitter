@@ -11,7 +11,7 @@
 <%= form_with model: @message, url: messages_path(room_id: params[:id])  do |f| %>
   <div class="messageForm">
     <%= f.text_field :body, class: "messageInput", placeholder: '投稿したい内容を入力' %>
-    <%= f.submit "送信する", class: "message" %>
+    <%= f.submit "送信する", class: "messageSubmit" %>
   </div>
 <% end %>
 <%# メッセージ本文 %>
