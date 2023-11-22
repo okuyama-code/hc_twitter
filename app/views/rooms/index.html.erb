@@ -1,4 +1,3 @@
-<%= link_to "メッセージ中身", "/message_box", class: 'sidebar-link btn btn-primary' %>
 <div class="d-flex justify-content-between message-html">
   <h2>Messages</h2>
   <div class="message-header">
@@ -12,8 +11,10 @@
     <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 </div>
+<% if @another_entries %>
+<% @another_entries.each do |entry| %>
 <div class="d-flex message-list">
-  <img src="/assets/avater2.jpg", class="message-img ">
+  <img src="/assets/avater2.jpg" class="message-img ">
   <div class="message-list-item">
     <div class="d-flex">
       <h4>山田 太郎</h4>
@@ -32,3 +33,6 @@
     <p class="message-p">クリックでメッセージ本文へ移動</p>
   </div>
 </div>
+<% end %>
+<% end %>
+

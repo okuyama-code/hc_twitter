@@ -1,1 +1,36 @@
-<h2>roomsのshowページです</h2>
+<%# ============= DMの文章部分 ================== %>
+<div class="message-box-header">
+  <i class="fa-solid fa-arrow-left"></i>
+  <h3>山田 太郎</h3>
+  <i class="fa-solid fa-circle-info info-item"></i>
+</div>
+ <%# /.message-box-header %>
+<%# メッセージ本文 %>
+<div class="message-box-body">
+  <%# if文で投稿が自分なら %>
+  <div class="message-box-body-info">
+    <div class="blank-div"></div>
+    <p>(自分)<br />
+      お疲れ様です！今度イルミネーション行きませんか？？？</p>
+  </div>
+  <%# else文　投稿が自分以外なら%>
+  <div class="message-box-body-info-other">
+    <p>(相手)<br />
+      結構です！普通ご飯から誘うと思うんだけど。</p>
+    <div class="blank-div"></div>
+  </div>
+  <%# end %>
+  <%# if文で投稿が自分なら %>
+  <div class="message-box-body-info">
+    <div class="blank-div"></div>
+    <p>(自分)<br />
+      じゃあご飯行きましょうよ！！</p>
+  </div>
+  <%# else文　投稿が自分以外なら%>
+  <div class="message-box-body-info-other">
+    <p>(相手)<br />
+      考えておきます！(お前みたいなチャラい奴と行くわけないだろ。早くどっかいけ！)</p>
+    <div class="blank-div"></div>
+  </div>
+  <%# end %>
+</div>
