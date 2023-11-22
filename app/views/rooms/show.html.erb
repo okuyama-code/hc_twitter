@@ -1,36 +1,49 @@
 <%# ============= DMの文章部分 ================== %>
 <div class="message-box-header">
   <i class="fa-solid fa-arrow-left"></i>
-  <h3>山田 太郎</h3>
+  <h3><%= @another_entry.user.name %>さんとのメッセージ</h3>
   <i class="fa-solid fa-circle-info info-item"></i>
 </div>
  <%# /.message-box-header %>
 <%# メッセージ本文 %>
-<div class="message-box-body">
-  <%# if文で投稿が自分なら %>
-  <div class="message-box-body-info">
-    <div class="blank-div"></div>
-    <p>(自分)<br />
-      お疲れ様です！今度イルミネーション行きませんか？？？</p>
+<% @messages.each do |m| %>
+  <div class="message-box-body">
+    <%# if文で投稿が自分なら %>
+    <% if m.user_id == current_user.id %>
+      <div class="message-box-body-info">
+        <div class="blank-div"></div>
+        <p>
+          <%= m.body %></p>
+      </div>
+    <% end %>
+    <%# else文　投稿が自分以外なら%>
+    <div class="message-box-body-info-other">
+      <p>(相手)<br />
+        結構です！普通ご飯から誘うと思うんだけど。</p>
+      <div class="blank-div"></div>
+    </div>
+    <%# end %>
+    <%# if文で投稿が自分なら %>
+    <div class="message-box-body-info">
+      <div class="blank-div"></div>
+      <p>(自分)<br />
+        じゃあご飯行きましょうよ！！</p>
+    </div>
+    <%# else文　投稿が自分以外なら%>
+    <div class="message-box-body-info-other">
+      <p>(相手)<br />
+        考えておきます！(お前みたいなチャラい奴と行くわけないだろ。早くどっかいけ！)</p>
+      <div class="blank-div"></div>
+    </div>
+    <%# end %>
   </div>
-  <%# else文　投稿が自分以外なら%>
-  <div class="message-box-body-info-other">
-    <p>(相手)<br />
-      結構です！普通ご飯から誘うと思うんだけど。</p>
-    <div class="blank-div"></div>
+<% end %>
+
+<%# messages_controllerに渡す %>
+<%# messages_pathをポストで飛ばす。messagesのcreate %>
+<%= form_with model: @message, url: messages_path(room_id: params[:id])  do |f| %>
+  <div class="messageForm">
+    <%= f.text_field :body, class: "messageInput", placeholder: '投稿したい内容を入力' %>
+    <%= f.submit "送信する", class: "message" %>
   </div>
-  <%# end %>
-  <%# if文で投稿が自分なら %>
-  <div class="message-box-body-info">
-    <div class="blank-div"></div>
-    <p>(自分)<br />
-      じゃあご飯行きましょうよ！！</p>
-  </div>
-  <%# else文　投稿が自分以外なら%>
-  <div class="message-box-body-info-other">
-    <p>(相手)<br />
-      考えておきます！(お前みたいなチャラい奴と行くわけないだろ。早くどっかいけ！)</p>
-    <div class="blank-div"></div>
-  </div>
-  <%# end %>
-</div>
+<% end %>
