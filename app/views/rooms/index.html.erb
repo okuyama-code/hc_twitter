@@ -12,25 +12,22 @@
   </button>
 </div>
 
-<div class="d-flex message-list">
-  <img src="/assets/avater2.jpg" class="message-img ">
-  <div class="message-list-item">
-    <div class="d-flex">
-      <h4>山田 太郎</h4>
-      <p>@yamada01</p>
+<% @another_entries.each do |entry| %>
+  <%= link_to room_path(entry.room), class: "text-deco-no" do %>
+  <div class="d-flex message-list">
+    <%= link_to user_path(entry.user) do %>
+      <%= image_tag entry.user.icon, class:"message-img" %>
+    <% end %>
+
+    <div class="message-list-item">
+      <div class="d-flex">
+        <h4><%= entry.user.name %></h4>
+        <p>@yamada01</p>
+      </div>
+      <p class="message-p"><%= Message.find_by(id: entry.room.message_ids.last)&.body %></p>
     </div>
-    <p class="message-p">クリックでメッセージ本文へ移動</p>
   </div>
-</div>
-<div class="d-flex message-list">
-  <img src="/assets/avater3.png", class="message-img ">
-  <div class="message-list-item">
-    <div class="d-flex">
-      <h4>鈴木 次郎</h4>
-      <p>@suzuki02</p>
-    </div>
-    <p class="message-p">クリックでメッセージ本文へ移動</p>
-  </div>
-</div>
+  <% end %>
+<% end %>
 
 

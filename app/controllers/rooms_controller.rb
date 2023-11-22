@@ -18,7 +18,7 @@ class RoomsController < ApplicationController
       my_room_id << entry.room.id
     end
     # 自分のroom_idと同じでuser_idが自分ではないentryを取得
-    @another_entrys = Entry.where(room_id: my_room_id).where.not(user_id: current_user.id)
+    @another_entries = Entry.where(room_id: my_room_id).where.not(user_id: current_user.id)
   end
 
   def show
