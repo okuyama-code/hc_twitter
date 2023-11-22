@@ -25,7 +25,7 @@ vim /usr/local/bundle/gems/html2slim-0.2.0/lib/html2slim/converter.rb
 ```
 
 ## TODO branchの派生の順番
-現在のブランチの位置 message
+現在のブランチの位置 notification
 
 user → tweet → like → repost → follow → bookmark　→ message(DM) → notification
 
