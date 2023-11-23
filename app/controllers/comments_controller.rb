@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
+      @comment.post.create_notification_comment!(current_user, @comment.id)
       flash[:notice] = "コメントしました"
       redirect_to request.referer
     else

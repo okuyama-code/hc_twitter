@@ -652,4 +652,20 @@ i {
   }
 }
 
-// =========== follow関係 ================
+// =========== 通知関係 ================
+.notification_icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.notification_comment {
+  margin-top: 5px;
+  color: #c1bcbc;
+}
+
+.notification_created_at {
+  text-align: right;
+  font-size: 15px;
+
+}

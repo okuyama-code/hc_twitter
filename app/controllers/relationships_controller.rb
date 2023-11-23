@@ -3,8 +3,10 @@ class RelationshipsController < ApplicationController
   before_action :authenticate_user!
 
   def create
+    @user = User.find_by(id: params[:user_id])
     following = current_user.relationships.build(follower_id: params[:user_id])
     following.save
+    @user.create_notification_follow!(current_user)
     redirect_to request.referrer, notice: "フォローしました"
   end
 
