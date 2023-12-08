@@ -1,0 +1,31 @@
+= link_to "メッセージ中身", "/message_box", class: 'sidebar-link btn btn-primary'
+.d-flex.justify-content-between.message-html
+  h2
+    | Messages
+  .message-header
+    i.fa-solid.fa-gear.left
+    i.fa-solid.fa-envelope-circle-check
+.search-box
+  input[type="text" placeholder="Search Direct Messages"]
+  button[type="submit"]
+    i.fa-solid.fa-magnifying-glass
+.d-flex.message-list
+  |  <img src="/assets/avater2.jpg", class="message-img "> 
+  .message-list-item
+    .d-flex
+      h4
+        | 山田 太郎
+      p
+        | @yamada01
+    p.message-p
+      | クリックでメッセージ本文へ移動
+.d-flex.message-list
+  |  <img src="/assets/avater3.png", class="message-img "> 
+  .message-list-item
+    .d-flex
+      h4
+        | 鈴木 次郎
+      p
+        | @suzuki02
+    p.message-p
+      | クリックでメッセージ本文へ移動

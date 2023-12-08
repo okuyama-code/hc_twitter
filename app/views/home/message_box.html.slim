@@ -1,0 +1,39 @@
+- # ============= DMの文章部分 ==================
+.message-box-header
+  i.fa-solid.fa-arrow-left
+  h3
+    | 山田 太郎
+  i.fa-solid.fa-circle-info.info-item
+- # /.message-box-header
+- # メッセージ本文
+.message-box-body
+  - # if文で投稿が自分なら
+  .message-box-body-info
+    .blank-div
+    p
+      | (自分)
+      br
+      |  お疲れ様です！今度イルミネーション行きませんか？？？
+  - # else文　投稿が自分以外なら
+  .message-box-body-info-other
+    p
+      | (相手)
+      br
+      |  結構です！普通ご飯から誘うと思うんだけど。
+    .blank-div
+  - # end
+  - # if文で投稿が自分なら
+  .message-box-body-info
+    .blank-div
+    p
+      | (自分)
+      br
+      |  じゃあご飯行きましょうよ！！
+  - # else文　投稿が自分以外なら
+  .message-box-body-info-other
+    p
+      | (相手)
+      br
+      |  考えておきます！(お前みたいなチャラい奴と行くわけないだろ。早くどっかいけ！)
+    .blank-div
+  - # end
