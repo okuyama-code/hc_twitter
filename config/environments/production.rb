@@ -31,7 +31,7 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
@@ -98,7 +98,7 @@ Rails.application.configure do
   # TODO: twiiterのherokuドメインに変更すること
   config.action_mailer.default_url_options = { protocol: 'https',
     host: 'floating-garden-19803-96c1af154bf2.herokuapp.com' }
-    
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
