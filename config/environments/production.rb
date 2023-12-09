@@ -97,7 +97,7 @@ Rails.application.configure do
 
   # TODO: twiiterのherokuドメインに変更すること
   config.action_mailer.default_url_options = { protocol: 'https',
-                                               host: 'peaceful-waters-90263-196a9ea53a5c.herokuapp.com' }
+                                               host: 'https://floating-garden-19803-96c1af154bf2.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
