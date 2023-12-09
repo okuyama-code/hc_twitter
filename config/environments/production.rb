@@ -95,7 +95,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  # TODO: twiiterのherokuドメインに変更すること
   config.action_mailer.default_url_options = { protocol: 'https',
     host: 'floating-garden-19803-96c1af154bf2.herokuapp.com' }
 

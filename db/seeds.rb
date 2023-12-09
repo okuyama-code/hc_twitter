@@ -3,11 +3,11 @@
 Rails.logger.debug '==================== user create ===================='
 
 users = [
-  { name: '奥山', email: 'okuyama@gmail.com', password: '484848', date_of_birth: '1998-01-21', telephone: '09011112222',
+  { name: '奥山', email: 'okuyama@example.com', password: '484848', date_of_birth: '1998-01-21', telephone: '09011112222',
     username: 'okuyama01' },
-  { name: '山田', email: 'yamada@gmail.com', password: '484848', date_of_birth: '1996-01-01', telephone: '08033334444',
+  { name: '山田', email: 'yamada@example.com', password: '484848', date_of_birth: '1996-01-01', telephone: '08033334444',
     username: 'yamada01' },
-  { name: '佐藤', email: 'sato@gmail.com', password: '484848', date_of_birth: '1990-08-01', telephone: '08066668888',
+  { name: '佐藤', email: 'sato@example.com', password: '484848', date_of_birth: '1990-08-01', telephone: '08066668888',
     username: 'sato01' }
 ]
 
