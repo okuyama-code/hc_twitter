@@ -9,7 +9,6 @@ class User < ApplicationRecord
   has_one_attached :icon
   has_one_attached :header
 
-
   def self.from_omniauth(auth)
     # pp "デバック！！！！！！！！！！！！！"
     # pp auth.info
