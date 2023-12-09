@@ -313,9 +313,7 @@ Devise.setup do |config|
 
   OmniAuth.config.full_host = 'https://floating-garden-19803-96c1af154bf2.herokuapp.com/' if Rails.env.production?
 
-  # Devise.setup do |config|
-  #   config.omniauth :github, ENV['GITHUB_ID'], ENV['GITHUB_SECRET'], scope: 'user,public_repo'
-  # end
+
 
   Devise.setup do |divise_config|
     divise_config.omniauth :github, ENV['GITHUB_ID'], ENV['GITHUB_SECRET'], scope: 'user,public_repo'
