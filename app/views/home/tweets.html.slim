@@ -13,7 +13,7 @@ ul.nav.nav-tabs
           = image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..."
       - else
         = link_to user_path(current_user) do
-          img.share_img.mx-3.me-4[src="/assets/icon.png"]
+          img.share_img.mx-3.me-4[src="assets/icon.png"]
       input.shareInput[type="text" placeholder="投稿したい内容を入力"]
     hr.shareHr
     .shareButtons
@@ -34,7 +34,7 @@ ul.nav.nav-tabs
           = image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..."
       - else
         = link_to user_path(current_user) do
-          img.home_img.mx-3.me-4[src="/assets/icon.png"]
+          img.home_img.mx-3.me-4[src="assets/icon.png"]
       div
         span.fw-bold.fs-3.me-2
           = @user.name
@@ -43,7 +43,7 @@ ul.nav.nav-tabs
           = @user.username
         p
           | おすすめの表示
-        img.post_img[src="/assets/EC1.jpg"]
+        img.post_img[src="assets/EC1.jpg"]
         .d-flex.justify-content-around.home-icon.mt-5
           div
             i.fa-regular.fa-comment
@@ -58,7 +58,7 @@ ul.nav.nav-tabs
             span.home-icon-span
               | 10
     .d-flex.border.p-3
-      img.home_img.mx-3.me-4[src="/assets/EC1.jpg"]
+      img.home_img.mx-3.me-4[src="assets/EC1.jpg"]
       div
         span.fw-bold.fs-3.me-2
           | okuyama
@@ -77,7 +77,8 @@ ul.nav.nav-tabs
           = image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..."
       - else
         = link_to user_path(current_user) do
-          img.home_img.mx-3.me-4[src="/assets/icon.png"]
+          / img.home_img.mx-3.me-4[src="assets/icon.png"]
+          = image_tag 'icon.png'
       div
         span.fw-bold.fs-3.me-2
           | okuyama
@@ -85,7 +86,8 @@ ul.nav.nav-tabs
           | @okuyama0121
         p
           | フォロー中の表示
-        img.post_img[src="/assets/EC1.jpg"]
+        / img.post_img[src="/assets/EC1.jpg"]
+        = image_tag 'EC1.jpg', class: "post_img"
         .d-flex.justify-content-around.home-icon.mt-5
           div
             i.fa-regular.fa-comment
