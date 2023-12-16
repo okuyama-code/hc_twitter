@@ -22,13 +22,13 @@
       = link_to "Edit profile", edit_user_path(@user) , class: "edit"
   .profile-info
     h2
-      = current_user.name
+      =  @user.name
     p
       | @
-      = current_user.username
-    - if current_user.self_introduction.present?
+      =  @user.username
+    - if  @user.self_introduction.present?
       p
-        = current_user.self_introduction
+        =  @user.self_introduction
     - else
       p.dammy_self_introduction
         | (参考例 自己紹介文を登録したら消えます) 千葉県在住。25歳。23/3~8/8まで独学(500h)。23/8/9~HC。英語も学習中。ゴルフ、筋トレ、ランニング、ママさんバレー、料理、ヨガ、瞑想、将棋、カラオケ、登山です。よろしくお願いします！
@@ -36,19 +36,19 @@
       .profile-details
         i.fa-solid.fa-location-dot.profile-icon-link
         span
-          = current_user.location
+          =  @user.location
       .profile-details
         i.fa-solid.fa-link.profile-icon-link
         span
-          = current_user.website
+          =  @user.website
       .profile-details
         i.fa-solid.fa-cake-candles.profile-icon
         span
-          = current_user.date_of_birth.strftime('%Y年%m月%d日')
+          =  @user.date_of_birth.strftime('%Y年%m月%d日')
     .profile-details.calender-icon
       i.fa-regular.fa-calendar-days.profile-icon
       span
-        = current_user.created_at.strftime('%Y年%m月')
+        =  @user.created_at.strftime('%Y年%m月')
         | からColorful SNSを利用しています
     .d-flex.relationship
       .follow

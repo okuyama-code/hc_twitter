@@ -2,14 +2,17 @@
 
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user
 
-  def show; end
+  def show
+    @user = User.find(params[:id])
+  end
 
-  def edit; end
+  def edit
+    @user = User.find(params[:id])
+  end
 
   def update
-    @user = current_user.update(user_params)
+    current_user.update(user_params)
     flash[:notice] = 'プロフィール情報を編集しました。'
     redirect_to user_path
   end

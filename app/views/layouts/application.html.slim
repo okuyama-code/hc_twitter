@@ -14,13 +14,13 @@ html
     nav.navbar.navbar-expand-lg.navbar-light.d-flex.justify-content-between
       .ml-2
         = link_to "Colorful SNS", root_path, class: "navbar-brand"
-        - if user_signed_in? && @user
+        - if user_signed_in? && current_user
           span
           strong.strong-nav
-            = @user.email
+            = current_user.email
           | がログイン | ID:
           strong.strong-nav
-            = @user.id
+            = current_user.id
       ul.navbar-nav.d-flex.flex-row
         - if user_signed_in?
           li.nav-item
@@ -96,10 +96,10 @@ html
 
               div
                 h4
-                  = @user.name
+                  = current_user.name
                 p
                   | @
-                  = @user.username
+                  = current_user.username
 
           .col-md-8.main-area
             = yield

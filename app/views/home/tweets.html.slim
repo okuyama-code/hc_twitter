@@ -8,7 +8,7 @@ ul.nav.nav-tabs
 .share.my-3
   .shareWrapper
     .shareTop.d-flex
-      - if @user.icon.attached?
+      - if current_user.icon.attached?
         = link_to user_path(current_user) do
           = image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..."
       - else
@@ -29,7 +29,7 @@ ul.nav.nav-tabs
 .tab-content
   #osusume.tab-pane.active
     .d-flex.border.p-3
-      - if @user.icon.attached?
+      - if current_user.icon.attached?
         = link_to user_path(current_user) do
           = image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..."
       - else
@@ -37,10 +37,10 @@ ul.nav.nav-tabs
           img.home_img.mx-3.me-4[src="assets/icon.png"]
       div
         span.fw-bold.fs-3.me-2
-          = @user.name
+          = current_user.name
         span
           | @
-          = @user.username
+          = current_user.username
         p
           | おすすめの表示
         img.post_img[src="assets/EC1.jpg"]
@@ -72,7 +72,7 @@ ul.nav.nav-tabs
           i.fa-regular.fa-heart
   #follow.tab-pane
     .d-flex.border.p-3
-      - if @user.icon.attached?
+      - if current_user.icon.attached?
         = link_to user_path(current_user) do
           = image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..."
       - else
