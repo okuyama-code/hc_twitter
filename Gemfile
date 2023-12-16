@@ -101,5 +101,5 @@ gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'rails-i18n'
 gem 'kaminari'
 gem 'bootstrap5-kaminari-views'
-# gem 'slim-rails'
+gem 'slim-rails'
 

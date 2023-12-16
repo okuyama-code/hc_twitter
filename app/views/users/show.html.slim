@@ -1,0 +1,359 @@
+.col-md-8.border-profile
+  .d-flex
+    div
+      = link_to "/" do
+        i.fa-solid.fa-arrow-left.arrow-left
+      .profile-top-name
+        h2
+          = @user.name
+        p
+          = @user.posts.count
+          |  posts
+      .profile-images
+        - if @user.header.attached?
+          = image_tag @user.header, class: "header-img", alt: "..."
+        - else
+          img.header-img[src="/assets/header.jpg"]
+        - if @user.icon.attached?
+          = image_tag @user.icon, class: "profile-img me-3", alt: "..."
+        - else
+          img.profile-img.me-3[src="/assets/icon.png"]
+        - if @user.id == current_user.id
+          = link_to edit_user_path(@user) , class: "edit" do
+            button
+              | ユーザー情報を編集
+        - else
+          - if @is_room == true
+            = link_to room_path(@room_id) do
+              i.fa-solid.fa-message.edit
+          - else
+            = form_for @room do |f|
+              = number_field_tag 'entry[user_id]', @user.id, style: "display: none;"
+              = button_tag type: "submit", class: "btn btn-default" do
+                i.fa-solid.fa-message.edit
+      .profile-info
+        h2
+          = @user.name
+        p
+          | @
+          = @user.username
+        - if @user.self_introduction.present?
+          p
+            = @user.self_introduction
+        - else
+          p.dammy_self_introduction
+            | (参考例 自己紹介文を登録したら消えます) 千葉県在住。25歳。23/3~8/8まで独学(500h)。23/8/9~HC。英語も学習中。ゴルフ、筋トレ、ランニング、ママさんバレー、料理、ヨガ、瞑想、将棋、カラオケ、登山です。よろしくお願いします！
+/     .d-flex
+/       .profile-details
+/         i.fa-solid.fa-location-dot.profile-icon-link
+/         span
+/           = @user.location
+/       .profile-details
+/         i.fa-solid.fa-link.profile-icon-link
+/         span
+/           = @user.website
+/       .profile-details
+/         i.fa-solid.fa-cake-candles.profile-icon
+/         span
+/           = @user.date_of_birth.strftime('%Y年%m月%d日')
+/     .profile-details.calender-icon
+/       i.fa-regular.fa-calendar-days.profile-icon
+/       span
+/         = @user.created_at.strftime('%Y年%m月')
+/         | からColorful SNSを利用しています
+/     .d-flex.relationship
+/       .follow
+/         p
+/           span
+/             = link_to @user.followings.count, followings_user_path(@user), class: "follow-link-count"
+/           |  Following
+/       .follow
+/         p
+/           span
+/             = link_to @user.followers.count, followers_user_path(@user), class: "follow-link-count"
+/           |  Followers
+/   ul.nav.nav-tabs
+/     li.nav-item
+/       a.nav-link.active[href="#my_tweets" data-bs-toggle="tab"]
+/         | ツイート
+/     li.nav-item
+/       a.nav-link[href="#my_likes" data-bs-toggle="tab"]
+/         | いいね
+/     li.nav-item
+/       a.nav-link[href="#my_retweets" data-bs-toggle="tab"]
+/         | リツイート
+/     li.nav-item
+/       a.nav-link[href="#my_comment" data-bs-toggle="tab"]
+/         | コメント
+/   .tab-content
+/     #my_tweets.tab-pane.active
+/       - @posts.each do |post|
+/         .d-flex.border.p-3
+/           - if @user.icon.attached?
+/             = image_tag @user.icon, class: "share_img mx-3 me-4", alt: "..."
+/           - else
+/             img.home_img.mx-3.me-4[src="/assets/icon.png"]
+/         div
+/           span.fw-bold.fs-3.me-2
+/             = @user.name
+/           span
+/             | @
+/             = @user.username
+/         p
+/           = post.post_content
+/         img.post_img[src="/assets/EC1.jpg"]
+/         .d-flex.justify-content-around.home-icon.mt-5
+/           = link_to post_path(post.id), class: "post-link" do
+/             div
+
+/             i.fa-regular.fa-comment
+/             span.home-icon-span
+/               = post.comments.count
+/       - if current_user.reposted?(post.id)
+/         .mr-1
+/           = link_to post_repost_path(post, post.reposts.first), data: { "turbo-method": :delete }, class: "text-deco-no" do
+/             i.fa-solid.fa-repeat.repost-color
+/           span.home-icon-span
+/             = post.reposts.count
+/       - else
+/         .mr-1
+/           = link_to post_reposts_path(post), data: { "turbo-method": :post }, class: "text-deco-no" do
+/             i.fa-solid.fa-repeat.no-repost-color
+/           span.home-icon-span
+/             = post.reposts.count
+/       div
+/         div
+/           - if current_user.already_liked?(post)
+/             = link_to  post_likes_path(post), data: { "turbo-method": :delete }, class: "text-deco-no" do
+/               i.fa-regular.fa-heart.like-color
+/           - else
+/             = link_to  post_likes_path(post), data: { "turbo-method": :post }, class: "text-deco-no" do
+/               i.fa-regular.fa-heart.no-like-color
+/           span.home-icon-span
+/             = post.likes.count
+/       div
+/         - if current_user.already_bookmark?(post)
+/           = link_to  post_bookmarks_path(post), data: { "turbo-method": :delete }, class: "text-deco-no" do
+/             .mr-1
+
+/             i.fa-solid.fa-bookmark.like-color
+/           span.home-icon-span
+/             = post.bookmarks.count
+/       - else
+/         = link_to  post_bookmarks_path(post), data: { "turbo-method": :post }, class: "text-deco-no" do
+/           .mr-1
+
+/           i.fa-solid.fa-bookmark.no-like-color
+/         span.home-icon-span
+/           = post.bookmarks.count
+/ .paginate-margin
+/   = paginate @posts, theme: 'bootstrap-5'
+/ #my_likes.tab-pane
+/   - @like_posts.each do |like|
+/     .d-flex.border.p-3
+/       - if like.post.user.icon.attached?
+/         = image_tag like.post.user.icon, class: "home_img mx-3 me-4", alt: "..."
+/       - else
+/         img.home_img.mx-3.me-4[src="/assets/EC1.jpg"]
+/     div
+/       = link_to user_path(like.post.user), class: "text-deco-no" do
+/         span.fw-bold.fs-3.me-2
+/           = like.post.user.name
+/       span
+/         | @
+/         = like.post.user.username
+/       = link_to post_path(like.post), class: "text-deco-no" do
+/         p
+/           = like.post.post_content
+/       img.post_img[src="/assets/EC1.jpg"]
+/     .d-flex.justify-content-around.home-icon.mt-5
+/       = link_to post_path(like.post.id), class: "post-link" do
+/         .mr-1
+
+/         i.fa-regular.fa-comment
+/         span.home-icon-span
+/           = like.post.comments.count
+/   - if current_user.reposted?(like.post.id)
+/     .mr-1
+/       = link_to post_repost_path(like.post, like.post.reposts.first), data: { "turbo-method": :delete }, class: "text-deco-no" do
+/         i.fa-solid.fa-repeat.repost-color
+/       span.home-icon-span
+/         = like.post.reposts.count
+/   - else
+/     .mr-1
+/       = link_to post_reposts_path(like.post), data: { "turbo-method": :post }, class: "text-deco-no" do
+/         i.fa-solid.fa-repeat.no-repost-color
+/       span.home-icon-span
+/         = like.post.reposts.count
+/   div
+/     - if current_user.already_liked?(like.post)
+/       = link_to post_likes_path(like.post), data: { "turbo-method": :delete }, class: "text-deco-no" do
+/         .mr-1
+
+/         i.fa-regular.fa-heart.like-color
+/       span.home-icon-span
+/         = like.post.likes.count
+/   - else
+/     = link_to  post_likes_path(like.post), data: { "turbo-method": :post }, class: "text-deco-no" do
+/       .mr-1
+
+/       i.fa-regular.fa-heart.no-like-color
+/     span.home-icon-span
+/       = like.post.likes.count
+/ div
+/   - if current_user.already_bookmark?(like.post)
+/     = link_to  post_bookmarks_path(like.post), data: { "turbo-method": :delete }, class: "text-deco-no" do
+/       .mr-1
+
+/       i.fa-solid.fa-bookmark.like-color
+/     span.home-icon-span
+/       = like.post.bookmarks.count
+/ - else
+/   = link_to  post_bookmarks_path(like.post), data: { "turbo-method": :post }, class: "text-deco-no" do
+/     .mr-1
+
+/     i.fa-solid.fa-bookmark.no-like-color
+/   span.home-icon-span
+/     = like.post.bookmarks.count
+/ .paginate-margin
+/   = paginate @like_posts, theme: 'bootstrap-5'
+/ #my_retweets.tab-pane
+/   - @repost_posts.each do |repost|
+/     .d-flex.border.p-3
+/       - if repost.post.user.icon.attached?
+/         = image_tag repost.post.user.icon, class: "home_img mx-3 me-4", alt: "..."
+/       - else
+/         img.home_img.mx-3.me-4[src="/assets/EC1.jpg"]
+/     div
+/       = link_to user_path(repost.post.user), class: "text-deco-no" do
+/         span.fw-bold.fs-3.me-2
+/           = repost.post.user.name
+/       span
+/         | @
+/         = repost.post.user.username
+/       = link_to post_path(repost.post), class: "text-deco-no" do
+/         p
+/           = repost.post.post_content
+/       - if repost.post.image.attached?
+/         = image_tag repost.post.image, class: "post_img", alt: "..."
+/     .d-flex.justify-content-around.home-icon.mt-5
+/       = link_to post_path(repost.post.id), class: "post-link" do
+/         .mr-1
+
+/         i.fa-regular.fa-comment
+/         span.home-icon-span
+/           = repost.post.comments.count
+/   - if current_user.reposted?(repost.post.id)
+/     .mr-1
+/       = link_to post_repost_path(repost.post, repost.post.reposts.first), data: { "turbo-method": :delete }, class: "text-deco-no" do
+/         i.fa-solid.fa-repeat.repost-color
+/       span.home-icon-span
+/         = repost.post.reposts.count
+/   - else
+/     .mr-1
+/       = link_to post_reposts_path(repost.post), data: { "turbo-method": :post }, class: "text-deco-no" do
+/         i.fa-solid.fa-repeat.no-repost-color
+/       span.home-icon-span
+/         = repost.post.reposts.count
+/   div
+/     - if current_user.already_liked?(repost.post)
+/       = link_to  post_likes_path(repost.post), data: { "turbo-method": :delete }, class: "text-deco-no" do
+/         .mr-1
+
+/         i.fa-regular.fa-heart.like-color
+/       span.home-icon-span
+/         = repost.post.likes.count
+/   - else
+/     = link_to  post_likes_path(repost.post), data: { "turbo-method": :post }, class: "text-deco-no" do
+/       .mr-1
+
+/       i.fa-regular.fa-heart.no-like-color
+/     span.home-icon-span
+/       = repost.post.likes.count
+/ div
+/   - if current_user.already_bookmark?(repost.post)
+/     = link_to  post_bookmarks_path(repost.post), data: { "turbo-method": :delete }, class: "text-deco-no" do
+/       .mr-1
+
+/       i.fa-solid.fa-bookmark.like-color
+/     span.home-icon-span
+/       = repost.post.bookmarks.count
+/ - else
+/   = link_to  post_bookmarks_path(repost.post), data: { "turbo-method": :post }, class: "text-deco-no" do
+/     .mr-1
+
+/     i.fa-solid.fa-bookmark.no-like-color
+/   span.home-icon-span
+/     = repost.post.bookmarks.count
+/ .paginate-margin
+/   = paginate @repost_posts, theme: 'bootstrap-5'
+/ #my_comment.tab-pane
+/   - @commnet_posts.each do |comment|
+/     .d-flex.border.p-3
+/       - if comment.post.user.icon.attached?
+/         = image_tag comment.post.user.icon, class: "home_img mx-3 me-4", alt: "..."
+/       - else
+/         img.home_img.mx-3.me-4[src="/assets/EC1.jpg"]
+/     div
+/       = link_to user_path(comment.post.user), class: "text-deco-no" do
+/         span.fw-bold.fs-3.me-2
+/           = comment.post.user.name
+/       span
+/         | @
+/         = comment.post.user.username
+/       = link_to post_path(comment.post), class: "text-deco-no" do
+/         p
+/           = comment.post.post_content
+/       - if comment.post.image.attached?
+/         = image_tag comment.post.image, class: "post_img", alt: "..."
+/     .d-flex.justify-content-around.home-icon.mt-5
+/       = link_to post_path(comment.post.id), class: "post-link" do
+/         .mr-1
+
+/         i.fa-regular.fa-comment
+/         span.home-icon-span
+/           = comment.post.comments.count
+/   - if current_user.reposted?(comment.post.id)
+/     .mr-1
+/       = link_to post_repost_path(comment.post, comment.post.reposts.first), data: { "turbo-method": :delete }, class: "text-deco-no" do
+/         i.fa-solid.fa-repeat.repost-color
+/       span.home-icon-span
+/         = comment.post.reposts.count
+/   - else
+/     .mr-1
+/       = link_to post_reposts_path(comment.post), data: { "turbo-method": :post }, class: "text-deco-no" do
+/         i.fa-solid.fa-repeat.no-repost-color
+/       span.home-icon-span
+/         = comment.post.reposts.count
+/   div
+/     - if current_user.already_liked?(comment.post)
+/       = link_to  post_likes_path(comment.post), data: { "turbo-method": :delete }, class: "text-deco-no" do
+/         .mr-1
+
+/         i.fa-regular.fa-heart.like-color
+/       span.home-icon-span
+/         = comment.post.likes.count
+/   - else
+/     = link_to  post_likes_path(comment.post), data: { "turbo-method": :post }, class: "text-deco-no" do
+/       .mr-1
+
+/       i.fa-regular.fa-heart.no-like-color
+/     span.home-icon-span
+/       = comment.post.likes.count
+/ div
+/   - if current_user.already_bookmark?(comment.post)
+/     = link_to  post_bookmarks_path(comment.post), data: { "turbo-method": :delete }, class: "text-deco-no" do
+/       .mr-1
+
+/       i.fa-solid.fa-bookmark.like-color
+/     span.home-icon-span
+/       = comment.post.bookmarks.count
+/ - else
+/   = link_to  post_bookmarks_path(comment.post), data: { "turbo-method": :post }, class: "text-deco-no" do
+/     .mr-1
+
+/     i.fa-solid.fa-bookmark.no-like-color
+/   span.home-icon-span
+/     = comment.post.bookmarks.count
+/ .paginate-margin
+/   = paginate @commnet_posts, theme: 'bootstrap-5'

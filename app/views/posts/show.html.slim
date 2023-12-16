@@ -1,0 +1,95 @@
+.flex-around
+  .d-flex.border.p-3
+    - if @post.user.icon.attached?
+      = link_to user_path(@post.user) do
+        = image_tag @post.user.icon, class: "share_img mx-3 me-4", alt: "..."
+    - else
+      = link_to user_path(@post.user) do
+        img.share_img.mx-3.me-4[src="/assets/icon.png"]
+    div
+      span.fw-bold.fs-3.me-2
+        = @post.user.name
+      span
+        | @
+        = @post.user.username
+      p
+        = @post.post_content
+      .d-flex.justify-content-around.home-icon
+        - if current_user.reposted?(@post.id)
+          .mr-1
+            = link_to post_repost_path(@post, @post.reposts.first), data: { "turbo-method": :delete }, class: "text-deco-no" do
+              i.fa-solid.fa-repeat.repost-color
+            span.home-icon-span
+              = @post.reposts.count
+        - else
+          .mr-1
+            = link_to post_reposts_path(@post), data: { "turbo-method": :post }, class: "text-deco-no" do
+              i.fa-solid.fa-repeat.no-repost-color
+            span.home-icon-span
+              = @post.reposts.count
+        .mr-1
+          - if current_user.already_liked?(@post)
+            = link_to  post_likes_path(@post), data: { "turbo-method": :delete } do
+              i.fa-regular.fa-heart.like-color
+          - else
+            = link_to  post_likes_path(@post), data: { "turbo-method": :post } do
+              i.fa-regular.fa-heart.no-like-color
+          span.home-icon-span
+            = @post.likes.count
+        div
+          - if current_user.already_bookmark?(@post)
+            = link_to  post_bookmarks_path(@post), data: { "turbo-method": :delete }, class: "text-deco-no" do
+              .mr-1
+              i.fa-solid.fa-bookmark.like-color
+            span.home-icon-span
+              = @post.bookmarks.count
+          - else
+            = link_to  post_bookmarks_path(@post), data: { "turbo-method": :post }, class: "text-deco-no" do
+              .mr-1
+              i.fa-solid.fa-bookmark.no-like-color
+            span.home-icon-span
+              = @post.bookmarks.count
+
+  = form_with model: [@post, @comment], url: post_comments_path(@post), method: :post  do |f|
+    .share-comment-box
+      .shareWrapper
+        .shareTop.d-flex
+          - if current_user.icon.attached?
+            = link_to user_path(current_user) do
+              = image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..."
+          - else
+            = link_to user_path(current_user) do
+              img.share_img.mx-3.me-4[src="/assets/icon.png"]
+
+          = f.text_area :comment_content, class: "shareInput", placeholder: '投稿したい内容を入力', rows: 3, cols: 80
+        .shareButtons.share-comment
+          .shareOptions
+            .shareOption
+              = f.file_field :comment_img, class: 'form-control visually-hidden', accept: 'image/*', id: 'file-input-comment'
+              label[for="file-input-comment"]
+              i.fa-regular.fa-image
+            .shareOption
+              i.fa-solid.fa-gift
+            .shareOption
+              i.fa-regular.fa-face-smile
+            = f.submit "コメント送信", class: "shareButton"
+
+    - @comments.each do |comment|
+      .d-flex.border.p-3
+        - if comment.user.icon.attached?
+          = link_to user_path(comment.user) do
+            = image_tag comment.user.icon, class: "share_img mx-3 me-4", alt: "..."
+        - else
+          img.home_img.mx-3.me-4[src="/assets/icon.png"]
+        div
+          span.fw-bold.fs-3.me-2
+            = comment.user.name
+          span
+            | @
+            = comment.user.username
+          p
+            = comment.comment_content
+          - if comment.comment_img.attached?
+            = image_tag comment.comment_img, class: "post_img"
+    .paginate-margin
+      = paginate @comments, theme: 'bootstrap-5'

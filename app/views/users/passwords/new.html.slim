@@ -1,0 +1,15 @@
+.container.mt-5
+  .row.justify-content-center
+    .col-md-6
+      .card
+        .card-body
+          h2.text-center
+            | パスワードを忘れましたか？
+          = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form" }) do |f|
+            = render "users/shared/error_messages", resource: resource
+            .mb-3
+              = f.label :email, class: "form-label"
+              = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+            .text-center
+              = f.submit "Send me reset password instructions", class: "btn btn-primary"
+          = render "users/shared/links"

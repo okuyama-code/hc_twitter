@@ -1,0 +1,183 @@
+- if current_user
+  ul.nav.nav-tabs
+    li.nav-item
+      a.nav-link.active[href="#osusume" data-bs-toggle="tab"]
+        | おすすめ
+    li.nav-item
+      a.nav-link[href="#follow" data-bs-toggle="tab"]
+        | フォロー中
+  = render "posts/form", post: @post
+  .tab-content
+    #osusume.tab-pane.active
+      - @posts.each do |post|
+        .post-body.border.p-3
+          .flex-between
+            div
+              - if post.user.icon.attached?
+                = link_to user_path(post.user) do
+                  = image_tag post.user.icon, class: "share_img mx-3 me-4", alt: "..."
+              - else
+                = link_to user_path(post.user) do
+                  img.home_img.mx-3.me-4[src="/assets/icon.png"]
+              span.fw-bold.fs-3.me-2
+                = post.user.name
+              span
+                | @
+                = post.user.username
+            div
+              - if current_user.id != post.user.id
+                - if post.user.is_followed_by?(current_user)
+                  = link_to user_relationships_path(post.user), data: { "turbo-method": :delete }, class: "follow-link-delete" do
+                    = post.user.name
+                    | をフォロー解除
+                - else
+                  = link_to user_relationships_path(post.user), data: { "turbo-method": :post }, class: "follow-link" do
+                    = post.user.name
+                    | をフォロー
+          .margin-left
+            = link_to post_path(post.id), class: "post-link" do
+              p
+                = post.post_content
+              - if post.image.attached?
+                = image_tag post.image, class: "post_img"
+          .d-flex.justify-content-around.home-icon.mt-5
+            = link_to post_path(post.id), class: "post-link" do
+              .mr-1
+                i.fa-regular.fa-comment
+                span.home-icon-span
+                  = post.comments.count
+              - if current_user.reposted?(post.id)
+                .mr-1
+                  = link_to post_repost_path(post, post.reposts.first), data: { "turbo-method": :delete }, class: "text-deco-no" do
+                    i.fa-solid.fa-repeat.repost-color
+                    span.home-icon-span
+                      = post.reposts.count
+              - else
+                .mr-1
+                  = link_to post_reposts_path(post), data: { "turbo-method": :post }, class: "text-deco-no" do
+                    i.fa-solid.fa-repeat.no-repost-color
+                    span.home-icon-span
+                      = post.reposts.count
+              div
+                - if current_user.already_liked?(post)
+                  = link_to  post_likes_path(post), data: { "turbo-method": :delete }, class: "text-deco-no" do
+                    .mr-1
+                      i.fa-regular.fa-heart.like-color
+                      span.home-icon-span
+                        = post.likes.count
+                - else
+                  = link_to  post_likes_path(post), data: { "turbo-method": :post }, class: "text-deco-no" do
+                    .mr-1
+                      i.fa-regular.fa-heart.no-like-color
+                      span.home-icon-span
+                        = post.likes.count
+              div
+                - if current_user.already_bookmark?(post)
+                  = link_to  post_bookmarks_path(post), data: { "turbo-method": :delete }, class: "text-deco-no" do
+                    .mr-1
+                      i.fa-solid.fa-bookmark.like-color
+                      span.home-icon-span
+                        = post.bookmarks.count
+                - else
+                  = link_to  post_bookmarks_path(post), data: { "turbo-method": :post }, class: "text-deco-no" do
+                    .mr-1
+                      i.fa-solid.fa-bookmark.no-like-color
+                      span.home-icon-span
+                        = post.bookmarks.count
+      .paginate-margin
+        = paginate @posts, theme: 'bootstrap-5'
+
+    #follow.tab-pane
+      - if current_user
+        - @following_posts.each do |post|
+          .post-body.border.p-3
+            .flex-between
+              div
+                - if post.user.icon.attached?
+                  = link_to user_path(post.user) do
+                    = image_tag post.user.icon, class: "share_img mx-3 me-4", alt: "..."
+                - else
+                  = link_to user_path(post.user) do
+                    img.home_img.mx-3.me-4[src="/assets/icon.png"]
+                span.fw-bold.fs-3.me-2
+                  = post.user.name
+                span
+                  | @
+                  = post.user.username
+              div
+                - if current_user.id != post.user.id
+                  - if post.user.is_followed_by?(current_user)
+                    = link_to user_relationships_path(post.user), data: { "turbo-method": :delete }, class: "follow-link-delete" do
+                      = post.user.name
+                      | をフォロー解除
+                  - else
+                    = link_to user_relationships_path(post.user), data: { "turbo-method": :post }, class: "follow-link" do
+                      = post.user.name
+                      | をフォロー
+
+              .margin-left
+                = link_to post_path(post.id), class: "post-link" do
+                  p
+                    = post.post_content
+                  - if post.image.attached?
+                    = image_tag post.image, class: "post_img"
+              .d-flex.justify-content-around.home-icon.mt-5
+                = link_to post_path(post.id), class: "post-link" do
+                  .mr-1
+                    i.fa-regular.fa-comment
+                    span.home-icon-span
+                      = post.comments.count
+
+                .mr-1
+                  i.fa-solid.fa-repeat
+                  span.home-icon-span
+                    = post.reposts.count
+
+                .mr-1
+                  i.fa-regular.fa-heart
+                  span.home-icon-span
+                    = post.likes.count
+                div
+                  i.fa-solid.fa-bookmark
+                  span.home-icon-span
+                    = post.bookmarks.count
+        .paginate-margin
+          = paginate @following_posts, theme: 'bootstrap-5'
+      - else
+        .post-index-sub
+          - @posts.each do |post|
+            .post-body.d-flex.border-sub.p-3
+              - if post.user.icon.attached?
+                = link_to user_path(post.user) do
+                  = image_tag post.user.icon, class: "share_img mx-3 me-4", alt: "..."
+              - else
+                = link_to user_path(post.user) do
+                  img.home_img.mx-3.me-4[src="/assets/icon.png"]
+            div
+              span.fw-bold.fs-3.me-2
+                = post.user.name
+              span
+                | @
+                = post.user.username
+              = link_to post_path(post.id), class: "post-link" do
+                p
+                  = post.post_content
+                - if post.image.attached?
+                  = image_tag post.image, class: "post_img"
+            .d-flex.justify-content-around.home-icon.mt-5
+              .mr-1
+                i.fa-regular.fa-comment
+                span.home-icon-span
+                  = post.comments.count
+              .mr-1
+                i.fa-solid.fa-repeat
+                span.home-icon-span
+                  = post.reposts.count
+              .mr-1
+                i.fa-regular.fa-heart
+                span.home-icon-span
+                  = post.likes.count
+              div
+                i.fa-solid.fa-bookmark
+                span.home-icon-span
+                  = post.bookmarks.count

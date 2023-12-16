@@ -1,0 +1,25 @@
+.d-flex.justify-content-between.message-html
+  h2
+    | Messages
+  .message-header
+    i.fa-solid.fa-gear.left
+    i.fa-solid.fa-envelope-circle-check
+.search-box
+  input[type="text" placeholder="Search Direct Messages"]
+  button[type="submit"]
+    i.fa-solid.fa-magnifying-glass
+- @another_entries.each do |entry|
+  = link_to room_path(entry.room), class: "text-deco-no" do
+    .d-flex.message-list
+      = link_to user_path(entry.user) do
+        = image_tag entry.user.icon, class:"message-img"
+    .message-list-item
+
+    .d-flex
+
+    h4
+      = entry.user.name
+    p
+      | @yamada01
+    p.message-p
+      = Message.find_by(id: entry.room.message_ids.last)&.body
