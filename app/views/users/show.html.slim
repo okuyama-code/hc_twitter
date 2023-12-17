@@ -3,88 +3,91 @@
     div
       = link_to "/" do
         i.fa-solid.fa-arrow-left.arrow-left
-      .profile-top-name
-        h2
-          = @user.name
-        p
-          = @user.posts.count
-          |  posts
-      .profile-images
-        - if @user.header.attached?
-          = image_tag @user.header, class: "header-img", alt: "..."
-        - else
-          img.header-img[src="/assets/header.jpg"]
-        - if @user.icon.attached?
-          = image_tag @user.icon, class: "profile-img me-3", alt: "..."
-        - else
-          img.profile-img.me-3[src="/assets/icon.png"]
-        - if @user.id == current_user.id
-          = link_to edit_user_path(@user) , class: "edit" do
-            button
-              | ユーザー情報を編集
-        - else
-          - if @is_room == true
-            = link_to room_path(@room_id) do
-              i.fa-solid.fa-message.edit
-          - else
-            = form_for @room do |f|
-              = number_field_tag 'entry[user_id]', @user.id, style: "display: none;"
-              = button_tag type: "submit", class: "btn btn-default" do
-                i.fa-solid.fa-message.edit
-      .profile-info
-        h2
-          = @user.name
-        p
-          | @
-          = @user.username
-        - if @user.self_introduction.present?
+    .profile-top-name
+      h2
+        = @user.name
+      p
+        = @user.posts.count
+        |  posts
+  .profile-images
+    - if @user.header.attached?
+      = image_tag @user.header, class: "header-img", alt: "..."
+    - else
+      img.header-img[src="/assets/header.jpg"]
+    - if @user.icon.attached?
+      = image_tag @user.icon, class: "profile-img me-3", alt: "..."
+    - else
+      img.profile-img.me-3[src="/assets/icon.png"]
+    - if @user.id == current_user.id
+      = link_to edit_user_path(@user) , class: "edit" do
+        button
+          | ユーザー情報を編集
+    - else
+      - if @is_room == true
+        = link_to room_path(@room_id) do
+          i.fa-solid.fa-message.edit
+      - else
+        = form_for @room do |f|
+          = number_field_tag 'entry[user_id]', @user.id, style: "display: none;"
+          = button_tag type: "submit", class: "btn btn-default" do
+            i.fa-solid.fa-message.edit
+  .profile-info
+    h2
+      = @user.name
+    p
+      | @
+      = @user.username
+    - if @user.self_introduction.present?
+      p
+        = @user.self_introduction
+    - else
+      p.dammy_self_introduction
+        | (参考例 自己紹介文を登録したら消えます) 千葉県在住。25歳。23/3~8/8まで独学(500h)。23/8/9~HC。
+    .d-flex
+      .profile-details
+        i.fa-solid.fa-location-dot.profile-icon-link
+        span
+          = @user.location
+      .profile-details
+        i.fa-solid.fa-link.profile-icon-link
+        span
+          = @user.website
+      .profile-details
+        i.fa-solid.fa-cake-candles.profile-icon
+        span
+          = @user.date_of_birth.strftime('%Y年%m月%d日')
+    .profile-details.calender-icon
+      i.fa-regular.fa-calendar-days.profile-icon
+      span
+        = @user.created_at.strftime('%Y年%m月')
+        | からColorful SNSを利用しています
+      .d-flex.relationship
+        .follow
           p
-            = @user.self_introduction
-        - else
-          p.dammy_self_introduction
-            | (参考例 自己紹介文を登録したら消えます) 千葉県在住。25歳。23/3~8/8まで独学(500h)。23/8/9~HC。英語も学習中。ゴルフ、筋トレ、ランニング、ママさんバレー、料理、ヨガ、瞑想、将棋、カラオケ、登山です。よろしくお願いします！
-/     .d-flex
-/       .profile-details
-/         i.fa-solid.fa-location-dot.profile-icon-link
-/         span
-/           = @user.location
-/       .profile-details
-/         i.fa-solid.fa-link.profile-icon-link
-/         span
-/           = @user.website
-/       .profile-details
-/         i.fa-solid.fa-cake-candles.profile-icon
-/         span
-/           = @user.date_of_birth.strftime('%Y年%m月%d日')
-/     .profile-details.calender-icon
-/       i.fa-regular.fa-calendar-days.profile-icon
-/       span
-/         = @user.created_at.strftime('%Y年%m月')
-/         | からColorful SNSを利用しています
-/     .d-flex.relationship
-/       .follow
-/         p
-/           span
-/             = link_to @user.followings.count, followings_user_path(@user), class: "follow-link-count"
-/           |  Following
-/       .follow
-/         p
-/           span
-/             = link_to @user.followers.count, followers_user_path(@user), class: "follow-link-count"
-/           |  Followers
-/   ul.nav.nav-tabs
-/     li.nav-item
-/       a.nav-link.active[href="#my_tweets" data-bs-toggle="tab"]
-/         | ツイート
-/     li.nav-item
-/       a.nav-link[href="#my_likes" data-bs-toggle="tab"]
-/         | いいね
-/     li.nav-item
-/       a.nav-link[href="#my_retweets" data-bs-toggle="tab"]
-/         | リツイート
-/     li.nav-item
-/       a.nav-link[href="#my_comment" data-bs-toggle="tab"]
-/         | コメント
+            span
+              = link_to @user.followings.count, followings_user_path(@user), class: "follow-link-count"
+            |  Following
+        .follow
+          p
+            span
+              = link_to @user.followers.count, followers_user_path(@user), class: "follow-link-count"
+            |  Followers
+
+
+  ul.nav.nav-tabs
+    li.nav-item
+      a.nav-link.active[href="#my_tweets" data-bs-toggle="tab"]
+        | ツイート
+    li.nav-item
+      a.nav-link[href="#my_likes" data-bs-toggle="tab"]
+        | いいね
+    li.nav-item
+      a.nav-link[href="#my_retweets" data-bs-toggle="tab"]
+        | リツイート
+    li.nav-item
+      a.nav-link[href="#my_comment" data-bs-toggle="tab"]
+        | コメント
+
 /   .tab-content
 /     #my_tweets.tab-pane.active
 /       - @posts.each do |post|
