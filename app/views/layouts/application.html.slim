@@ -54,10 +54,10 @@ html
                 i.fa-solid.fa-house-chimney-window
                 span
                   | ホーム
-              p.item
-                i.fa-solid.fa-magnifying-glass
-                span.h6
-                  | 検索
+            p.item
+              i.fa-solid.fa-magnifying-glass
+              span.h6
+                | 検索
             = link_to notifications_path, class: 'sidebar-link' do
               p.item
                 i.fa-regular.fa-bell
@@ -68,19 +68,19 @@ html
                 i.fa-regular.fa-envelope
                 span.h6
                   | DM
-              p.item
-                i.fa-regular.fa-bookmark
-                span.h6
-                  | ブックマーク
+            p.item
+              i.fa-regular.fa-bookmark
+              span.h6
+                | ブックマーク
             = link_to user_path(current_user), class: 'sidebar-link' do
               p.item
                 i.fa-solid.fa-id-card
                 span.h6
                   | プロフィール
-              p.item
-                i.fa-brands.fa-usps
-                span.h6
-                  | 投稿
+            p.item
+              i.fa-brands.fa-usps
+              span.h6
+                | 投稿
             .d-flex
               - if current_user.icon.attached?
                 = link_to user_path(current_user) do
