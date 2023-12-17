@@ -1,5 +1,6 @@
 .message-box-header
-  i.fa-solid.fa-arrow-left
+  = link_to rooms_path, class: "text-deco-no"  do
+    i.fa-solid.fa-arrow-left
   h3
     = @another_entry.user.name
     | さんとのメッセージ
