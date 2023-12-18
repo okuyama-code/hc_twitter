@@ -5,7 +5,8 @@ sudo chmod -R 777 /home/okuyama/hc_twitter_clone/
 
 # TODO
 - 通知メール送信を実装する
-- user/showのインデントそろえる
+- 通知のseedファイルを作成
+
 
 ```
 docker compose run --rm web bundle exec rubocop -A
