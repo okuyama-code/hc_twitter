@@ -4,6 +4,7 @@ class LikesController < ApplicationController
 
     post = Post.find(params[:post_id])
     post.create_notification_like!(current_user)
+    # TODO メールを送る記述
     redirect_back fallback_location: root_path
   end
 
