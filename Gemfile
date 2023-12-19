@@ -68,7 +68,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'htmlbeautifier'
-  gem 'letter_opener_web'
+  gem 'letter_opener_web', '~> 2.0'
   gem 'pry-rails'
   gem 'rails_best_practices'
   gem 'rubocop', require: false

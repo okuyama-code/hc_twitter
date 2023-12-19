@@ -443,7 +443,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   kaminari
-  letter_opener_web
+  letter_opener_web (~> 2.0)
   omniauth
   omniauth-github
   omniauth-rails_csrf_protection (~> 1.0)
