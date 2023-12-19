@@ -21,6 +21,15 @@ suzuki.icon.attach(io: File.open(Rails.root.join('app/assets/images/EC3.jpg')), 
 suzuki.header.attach(io: File.open(Rails.root.join('app/assets/images/suisu2.jpg')), filename: 'suisu1.jpg')
 suzuki.save!
 
+# =================== okuyama =================
+okuyama = User.create!(name: "okuyama | HC", username: "okuyama4848", email: "ooyy0121@gmail.com", password: "484848", date_of_birth: '1998-01-21', telephone: '09011112222', self_introduction: "はじめまして! okuyamaです!", location: "千葉", website: "okuyama-portfolio-site.vercel.app")
+
+okuyama.icon.attach(io: File.open(Rails.root.join('app/assets/images/icon.png')), filename: 'icon.png')
+okuyama.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')), filename: 'header.jpg')
+okuyama.save!
+
+
+
 
 
 
@@ -36,6 +45,9 @@ suzuki_post2 = suzuki.posts.create!(post_content: "鈴木の2回目の投稿で�
 suzuki_post3 = suzuki.posts.create!(post_content: "鈴木3回目の投稿です")
 suzuki_post4 = suzuki.posts.create!(post_content: "鈴木の4回目の投稿です")
 suzuki_post5 = suzuki.posts.create!(post_content: "鈴木の5回目の投稿です")
+okuyama_post1 = okuyama.posts.create!(post_content: "okuyamaの1回目の投稿です")
+okuyama_post2 = okuyama.posts.create!(post_content: "okuyamaの2回目の投稿です")
+okuyama_post3 = okuyama.posts.create!(post_content: "okuyamaの3回目の投稿です")
 
 # ================= comment =====================
 sato.comments.create!(comment_content: "佐藤が鈴木にコメントしました", post_id: suzuki_post5.id)
@@ -57,3 +69,5 @@ sato.reposts.create!(post_id: suzuki_post5.id)
 # ============= followする =====================
 sato.relationships.create!(following_id: yamada.id, follower_id: yamada.id)
 yamada.relationships.create!(following_id: suzuki.id, follower_id: suzuki.id)
+
+# ============== 通知 ================
