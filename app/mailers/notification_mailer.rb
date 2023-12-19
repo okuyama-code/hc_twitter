@@ -1,9 +1,10 @@
 class NotificationMailer < ApplicationMailer
-  def send_notification_email(user)
+  def send_notification_email(email)
     # 引数にlike
     Rails.logger.debug 'メール送信'
-    @user = user
-    mail to: @user.email, subject: '通知があります'
+    @email = email
+    pp @email
+    mail to: @email, subject: '通知があります'
   end
 end
 
