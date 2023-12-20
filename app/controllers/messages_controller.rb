@@ -4,12 +4,10 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    Rails.logger.debug 'デバック！！！！！！！！！！！！！'
-    Rails.logger.debug params
-    @message = Message.new(message_params)
-    @message.room_id = params[:room_id]
-    @message.user_id = current_user.id
-    if @message.save!
+    room = Room.find(params[:room_id])
+    message = room.messages.build(message_params)
+    message.user_id = current_user.id
+    if message.save!
       flash[:notice] = 'メッセージを投稿しました。'
       redirect_to request.referer
     else
