@@ -11,8 +11,7 @@ class CommentsController < ApplicationController
       flash[:notice] = 'コメントしました'
 
       post_user_email = @post.user.email
-      Rails.logger.debug 'デバック！！！！！！！！！！！！！'
-      Rails.logger.debug post_user_email
+      
       NotificationMailer.send_notification_email(post_user_email).deliver_now
     else
       flash[:alert] = 'コメントに失敗しました'
