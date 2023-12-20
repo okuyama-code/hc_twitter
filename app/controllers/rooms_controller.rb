@@ -5,10 +5,12 @@ class RoomsController < ApplicationController
   # users/showページで@is_roomがない時にformでパラメーターが送られてきてcreateアクションが走る。
   # 現在ログインしているユーザーとメッセージ相手のユーザーそれぞれの情報をroom_idで紐付けてEntryテーブルに２つレコードを作成している。
   def create
-    room = Room.create(user_id: current_user.id)
-    Entry.create!(user_id: current_user.id, room_id: room.id)
-    Entry.create!(user_id: params[:entry][:user_id], room_id: room.id)
-    redirect_to room_path(room), notice: 'roomのcreateアクションが実行されました。'
+    ActiveRecord::Base.transaction do
+      room = Room.create(user_id: current_user.id)
+      Entry.create!(user_id: current_user.id, room_id: room.id)
+      Entry.create!(user_id: params[:entry][:user_id], room_id: room.id)
+      redirect_to room_path(room), notice: 'roomのcreateアクションが実行されました。'
+    end
   end
 
   def index

@@ -4,18 +4,21 @@ class RepostsController < ApplicationController
   before_action :set_post
 
   def create
-    if Repost.find_by(user_id: current_user.id, post_id: @post.id)
-      redirect_to root_path, alert: 'すでにリポスト済みです'
-    else
-      @repost = Repost.create(user_id: current_user.id, post_id: @post.id)
-      post = Post.find(params[:post_id])
-      post.create_notification_repost!(current_user)
+    ActiveRecord::Base.transaction do
+      if Repost.find_by(user_id: current_user.id, post_id: @post.id)
+        redirect_to root_path, alert: 'すでにリポスト済みです'
+      else
+        @repost = Repost.create(user_id: current_user.id, post_id: @post.id)
+        post = Post.find(params[:post_id])
+        post.create_notification_repost!(current_user)
 
-      post_user_email = post.user.email
-      NotificationMailer.send_notification_email(post_user_email).deliver_now
+        post_user_email = post.user.email
+        NotificationMailer.send_notification_email(post_user_email).deliver_now
 
-      redirect_to request.referer, notice: 'リポストしました'
+        redirect_to request.referer, notice: 'リポストしました'
+      end
     end
+
   end
 
   def destroy
