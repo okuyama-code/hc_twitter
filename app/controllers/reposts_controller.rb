@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RepostsController < ApplicationController
   before_action :set_post
 
@@ -11,7 +13,7 @@ class RepostsController < ApplicationController
 
       post_user_email = post.user.email
       NotificationMailer.send_notification_email(post_user_email).deliver_now
-      
+
       redirect_to request.referer, notice: 'リポストしました'
     end
   end
@@ -28,10 +30,11 @@ class RepostsController < ApplicationController
 
   private
 
-  def set_post # リポストボタンを押した投稿を特定する
+  # リポストボタンを押した投稿を特定する
+  def set_post
     @post = Post.find(params[:post_id])
-    if @post.nil?
-      redirect_to root_path, alert: '該当の投稿が見つかりません'
-    end
+    return unless @post.nil?
+
+    redirect_to root_path, alert: '該当の投稿が見つかりません'
   end
 end

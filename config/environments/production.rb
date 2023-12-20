@@ -95,8 +95,8 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   onfig.action_mailer.default_url_options = { protocol: 'https',
-      host: 'floating-garden-19803-96c1af154bf2.herokuapp.com' }
-      
+                                              host: 'floating-garden-19803-96c1af154bf2.herokuapp.com' }
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',

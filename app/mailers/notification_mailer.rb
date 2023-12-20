@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class NotificationMailer < ApplicationMailer
   def send_notification_email(email)
     # 引数にlike
     Rails.logger.debug 'メール送信'
     @email = email
-    pp @email
+    Rails.logger.debug @email
     mail to: @email, subject: '通知があります'
   end
 end

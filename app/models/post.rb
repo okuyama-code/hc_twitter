@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class Post < ApplicationRecord
   validates :post_content, presence: true, length: { maximum: 140 }
 
   has_one_attached :image
   belongs_to :user
-  has_many :comments, dependent: :destroy  #Post.commentsで、投稿が所有するコメントを取得できる。
+  has_many :comments, dependent: :destroy # Post.commentsで、投稿が所有するコメントを取得できる。
   has_many :likes, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :reposts, dependent: :destroy
@@ -11,39 +13,37 @@ class Post < ApplicationRecord
 
   def create_notification_like!(current_user)
     # すでに「いいね」されているか検索
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
+    temp = Notification.where(['visitor_id = ? and visited_id = ? and post_id = ? and action = ? ', current_user.id,
+                               user_id, id, 'like'])
     # いいねされていない場合のみ、通知レコードを作成
-    if temp.blank?
-      notification = current_user.active_notifications.new(
-        post_id: id,
-        visited_id: user_id,
-        action: 'like'
-      )
-      # 自分の投稿に対するいいねの場合は、通知済みとする
-      if notification.visitor_id == notification.visited_id
-        notification.checked = true
-      end
-      notification.save if notification.valid?
-    end
+    return if temp.present?
+
+    notification = current_user.active_notifications.new(
+      post_id: id,
+      visited_id: user_id,
+      action: 'like'
+    )
+    # 自分の投稿に対するいいねの場合は、通知済みとする
+    notification.checked = true if notification.visitor_id == notification.visited_id
+    notification.save if notification.valid?
   end
 
-  # TODO 自作なので動くか要確認
+  # TODO: 自作なので動くか要確認
   def create_notification_repost!(current_user)
     # すでに「いいね」されているか検索
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'repost'])
+    temp = Notification.where(['visitor_id = ? and visited_id = ? and post_id = ? and action = ? ', current_user.id,
+                               user_id, id, 'repost'])
     # いいねされていない場合のみ、通知レコードを作成
-    if temp.blank?
-      notification = current_user.active_notifications.new(
-        post_id: id,
-        visited_id: user_id,
-        action: 'repost'
-      )
-      # 自分の投稿に対するrepostの場合は、通知済みとする
-      if notification.visitor_id == notification.visited_id
-        notification.checked = true
-      end
-      notification.save if notification.valid?
-    end
+    return if temp.present?
+
+    notification = current_user.active_notifications.new(
+      post_id: id,
+      visited_id: user_id,
+      action: 'repost'
+    )
+    # 自分の投稿に対するrepostの場合は、通知済みとする
+    notification.checked = true if notification.visitor_id == notification.visited_id
+    notification.save if notification.valid?
   end
 
   def create_notification_comment!(current_user, comment_id)
@@ -60,15 +60,12 @@ class Post < ApplicationRecord
     # コメントは複数回することが考えられるため、１つの投稿に複数回通知する
     notification = current_user.active_notifications.new(
       post_id: id,
-      comment_id: comment_id,
-      visited_id: visited_id,
+      comment_id:,
+      visited_id:,
       action: 'comment'
     )
     # 自分の投稿に対するコメントの場合は、通知済みとする
-    if notification.visitor_id == notification.visited_id
-      notification.checked = true
-    end
+    notification.checked = true if notification.visitor_id == notification.visited_id
     notification.save if notification.valid?
   end
-
 end

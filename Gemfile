@@ -67,6 +67,7 @@ group :development do
 
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'html2slim'
   gem 'htmlbeautifier'
   gem 'letter_opener_web', '~> 2.0'
   gem 'pry-rails'
@@ -76,7 +77,6 @@ group :development do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'web-console'
-  gem 'html2slim'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -92,14 +92,13 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'bootstrap5-kaminari-views'
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+gem 'kaminari'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'rails-i18n'
-gem 'kaminari'
-gem 'bootstrap5-kaminari-views'
 gem 'slim-rails'
-
