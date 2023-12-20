@@ -115,34 +115,34 @@
                       = post.user.name
                       | をフォロー
 
-              .margin-left
-                = link_to post_path(post.id), class: "post-link" do
-                  p
-                    = post.post_content
-                  - if post.image.attached?
-                    = image_tag post.image, class: "post_img"
-              .d-flex.justify-content-around.home-icon.mt-5
-                = link_to post_path(post.id), class: "post-link" do
-                  .mr-1
-                    i.fa-regular.fa-comment
-                    span.home-icon-span
-                      = post.comments.count
-
+            .margin-left
+              = link_to post_path(post.id), class: "post-link" do
+                p
+                  = post.post_content
+                - if post.image.attached?
+                  = image_tag post.image, class: "post_img"
+            .d-flex.justify-content-around.home-icon.mt-5
+              = link_to post_path(post.id), class: "post-link" do
                 .mr-1
-                  i.fa-solid.fa-repeat
+                  i.fa-regular.fa-comment
                   span.home-icon-span
-                    = post.reposts.count
+                    = post.comments.count
 
-                .mr-1
-                  i.fa-regular.fa-heart
-                  span.home-icon-span
-                    = post.likes.count
-                div
-                  i.fa-solid.fa-bookmark
-                  span.home-icon-span
-                    = post.bookmarks.count
-        .paginate-margin
-          = paginate @following_posts, theme: 'bootstrap-5'
+              .mr-1
+                i.fa-solid.fa-repeat
+                span.home-icon-span
+                  = post.reposts.count
+
+              .mr-1
+                i.fa-regular.fa-heart
+                span.home-icon-span
+                  = post.likes.count
+              div
+                i.fa-solid.fa-bookmark
+                span.home-icon-span
+                  = post.bookmarks.count
+      .paginate-margin
+        = paginate @following_posts, theme: 'bootstrap-5'
 - else
   .post-index-sub
     - @posts.each do |post|

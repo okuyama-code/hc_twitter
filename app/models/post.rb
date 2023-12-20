@@ -31,8 +31,8 @@ class Post < ApplicationRecord
   # TODO: 自作なので動くか要確認
   def create_notification_repost!(current_user)
     # すでに「いいね」されているか検索
-    temp = Notification.where(['visitor_id = ? and visited_id = ? and post_id = ? and action = ? ', current_user.id,
-                               user_id, id, 'repost'])
+    # temp = Notification.where(['visitor_id = ? and visited_id = ? and post_id = ? and action = ? ', current_user.id, user_id, id, 'repost'])
+    temp = Notification.where(['visitor_id = ? and visited_id = ? and post_id = ? and action = ? ', current_user.id, user_id, id, 'repost'])
     # いいねされていない場合のみ、通知レコードを作成
     return if temp.present?
 

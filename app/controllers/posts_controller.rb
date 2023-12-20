@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order(created_at: :desc).page(params[:page]).per(6)
     if current_user
-      @following_posts = Post.where(user_id: current_user.followings.pluck(:id)).order(created_at: :desc).page(params[:page]).per(5)
+      @following_posts = Post.where(user_id: current_user.followings.ids).order(created_at: :desc).page(params[:page]).per(5)
     end
     return unless current_user
 
