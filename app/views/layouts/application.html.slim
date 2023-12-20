@@ -1,0 +1,108 @@
+doctype html
+html
+  head
+    title
+      | Twitter clone
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
+    script[src="https://kit.fontawesome.com/3e9b46a6cb.js" crossorigin="anonymous"]
+
+  body
+    nav.navbar.navbar-expand-lg.navbar-light.d-flex.justify-content-between
+      .ml-2
+        = link_to "Colorful SNS", root_path, class: "navbar-brand"
+        - if user_signed_in? && current_user
+          span
+          strong.strong-nav
+            = current_user.email
+          | がログイン | ID:
+          strong.strong-nav
+            = current_user.id
+      ul.navbar-nav.d-flex.flex-row
+        - if user_signed_in?
+          li.nav-item
+            = link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link btn btn-primary text-white"
+        - else
+          li.nav-item
+            = link_to 'ログイン', new_user_session_path, class: "nav-link btn btn-primary text-white"
+          li.nav-item
+            = link_to '新規登録', new_user_registration_path, class: "nav-link btn btn-primary text-white"
+
+    - if flash[:notice]
+      .alert.alert-primary[role="alert"]
+        strong
+          = notice
+
+    - if flash[:alert]
+      .alert.alert-danger[role="alert"]
+        strong = alert
+
+    .link-flex
+      = link_to "letter_openerへ" , "/letter_opener", class: 'btncss'
+      = link_to "tweet詳細ページへ", tweet_show_path, class: 'btncss'
+
+    - if user_signed_in?
+      .container
+        .row
+          .col-md-4.d-flex.flex-column.sidebar
+            = link_to '/', class: 'sidebar-link' do
+              i.fa-brands.fa-x-twitter
+            = link_to '/', class: 'sidebar-link' do
+              p.item.mt-4
+                i.fa-solid.fa-house-chimney-window
+                span
+                  | ホーム
+
+            p.item
+              i.fa-solid.fa-magnifying-glass
+              span.h6
+                | 検索
+
+            p.item
+              i.fa-regular.fa-bell
+              span.h6
+                | 通知
+
+            = link_to '/message', class: 'sidebar-link' do
+              p.item
+                i.fa-regular.fa-envelope
+                span.h6
+                  | ダイレクトメッセージ
+
+            p.item
+              i.fa-regular.fa-bookmark
+              span.h6
+                | ブックマーク
+
+            = link_to user_path(current_user), class: 'sidebar-link' do
+              p.item
+                i.fa-solid.fa-id-card
+                span.h6
+                  | プロフィール
+
+            p.item
+              i.fa-brands.fa-usps
+              span.h6
+                | 投稿
+
+            .d-flex
+              - if current_user.icon.attached?
+                = image_tag current_user.icon, class: "side_img me-3", alt: "..."
+              - else
+                img.side_img.me-3[src="/assets/icon.png"]
+
+              div
+                h4
+                  = current_user.name
+                p
+                  | @
+                  = current_user.username
+
+          .col-md-8.main-area
+            = yield
+
+    - else
+      = yield

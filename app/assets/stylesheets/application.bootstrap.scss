@@ -1,2 +1,487 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+body {
+  background: linear-gradient(to right, rgb(58, 116, 17), rgb(202, 64, 110));
+  color: #ebeaea;
+  // color: #0b0505;
+}
+
+.strong-nav {
+  color: #f49999;
+  font-size: 1.3rem;
+}
+
+.link-flex {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin: 0 20%;
+}
+
+
+.btncss {
+  display: inline-block;
+  border: 2mm ridge rgba(78, 123, 72, 0.6);
+  padding: 10px 20px;
+  text-decoration: none;
+  color: black;
+  background: linear-gradient(to bottom right, blue, pink);
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 5px 10px;
+
+  &:hover {
+    color: white;
+    background: linear-gradient(to bottom right, rgb(94, 255, 0), rgb(20, 25, 165));
+    transition: color 1s ease, background 2s ease;
+  }
+}
+
+// ============= nav tabの色
+/* アクティブなタブの文字の色 */
+.nav-tabs .nav-item .nav-link.active {
+  color: #211a1a;
+  background-color: #3a8d45;
+}
+
+/* タブの通常の文字の色 */
+.nav-tabs .nav-item .nav-link {
+  color: #f9f2f2;
+}
+
+/* タブのボタンの背景色 */
+// .nav-tabs .nav-item {
+//   background-color: #54a74c;
+// }
+
+
+// ==================== devise =======================================
+.card_css {
+  background: rgb(94, 94, 94);
+}
+
+
+// ================= sidebar ===================
+
+i {
+  font-size: 2.5rem;
+  padding-bottom: 20px;
+  // background: linear-gradient(90deg, #4158D0, #C850C0 30%, #FFCC70);
+  // background: -webkit-linear-gradient(0deg, #4158D0, #C850C0 30%, #FFCC70);
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
+}
+
+.item i {
+  margin-right: 20px;
+}
+
+.item span {
+  font-size: 1.5rem;
+  // background: linear-gradient(90deg, #7114c9, #e86f12 30%, #FFCC70);
+  // background: -webkit-linear-gradient(0deg, #4158D0, #C850C0 30%, #FFCC70);
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
+}
+
+.sidebar {
+  border-right: 1px solid #ccc;
+}
+
+.side_img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.sidebar-link {
+  text-decoration: none;
+  color: #ebeaea;
+  transition: color 1s ease-in-out;
+  &:hover {
+    color: aquamarine;
+  }
+}
+
+
+// ================== timeline ================
+
+
+.home_img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.home-icon i {
+  font-size: 20px;
+}
+
+.home-icon-span {
+  margin-left: 7px;
+}
+
+.border_b {
+  border: 2mm ridge rgba(240, 58, 228, 0.6);
+}
+
+.top a {
+  color: rgb(243, 243, 243);
+  font-weight: bold;
+  text-decoration: none;
+  padding: 20px 80px;
+}
+
+.top a:hover {
+  background-color: #3a8d45;
+}
+
+.post_img {
+  width: 100%;
+  // height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+// ============= share =================
+
+.share {
+  width: 100%;
+  height: 170px;
+  box-shadow: 11px 13px 19px -9px #544a4a;
+  border-radius: 3px;
+}
+
+.shareWrapper {
+  padding: 15px;
+}
+
+.share_img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 5px;
+}
+
+.shareInput {
+  border: none;
+  width: 100%;
+  border-radius: 10px;
+  background: linear-gradient(to right, rgb(48, 133, 218), rgb(32, 216, 186));
+  color: #ebeaea;
+}
+
+::placeholder {
+  padding-left: 10px;
+  color: rgb(53, 49, 49);
+}
+
+.shareInput:focus {
+  outline: none;
+}
+
+.shareHr {
+  margin: 20px;
+}
+
+.shareButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shareOptions {
+  display: flex;
+  margin-left: 20px;
+}
+
+.shareOption {
+  margin-right: 50px;
+  cursor: pointer;
+}
+
+.shareButton {
+  border: none;
+  padding: 10px 25px;
+  background-color: aqua;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-right: 20px;
+  font-size: large;
+  font-weight:bold
+}
+
+.shareOption i {
+  font-size: 20px;
+  color: rgb(70, 67, 67);
+  // background: linear-gradient(90deg, #4158D0, #C850C0 30%, #FFCC70);
+  // background: -webkit-linear-gradient(0deg, #4158D0, #C850C0 30%, #FFCC70);
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
+
+}
+
+// ================= profile ===============
+.border-profile {
+  border: 1px solid;
+  margin: 0;
+  padding: 0;
+}
+.arrow-left {
+  color: rgb(20, 105, 191);
+  font-size: 1.5rem;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+.profile-top-name {
+  p {
+    color: #aba3a3;
+  }
+}
+
+.profile-images {
+  position: relative;
+  height: 290px;
+}
+
+.header-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  position: absolute;
+  left: 40px;
+  top: 150px;
+  border: 2px solid black;
+}
+
+.edit {
+  position: absolute;
+  text-decoration: none;
+  color: #aba3a3;
+  border: 1px solid#544a4a;
+  border-radius: 10px;
+  padding: 5px 20px;
+  right: 20px;
+  top: 210px;
+}
+
+.profile-info {
+  margin-left: 10px;
+  margin-right: 10px;
+  p {
+    margin-bottom: 15px;
+  }
+}
+
+.profile-details {
+  margin-right: 20px;
+  span {
+    color: #544a4a;
+  }
+}
+
+.profile-icon {
+  font-size: 18px;
+  color: #544a4a;
+  margin-right: 5px;
+}
+
+.profile-icon-link {
+  font-size: 16px;
+  color: #544a4a;
+}
+
+.calender-icon {
+  margin-top: -10px;
+}
+
+.follow {
+  margin-right: 10px;
+  span {
+    font-weight: 800;
+    color: #e0dada;
+  }
+  p {
+    color: #544a4a;
+  }
+}
+
+.dammy_self_introduction {
+  color: #aba3a3;
+}
+
+//  =========== message =================
+.message-html {
+  margin: 0 20px;
+}
+
+.message-header {
+  i {
+    font-size: 1.6rem;
+    margin-top: 10px;
+  }
+  .left {
+    margin-right: 15px;
+  }
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  width: 100%;
+
+  input {
+    flex-grow: 1;
+    padding: 0.7rem 0 0.7rem 0.8rem;
+    border: 1px solid #333;
+    border-radius: 1.5rem;
+  }
+
+  input::placeholder {
+    padding-left: 40px; /* 左にずらす幅を調整 */
+    font-size: 1.4rem;
+  }
+
+  button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    // padding: .8rem .9rem .8rem .8rem;
+    // border-radius: 0 1.5rem 1.5rem 0;
+    border: none;
+    background: none;
+    color: #333;
+    // transition: 0.5s;
+    i {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.message-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgb(203, 159, 63);
+}
+
+.message-list {
+  margin-left: 20px;
+  margin-top: 30px;
+
+  .message-list-item {
+    margin-left: 20px;
+
+    h4 {
+      margin-right: 10px;
+    }
+
+    .message-p {
+      margin-top: -10px;
+    }
+  }
+}
+
+// ============ message_box ==================
+// TODO 消す
+.atag {
+  color: white;
+  font-size: 2rem;
+}
+
+.message * {
+  margin: 0;
+  padding: 0;
+  line-height: 1.4!important;
+  color: #a9a2a2;
+  font-size: 14px;
+}
+
+.message p {
+  margin: 0;
+  padding: 0;
+}
+
+// iPhone幅のフレーム(高さ成り行き)
+.message .frame {
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+
+.message-box-header {
+  display: flex;
+  align-items: center;
+  background-color: #544a4a;
+  width: 100%;
+  padding: 5px;
+  color: #a9a2a2;
+
+  h3 {
+    font-size: 30px;
+  }
+
+  i {
+    font-size: 1.7rem;
+    margin: 0 60px 0 10px;  //「上」､「右」､「下」､「左」を指定（時計回り）
+  }
+
+  .info-item {
+    font-size: 1.4rem;
+    margin-left: 60px;
+  }
+}
+
+
+.message-box-body-info {
+  display: grid;
+  grid-template-columns: 2fr 1fr ;
+
+}
+
+.message-box-body-info p {
+  background-color: rgb(56, 55, 55);
+  border: 1px solid beige;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 10px 40px 10px;
+}
+
+.message-box-body-info-other {
+  display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.message-box-body-info-other p {
+  background-color: rgb(91, 82, 82);
+  border: 1px solid beige;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+
+// =============== tweet_show =============
+.share-comment {
+  margin-top: 20px;
+}
+
+.share-comment-box {
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 3px;
+}

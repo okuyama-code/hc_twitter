@@ -1,0 +1,21 @@
+.container.mt-5
+  .row.justify-content-center
+    .col-md-6
+      .card.card_css
+        .card-body
+          h2.text-center
+            | ログイン
+          = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form" }) do |f|
+            .mb-3
+              = f.label :email, class: "form-label"
+              = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+            .mb-3
+              = f.label :password, class: "form-label"
+              = f.password_field :password, autocomplete: "current-password", class: "form-control"
+            - if devise_mapping.rememberable?
+              .mb-3
+                = f.check_box :remember_me, class: "form-check-input"
+                = f.label :remember_me, class: "form-check-label"
+            .text-center
+              = f.submit "Log in", class: "btn btn-primary"
+          = render "users/shared/links"
