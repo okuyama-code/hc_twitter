@@ -113,10 +113,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_22_183728) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "following_id"
-    t.integer "follower_id"
+    t.bigint "follower_id"
+    t.bigint "following_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+    t.index ["following_id"], name: "index_relationships_on_following_id"
   end
 
   create_table "reposts", force: :cascade do |t|
@@ -183,6 +185,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_22_183728) do
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "relationships", "users", column: "follower_id"
+  add_foreign_key "relationships", "users", column: "following_id"
   add_foreign_key "reposts", "posts"
   add_foreign_key "reposts", "users"
   add_foreign_key "rooms", "users"
