@@ -3,9 +3,15 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     @comment.user = current_user
+
     if @comment.save
       @comment.post.create_notification_comment!(current_user, @comment.id)
       flash[:notice] = "コメントしました"
+
+      post_user_email = @post.user.email
+      pp "デバック！！！！！！！！！！！！！"
+      pp post_user_email
+      NotificationMailer.send_notification_email(post_user_email).deliver_now
       redirect_to request.referer
     else
       flash[:alert] = "コメントに失敗しました"

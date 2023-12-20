@@ -8,6 +8,10 @@ class RepostsController < ApplicationController
       @repost = Repost.create(user_id: current_user.id, post_id: @post.id)
       post = Post.find(params[:post_id])
       post.create_notification_repost!(current_user)
+
+      post_user_email = post.user.email
+      NotificationMailer.send_notification_email(post_user_email).deliver_now
+      
       redirect_to request.referer, notice: 'リポストしました'
     end
   end
