@@ -68,7 +68,23 @@ sato.relationships.create!(following_id: yamada.id, follower_id: yamada.id)
 yamada.relationships.create!(following_id: suzuki.id, follower_id: suzuki.id)
 
 #==================== DM ===================
-# room1 = Message.create()
+room1 = Room.create!(user_id: okuyama.id)
+entry1 = Entry.create!(user_id: okuyama.id, room_id: room1.id)
+entry2 = Entry.create!(user_id: sato.id, room_id: room1.id)
+
+sato_message1 = Message.create!(room_id: room1.id, user_id: sato.id, body: "DM1回目のsatoの投稿")
+okuyama_message1 = Message.create!(room_id: room1.id, user_id: okuyama.id, body: "DM1回目のokuyamaの投稿")
+okuyama_message2 = Message.create!(room_id: room1.id, user_id: okuyama.id, body: "DM2回目のokuyamaの投稿")
+sato_message2 = Message.create!(room_id: room1.id, user_id: sato.id, body: "DM2回目のsatoの投稿")
+
+room2 = Room.create!(user_id: suzuki.id)
+entry3 = Entry.create!(user_id: suzuki.id, room_id: room2.id)
+entry4 = Entry.create!(user_id: yamada.id, room_id: room2.id)
+
+suzuki_message1 = Message.create!(room_id: room2.id, user_id: suzuki.id, body: "DM1回目のsuzukiの投稿")
+yamada_message1 = Message.create!(room_id: room2.id, user_id: yamada.id, body: "DM1回目のyamadaの投稿")
+suzuki_message2 = Message.create!(room_id: room2.id, user_id: suzuki.id, body: "DM2回目のsuzukiの投稿")
+yamada_message2 = Message.create!(room_id: room2.id, user_id: yamada.id, body: "DM2回目のyamadaの投稿")
 
 
 # ============== 通知 ================
