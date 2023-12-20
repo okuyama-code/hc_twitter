@@ -44,9 +44,9 @@ suzuki.posts.create!(post_content: '鈴木の2回目の投稿です')
 suzuki.posts.create!(post_content: '鈴木3回目の投稿です')
 suzuki_post4 = suzuki.posts.create!(post_content: '鈴木の4回目の投稿です')
 suzuki_post5 = suzuki.posts.create!(post_content: '鈴木の5回目の投稿です')
-okuyama.posts.create!(post_content: 'okuyamaの1回目の投稿です')
-okuyama.posts.create!(post_content: 'okuyamaの2回目の投稿です')
-okuyama.posts.create!(post_content: 'okuyamaの3回目の投稿です')
+okuyama_post1 = okuyama.posts.create!(post_content: 'okuyamaの1回目の投稿です')
+okuyama_post2 = okuyama.posts.create!(post_content: 'okuyamaの2回目の投稿です')
+okuyama_post3 = okuyama.posts.create!(post_content: 'okuyamaの3回目の投稿です')
 
 # ================= comment =====================
 sato.comments.create!(comment_content: '佐藤が鈴木にコメントしました', post_id: suzuki_post5.id)
@@ -67,4 +67,23 @@ sato.reposts.create!(post_id: suzuki_post5.id)
 sato.relationships.create!(following_id: yamada.id, follower_id: yamada.id)
 yamada.relationships.create!(following_id: suzuki.id, follower_id: suzuki.id)
 
+#==================== DM ===================
+# room1 = Message.create()
+
+
 # ============== 通知 ================
+okuyama_post1.create_notification_like!(sato)
+okuyama_post1.create_notification_like!(suzuki)
+okuyama_post1.create_notification_like!(yamada)
+
+suzuki_post5.create_notification_like!(sato)
+suzuki_post5.create_notification_like!(yamada)
+suzuki_post5.create_notification_like!(okuyama)
+
+yamada_post2.create_notification_like!(sato)
+yamada_post2.create_notification_like!(suzuki)
+yamada_post2.create_notification_like!(okuyama)
+
+sato_post3.create_notification_like!(suzuki)
+sato_post3.create_notification_like!(okuyama)
+sato_post3.create_notification_like!(yamada)
