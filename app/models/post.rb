@@ -13,8 +13,7 @@ class Post < ApplicationRecord
 
   def create_notification_like!(current_user)
     # すでに「いいね」されているか検索
-    temp = Notification.where(['visitor_id = ? and visited_id = ? and post_id = ? and action = ? ', current_user.id,
-                               user_id, id, 'like'])
+    temp = Notification.where(visitor_id: current_user.id, visited_id: user_id, post_id: id, action: 'like')
     # いいねされていない場合のみ、通知レコードを作成
     return if temp.present?
 
@@ -28,12 +27,9 @@ class Post < ApplicationRecord
     notification.save if notification.valid?
   end
 
-  # TODO: 自作なので動くか要確認
   def create_notification_repost!(current_user)
     # すでに「いいね」されているか検索
-    # temp = Notification.where(['visitor_id = ? and visited_id = ? and post_id = ? and action = ? ', current_user.id, user_id, id, 'repost'])
-    temp = Notification.where(['visitor_id = ? and visited_id = ? and post_id = ? and action = ? ', current_user.id, user_id, id, 'repost'])
-    # いいねされていない場合のみ、通知レコードを作成
+    temp = Notification.where(visitor_id: current_user.id, visited_id: user_id, post_id: id, action: 'repost')
     return if temp.present?
 
     notification = current_user.active_notifications.new(
