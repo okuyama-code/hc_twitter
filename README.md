@@ -3,6 +3,10 @@
 sudo chmod -R 777 /home/okuyama/hc_twitter_clone/
 ```
 
+```
+git push heroku notification:main
+```
+
 # TODO
 - 通知メール送信を実装する
 - 通知のseedファイルを作成
