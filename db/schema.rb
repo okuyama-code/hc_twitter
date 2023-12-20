@@ -90,10 +90,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_22_183728) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "visitor_id", null: false
-    t.integer "visited_id", null: false
-    t.integer "post_id"
-    t.integer "comment_id"
+    t.bigint "visitor_id"
+    t.bigint "visited_id"
+    t.bigint "post_id"
+    t.bigint "comment_id"
     t.string "action", default: "", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
@@ -184,6 +184,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_22_183728) do
   add_foreign_key "likes", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "users", column: "visited_id"
+  add_foreign_key "notifications", "users", column: "visitor_id"
   add_foreign_key "posts", "users"
   add_foreign_key "relationships", "users", column: "follower_id"
   add_foreign_key "relationships", "users", column: "following_id"
