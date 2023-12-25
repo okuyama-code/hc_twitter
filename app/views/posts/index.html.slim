@@ -182,3 +182,5 @@
               i.fa-solid.fa-bookmark
               span.home-icon-span
                 = post.bookmarks.count
+    .paginate-margin
+      = paginate @posts, theme: 'bootstrap-5'
