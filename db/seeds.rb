@@ -25,7 +25,7 @@ suzuki.header.attach(io: File.open(Rails.root.join('app/assets/images/suisu2.jpg
 suzuki.save!
 
 # =================== okuyama =================
-okuyama = User.create!(name: 'okuyama | HC', username: 'okuyama4848', email: 'ooyy0121@gmail.com', password: '484848',
+okuyama = User.create!(name: 'okuyama | HC', username: 'okuyama4848', email: 'ooyy0121@example.com', password: '484848',
                        date_of_birth: '1998-01-21', telephone: '09011112222', self_introduction: 'はじめまして! okuyamaです!', location: '千葉', website: 'okuyama-portfolio-site.vercel.app')
 
 okuyama.icon.attach(io: File.open(Rails.root.join('app/assets/images/icon.png')), filename: 'icon.png')
