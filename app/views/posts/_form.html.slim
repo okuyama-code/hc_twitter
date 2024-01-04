@@ -1,0 +1,27 @@
+= form_with model: post, local: true do |f|
+  = render "layouts/error_messages", model: post
+  .share.my-3
+
+    .shareWrapper
+
+      .shareTop.d-flex
+        - if current_user.icon.attached?
+          = link_to user_path(current_user) do
+            = image_tag current_user.icon, class: "share_img mx-3 me-4", alt: "..."
+        - else
+          = link_to user_path(current_user) do
+            img.share_img.mx-3.me-4[src="/assets/icon.png"]
+        = f.text_area :post_content, class: "shareInput", placeholder: '投稿したい内容を入力', rows: 3, cols: 80
+      hr.shareHr
+      .shareButtons
+        .shareOptions
+          .shareOption
+            = f.file_field :image, class: 'form-control visually-hidden', accept: 'image/*', id: 'file-input'
+            label[for="file-input"]
+
+              i.fa-regular.fa-image
+          .shareOption
+            i.fa-solid.fa-gift
+          .shareOption
+            i.fa-regular.fa-face-smile
+        = f.submit "投稿", class: "shareButton"

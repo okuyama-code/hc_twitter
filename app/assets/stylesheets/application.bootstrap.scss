@@ -1,9 +1,16 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 
+:root {
+  --hover-white: rgb(205, 196, 196);
+  --backcolor-green: linear-gradient(to right, rgb(58, 116, 17), rgb(202, 64, 110));
+  --backcolor-blue: linear-gradient(to right, rgb(76, 48, 189), rgb(103, 21, 120));
+  --icon-braun: rgb(133, 125, 125);
+}
+
 body {
-  background: linear-gradient(to right, rgb(58, 116, 17), rgb(202, 64, 110));
-  color: #ebeaea;
+  background: var(--backcolor-blue);
+  color: #e7e5e5;
   // color: #0b0505;
 }
 
@@ -36,6 +43,32 @@ body {
     background: linear-gradient(to bottom right, rgb(94, 255, 0), rgb(20, 25, 165));
     transition: color 1s ease, background 2s ease;
   }
+}
+
+.mr-1 {
+  margin-right: 20px;
+}
+
+.text-deco-no {
+  text-decoration: none;
+  color: white;
+
+  &:hover {
+    color: var(--hover-white);
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+.margin-left {
+  margin-left: 85px;
+}
+
+.inline-block {
+  display: inline-block;
+  margin-right: 10px; /* 各要素の右側の余白 */
 }
 
 // ============= nav tabの色
@@ -105,8 +138,55 @@ i {
 }
 
 
-// ================== timeline ================
+// ================== post ================
+.flex {
+  display: flex;
+  align-items: center;
+}
 
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.follow-link {
+  margin-left: 5px;
+  border: 1px solid green;
+  border-radius: 5px;
+  padding: 10px 5px;
+  background: green;
+  color: #e7e5e5;
+
+  &:hover {
+    color: rgb(182, 177, 177);
+  }
+}
+
+.follow-link-delete {
+  margin-left: 5px;
+  border: 1px solid green;
+  border-radius: 5px;
+  padding: 10px 5px;
+  background: rgb(189, 100, 100);
+  color: #e7e5e5;
+
+  &:hover {
+    color: rgb(182, 177, 177);
+  }
+}
+
+.follow-link-count {
+  color: white;
+
+  &:hover {
+    color: #aba3a3;
+  }
+}
+
+.fa-bars {
+  font-size: 15px;
+}
 
 .home_img {
   width: 50px;
@@ -144,17 +224,51 @@ i {
   border-radius: 10px;
 }
 
+.post-index-sub .post-body {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.border-sub {
+  border: 2px solid var(--icon-braun);
+}
+
+.paginate-margin {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.like-color {
+  color: rgb(236, 93, 93);
+}
+
+.no-like-color {
+  color: white;
+}
+
+.repost-color {
+  color: #3a8d45;
+}
+
+.no-repost-color {
+  color: white;
+}
+
+
+
 // ============= share =================
 
 .share {
   width: 100%;
-  height: 170px;
+  height: 190px;
   box-shadow: 11px 13px 19px -9px #544a4a;
   border-radius: 3px;
 }
 
 .shareWrapper {
-  padding: 15px;
+  padding: 10px 10px 0 0;
 }
 
 .share_img {
@@ -204,18 +318,23 @@ i {
 
 .shareButton {
   border: none;
-  padding: 10px 25px;
+  padding: 8px 25px;
   background-color: aqua;
   border-radius: 10px;
   cursor: pointer;
   margin-right: 20px;
   font-size: large;
-  font-weight:bold
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #3a8d45;
+  }
 }
 
 .shareOption i {
   font-size: 20px;
-  color: rgb(70, 67, 67);
+  color: var(--icon-braun);
   // background: linear-gradient(90deg, #4158D0, #C850C0 30%, #FFCC70);
   // background: -webkit-linear-gradient(0deg, #4158D0, #C850C0 30%, #FFCC70);
   // -webkit-background-clip: text;
@@ -229,6 +348,7 @@ i {
   margin: 0;
   padding: 0;
 }
+
 .arrow-left {
   color: rgb(20, 105, 191);
   font-size: 1.5rem;
@@ -268,11 +388,20 @@ i {
   position: absolute;
   text-decoration: none;
   color: #aba3a3;
-  border: 1px solid#544a4a;
   border-radius: 10px;
   padding: 5px 20px;
   right: 20px;
   top: 210px;
+
+  button {
+    padding: 10px;
+    border-radius: 10px;
+    background: rgb(217, 214, 214);
+
+    &:hover {
+      background: #3a8d45;
+    }
+  }
 }
 
 .profile-info {
@@ -286,19 +415,19 @@ i {
 .profile-details {
   margin-right: 20px;
   span {
-    color: #544a4a;
+    color: var(--icon-braun);
   }
 }
 
 .profile-icon {
   font-size: 18px;
-  color: #544a4a;
+  color: var(--icon-braun);
   margin-right: 5px;
 }
 
 .profile-icon-link {
   font-size: 16px;
-  color: #544a4a;
+  color: var(--icon-braun);
 }
 
 .calender-icon {
@@ -309,16 +438,26 @@ i {
   margin-right: 10px;
   span {
     font-weight: 800;
-    color: #e0dada;
+    color: var(--icon-braun);
   }
   p {
-    color: #544a4a;
+    color: var(--icon-braun);
   }
 }
 
 .dammy_self_introduction {
   color: #aba3a3;
 }
+
+.fa-message {
+  font-size: 30px;
+
+  &:hover {
+    color: rgb(20, 158, 25)
+  }
+}
+
+
 
 //  =========== message =================
 .message-html {
@@ -395,7 +534,6 @@ i {
 }
 
 // ============ message_box ==================
-// TODO 消す
 .atag {
   color: white;
   font-size: 2rem;
@@ -475,6 +613,23 @@ i {
   margin: 10px;
 }
 
+.messageForm {
+  margin-top: 10px;
+}
+
+.messageInput {
+  padding: 10px 5px;
+  width: 80%;
+  border-radius: 10px;
+  background: #5cb762;
+}
+
+.messageSubmit {
+  padding: 10px 5px;
+  border-radius: 10px;
+  background: #aba3a3;
+}
+
 // =============== tweet_show =============
 .share-comment {
   margin-top: 20px;
@@ -484,4 +639,34 @@ i {
   width: 100%;
   border: 1px solid white;
   border-radius: 3px;
+  height: 170px;
+}
+
+.post-link {
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--hover-white);
+  }
+}
+
+// =========== 通知関係 ================
+.notification_icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.notification_comment {
+  margin-top: 10px;
+  margin-left: 60px;
+  color: #c1bcbc;
+}
+
+.notification_created_at {
+  text-align: right;
+  font-size: 15px;
+
 }

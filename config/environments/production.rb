@@ -96,7 +96,12 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.default_url_options = { protocol: 'https',
+<<<<<<< HEAD
                                                host: 'floating-garden-19803-96c1af154bf2.herokuapp.com' }
+=======
+                                              host: 'afternoon-fortress-46408-803c8da5efd5.herokuapp.com' }
+  # https://afternoon-fortress-46408-803c8da5efd5.herokuapp.com/
+>>>>>>> notification
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {

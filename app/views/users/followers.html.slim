@@ -1,0 +1,29 @@
+.container.marketing
+  .row.d-flex.justify-content-center
+    .col-10.mt-5
+      h1
+        = @user.name
+        | さんをフォローしている人
+      table.table.text-center
+        thead
+          tr
+            th
+              | Name
+            th
+        tbody
+          - # @user = User.find(params[:id])　@users = user.followers　@userには
+          - @users.each do |user|
+            tr
+              td
+                = link_to user_path(user) do
+                  = user.name
+              td
+                - if user != current_user
+                  - if user.is_followed_by?(current_user)
+                    =link_to user_relationships_path(user), data: { "turbo-method": :delete } do
+                      button.btn.btn.btn-danger[type="button"]
+                        | フォロー解除
+                  - else
+                    =link_to user_relationships_path(user), data: { "turbo-method": :post } do
+                      button.btn.btn.btn-primary[type="button"]
+                        | フォロー

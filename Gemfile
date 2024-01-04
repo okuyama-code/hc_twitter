@@ -69,7 +69,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'html2slim'
   gem 'htmlbeautifier'
-  gem 'letter_opener_web'
+  gem 'letter_opener_web', '~> 2.0'
   gem 'pry-rails'
   gem 'rails_best_practices'
   gem 'rubocop', require: false
@@ -92,9 +92,11 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'bootstrap5-kaminari-views'
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+gem 'kaminari'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'

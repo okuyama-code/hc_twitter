@@ -1,0 +1,27 @@
+.message-box-header
+  = link_to rooms_path, class: "text-deco-no"  do
+    i.fa-solid.fa-arrow-left
+  h3
+    = @another_entry.user.name
+    | さんとのメッセージ
+  i.fa-solid.fa-circle-info.info-item
+
+= form_with model: @message, url: messages_path(room_id: params[:id])  do |f|
+  .messageForm
+    = f.text_field :body, class: "messageInput", placeholder: '投稿したい内容を入力'
+    = f.submit "送信する", class: "messageSubmit"
+
+- @messages.each do |m|
+  .message-box-body
+
+    - if m.user_id == current_user.id
+      .message-box-body-info
+
+        .blank-div
+        p
+          = m.body
+    - else
+      .message-box-body-info-other
+        p
+          = m.body
+        .blank-div
