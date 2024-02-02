@@ -14,11 +14,7 @@ html
     nav.navbar.navbar-expand-lg.navbar-light.d-flex.justify-content-between
       .ml-2
         = link_to "Colorful SNS", root_path, class: "navbar-brand"
-<<<<<<< HEAD
-        - if user_signed_in? && current_user
-=======
         - if user_signed_in? && @user
->>>>>>> notification
           span
           strong.strong-nav
             = current_user.email
