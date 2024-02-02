@@ -32,7 +32,7 @@ body {
   padding: 10px 20px;
   text-decoration: none;
   color: black;
-  background: rgb(100, 100, 241);
+  background: white;
   font-weight: bold;
   border-radius: 5px;
   margin: 5px 10px;
@@ -309,7 +309,7 @@ i {
 .shareButton {
   border: none;
   padding: 8px 25px;
-  background-color: rgb(37, 113, 235);
+  background-color: white;
   border-radius: 10px;
   cursor: pointer;
   margin-right: 20px;
@@ -336,7 +336,7 @@ i {
 }
 
 .arrow-left {
-  color: rgb(20, 105, 191);
+  color: white;
   font-size: 1.5rem;
   margin-left: 20px;
   margin-right: 20px;
@@ -401,19 +401,19 @@ i {
 .profile-details {
   margin-right: 20px;
   span {
-    color: var(--icon-braun);
+    color: white;
   }
 }
 
 .profile-icon {
   font-size: 18px;
-  color: var(--icon-braun);
+  color: rgb(196, 186, 186);
   margin-right: 5px;
 }
 
 .profile-icon-link {
   font-size: 16px;
-  color: var(--icon-braun);
+  color: rgb(196, 186, 186);
 }
 
 .calender-icon {
@@ -424,10 +424,10 @@ i {
   margin-right: 10px;
   span {
     font-weight: 800;
-    color: var(--icon-braun);
+    color: white;
   }
   p {
-    color: var(--icon-braun);
+    color: white;
   }
 }
 
