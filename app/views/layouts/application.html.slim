@@ -39,30 +39,15 @@ html
       .alert.alert-primary[role="alert"]
         strong
           = notice
-<<<<<<< HEAD
-
-    - if flash[:alert]
-      .alert.alert-danger[role="alert"]
-        strong = alert
-
-    .link-flex
-      = link_to "letter_openerへ" , "/letter_opener", class: 'btncss'
-      = link_to "tweet詳細ページへ", tweet_show_path, class: 'btncss'
-=======
     - if flash[:alert]
       .alert.alert-danger[role="alert"]
         strong
           = alert
->>>>>>> notification
 
     - if user_signed_in?
       .container
         .row
-<<<<<<< HEAD
-          .col-md-4.d-flex.flex-column.sidebar
-=======
           .col-md-3.d-flex.flex-column.sidebar
->>>>>>> notification
             = link_to '/', class: 'sidebar-link' do
               i.fa-brands.fa-x-twitter
             = link_to '/', class: 'sidebar-link' do
@@ -70,28 +55,10 @@ html
                 i.fa-solid.fa-house-chimney-window
                 span
                   | ホーム
-<<<<<<< HEAD
-
-=======
->>>>>>> notification
             p.item
               i.fa-solid.fa-magnifying-glass
               span.h6
                 | 検索
-<<<<<<< HEAD
-
-            p.item
-              i.fa-regular.fa-bell
-              span.h6
-                | 通知
-
-            = link_to '/message', class: 'sidebar-link' do
-              p.item
-                i.fa-regular.fa-envelope
-                span.h6
-                  | ダイレクトメッセージ
-
-=======
             = link_to notifications_path, class: 'sidebar-link' do
               p.item
                 i.fa-regular.fa-bell
@@ -102,47 +69,19 @@ html
                 i.fa-regular.fa-envelope
                 span.h6
                   | DM
->>>>>>> notification
             p.item
               i.fa-regular.fa-bookmark
               span.h6
                 | ブックマーク
-<<<<<<< HEAD
-
-=======
->>>>>>> notification
             = link_to user_path(current_user), class: 'sidebar-link' do
               p.item
                 i.fa-solid.fa-id-card
                 span.h6
                   | プロフィール
-<<<<<<< HEAD
-
-=======
->>>>>>> notification
             p.item
               i.fa-brands.fa-usps
               span.h6
                 | 投稿
-<<<<<<< HEAD
-
-            .d-flex
-              - if current_user.icon.attached?
-                = image_tag current_user.icon, class: "side_img me-3", alt: "..."
-              - else
-                img.side_img.me-3[src="/assets/icon.png"]
-
-              div
-                h4
-                  = current_user.name
-                p
-                  | @
-                  = current_user.username
-
-          .col-md-8.main-area
-            = yield
-
-=======
             .d-flex
               - if current_user.icon.attached?
                 = link_to user_path(current_user) do
@@ -158,6 +97,5 @@ html
                     = current_user.username
           .col-md-9.main-area
             = yield
->>>>>>> notification
     - else
       = yield

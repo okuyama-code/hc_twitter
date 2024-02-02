@@ -10,11 +10,6 @@ class User < ApplicationRecord
   has_one_attached :icon
   has_one_attached :header
 
-<<<<<<< HEAD
-  def self.from_omniauth(auth)
-    # pp "デバック！！！！！！！！！！！！！"
-    # pp auth.info
-=======
   has_many :posts, dependent: :destroy
   has_many :comments # User.commentsで、ユーザーの所有するコメントを取得できる。
   has_many :likes, dependent: :destroy
@@ -68,7 +63,6 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     Rails.logger.debug 'デバック！！！！！！！！！！！！！'
     Rails.logger.debug auth.info
->>>>>>> notification
     where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
       user.name = auth.info.name
       user.email = auth.info.email

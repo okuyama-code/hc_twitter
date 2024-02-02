@@ -5,16 +5,6 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-<<<<<<< HEAD
-  resources :users, only: %i[show edit update]
-
-  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
-  get '/tweets' => 'home#tweets'
-  root 'home#tweets'
-  get '/message' => 'home#message'
-  get '/message_box' => 'home#message_box'
-  get '/tweet_show' => 'home#tweet_show'
-=======
   resources :users, only: %i[show edit update] do
     resource :relationships, only: %i[create destroy]
     get :followings, on: :member
@@ -34,5 +24,4 @@ Rails.application.routes.draw do
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   root 'posts#index'
->>>>>>> notification
 end
