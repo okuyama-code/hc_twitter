@@ -1,5 +1,10 @@
 ## AWS Fargateへのデプロイできるように一部設定を修正したブランチ aws
 
+## 修正箇所
+entrypoint.sh 本番環境で実行してほしいコマンドを追記
+database.yml productionのところ
+.envファイル内
+
 ## github ソースコード
 https://github.com/okuyama-code/hc_twitter_clone
 
