@@ -1,5 +1,8 @@
 ## AWS Fargateへのデプロイできるように一部設定を修正したブランチ aws
 
+## github ソースコード
+https://github.com/okuyama-code/hc_twitter_clone
+
 ## setup
 ```
 docker compose build
