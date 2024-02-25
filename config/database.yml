@@ -15,5 +15,16 @@ test:
   <<: *default
   database: myapp_test
 
+# herokuの時に使用　コメントアウトしておく
+# production:
+#   url: <%= ENV['DATABASE_URL'] %>
+
+# ==================== 追記 始め ===================
 production:
-  url: <%= ENV['DATABASE_URL'] %>
+  <<: *default
+  database: myapp_production
+  username: myapp
+  host: <%= ENV["DB_HOST"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
+
+# ================= 追記 終わり =================
