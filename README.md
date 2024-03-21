@@ -1,10 +1,49 @@
-## よく使うコマンド
+## AWS Fargateへのデプロイできるように一部設定を修正したブランチ aws
+
+## 修正箇所
+entrypoint.sh 本番環境で実行してほしいコマンドを追記
+database.yml productionのところ
+.envファイル内
+
+## github ソースコード
+https://github.com/okuyama-code/hc_twitter_clone
+
+## setup
+```
+docker compose build
+```
+```
+docker compose run --rm web bin/setup
+```
+```
+docker compose run --rm web yarn install
+```
+
+## run
+
+```
+docker compose up
+```
+
+```
+docker compose exec web bash
+```
+```
+rails db:create
+```
+```
+rails db:migrate
+```
+```
+rails db:seed
+```
+
+http://localhost:3000
+
+## Ubuntuファイル編集できるようにする
 ```
 sudo chmod -R 777 /home/okuyama/hc_twitter_clone/
 ```
-
-# TODO
-- 通知メール送信を実装する
 
 ```
 docker compose run --rm web bundle exec rubocop -A
@@ -27,19 +66,6 @@ erb2slim app/views/ -d
 vim /usr/local/bundle/gems/html2slim-0.2.0/lib/html2slim/converter.rb
 ```
 
-## TODO branchの派生の順番
-現在のブランチの位置 notification
-
-user → tweet → like → repost → follow → bookmark　→ message(DM) → notification
-
-# 仕様
-https://github.com/happiness-chain/practice/blob/main/11_Ruby_on_Rails/002_twitter_clone.md
-
-
-# ショートカット
-tab　複製 (chome)
-Alt + D + Enter
-
 ブランチの削除
 ローカル
 git branch -d twitter-sub
@@ -47,38 +73,10 @@ git branch -d twitter-sub
 リモート
 git push origin --delete twitter-sub
 
-## setup
 
 
-```
-docker compose build
-```
-
-```
-docker compose run --rm web bin/setup
-```
-
-
-```
-docker compose run --rm web yarn install
-```
-
-## run
-
-```
-docker compose up
-```
-
-http://localhost:3000
-
-## 備考
-
-- Taskのscaffoldが含まれていますが、CIの動作確認用です。
-適宜削除いただければと思います。（そのままでも問題ないです）
 
 ## rubocop
-
-rubocopがすべて通ってからレビュー依頼を出してください。
 
 auto correct
 
@@ -89,7 +87,6 @@ docker compose run --rm web bundle exec rubocop -A
 ## htmlbeautifier
 
 erbのフォーマッターです。
-フォーマッターを通してからレビュー依頼を出してください。
 
 ```
 docker compose run --rm web bin/htmlbeautifier
