@@ -15,7 +15,6 @@
         <%= link_to "Colorful SNS", root_path, class: "navbar-brand" %>
         <% if user_signed_in? && @user %>
           <span><strong class="strong-nav"><%= current_user.email %></strong>がログイン | ID: <strong class="strong-nav"><%= current_user.id %></strong></span>
-
         <% end %>
       </div>
       <%# deviseを使っているから使えるヘルパー　user_signed_in? %>
@@ -43,57 +42,55 @@
     <div class="link-flex">
       <%= link_to "letter_openerへ" , "/letter_opener", class: 'btncss' %>
     </div>
-
     <% if user_signed_in? %>
-    <div class="container">
-      <div class="row">
-        <%# サイドバー(sidebar) %>
-        <div class="col-md-3 d-flex flex-column sidebar">
-          <%= link_to '/', class: 'sidebar-link' do %>
-            <i class="fa-brands fa-x-twitter"></i>
-          <% end %>
-          <%= link_to '/', class: 'sidebar-link' do %>
-            <p class="item mt-4"><i class="fa-solid fa-house-chimney-window"></i><span>ホーム</span ></p>
-          <% end %>
-          <p class="item"><i class="fa-solid fa-magnifying-glass"></i><span class="h6">検索</span ></p>
-          <%= link_to notifications_path, class: 'sidebar-link' do %>
-            <p class="item"><i class="fa-regular fa-bell"></i><span class="h6">通知</span ></p>
-          <% end %>
-          <%= link_to rooms_path, class: 'sidebar-link' do %>
-            <p class="item"><i class="fa-regular
-            fa-envelope"></i><span class="h6">DM</span ></p>
-          <% end %>
-          <p class="item"><i class="fa-regular fa-bookmark"></i><span class="h6">ブックマーク</span ></p>
-          <%= link_to user_path(current_user), class: 'sidebar-link' do %>
-            <p class="item"><i class="fa-solid fa-id-card"></i><span class="h6">プロフィール</span ></p>
-          <% end %>
-          <p class="item"><i class="fa-brands fa-usps"></i><span class="h6">投稿</span ></p>
-          <div class="d-flex">
-
-            <% if current_user.icon.attached? %>
-              <%= link_to user_path(current_user) do %>
-                <%= image_tag current_user.icon, class: "side_img me-3", alt: "..." %>
-              <% end %>
-            <% else %>
-              <img class="side_img me-3" src="/assets/icon.png" >
+      <div class="container">
+        <div class="row">
+          <%# サイドバー(sidebar) %>
+          <div class="col-md-3 d-flex flex-column sidebar">
+            <%= link_to '/', class: 'sidebar-link' do %>
+              <i class="fa-brands fa-x-twitter"></i>
             <% end %>
-            <div>
-              <% if current_user %>
-                <h4><%= current_user.name %></h4>
-                <p>@<%= current_user.username %></p>
+            <%= link_to '/', class: 'sidebar-link' do %>
+              <p class="item mt-4"><i class="fa-solid fa-house-chimney-window"></i><span>ホーム</span ></p>
+            <% end %>
+            <p class="item"><i class="fa-solid fa-magnifying-glass"></i><span class="h6">検索</span ></p>
+            <%= link_to notifications_path, class: 'sidebar-link' do %>
+              <p class="item"><i class="fa-regular fa-bell"></i><span class="h6">通知</span ></p>
+            <% end %>
+            <%= link_to rooms_path, class: 'sidebar-link' do %>
+              <p class="item"><i class="fa-regular
+            fa-envelope"></i><span class="h6">DM</span ></p>
+            <% end %>
+            <p class="item"><i class="fa-regular fa-bookmark"></i><span class="h6">ブックマーク</span ></p>
+            <%= link_to user_path(current_user), class: 'sidebar-link' do %>
+              <p class="item"><i class="fa-solid fa-id-card"></i><span class="h6">プロフィール</span ></p>
+            <% end %>
+            <p class="item"><i class="fa-brands fa-usps"></i><span class="h6">投稿</span ></p>
+            <div class="d-flex">
+              <% if current_user.icon.attached? %>
+                <%= link_to user_path(current_user) do %>
+                  <%= image_tag current_user.icon, class: "side_img me-3", alt: "..." %>
+                <% end %>
+              <% else %>
+                <img class="side_img me-3" src="/assets/icon.png" >
               <% end %>
+              <div>
+                <% if current_user %>
+                  <h4><%= current_user.name %></h4>
+                  <p>@<%= current_user.username %></p>
+                <% end %>
+              </div>
             </div>
           </div>
+          <%# col-md-4 sidebar %>
+          <%# コンポーネント　col-md-8 main-area %>
+          <div class="col-md-9 main-area">
+            <%= yield %>
+          </div>
         </div>
- <%# col-md-4 sidebar %>
-        <%# コンポーネント　col-md-8 main-area %>
-        <div class="col-md-9 main-area">
-          <%= yield %>
-        </div>
+        <%# row %>
       </div>
- <%# row %>
-    </div>
- <%# container %>
+      <%# container %>
     <% else %>
       <%= yield %>
     <% end %>

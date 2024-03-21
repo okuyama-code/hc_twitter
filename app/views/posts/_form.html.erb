@@ -12,7 +12,7 @@
             <img class="share_img mx-3 me-4" src="/assets/icon.png" >
           <% end %>
         <% end %>
-          <%= f.text_area :post_content, class: "shareInput", placeholder: '投稿したい内容を入力', rows: 3, cols: 80 %>
+        <%= f.text_area :post_content, class: "shareInput", placeholder: '投稿したい内容を入力', rows: 3, cols: 80 %>
       </div>
       <hr class="shareHr" />
       <div class="shareButtons">
@@ -20,7 +20,7 @@
           <div class="shareOption">
             <%= f.file_field :image, class: 'form-control visually-hidden', accept: 'image/*', id: 'file-input' %>
             <label for="file-input" >
-            <i class="fa-regular fa-image"></i>
+              <i class="fa-regular fa-image"></i>
             </label>
           </div>
           <div class="shareOption">

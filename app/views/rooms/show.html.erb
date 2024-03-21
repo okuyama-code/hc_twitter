@@ -4,9 +4,8 @@
   <h3><%= @another_entry.user.name %>さんとのメッセージ</h3>
   <i class="fa-solid fa-circle-info info-item"></i>
 </div>
- <%# /.message-box-header %>
-
- <%# messages_controllerに渡す %>
+<%# /.message-box-header %>
+<%# messages_controllerに渡す %>
 <%# messages_pathをポストで飛ばす。messagesのcreate %>
 <%= form_with model: @message, url: messages_path(room_id: params[:id])  do |f| %>
   <div class="messageForm">
@@ -24,12 +23,10 @@
         <p><%= m.body %></p>
       </div>
     <% else %>
-    <%# else文　投稿が自分以外なら%>
+      <%# else文　投稿が自分以外なら%>
       <div class="message-box-body-info-other">
         <p><%= m.body %></p>
         <div class="blank-div"></div>
       </div>
     <% end %>
-<% end %>
-
-
+  <% end %>

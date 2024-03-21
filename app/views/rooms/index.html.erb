@@ -11,23 +11,19 @@
     <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 </div>
-
 <% @another_entries.each do |entry| %>
   <%= link_to room_path(entry.room), class: "text-deco-no" do %>
-  <div class="d-flex message-list">
-    <%= link_to user_path(entry.user) do %>
-      <%= image_tag entry.user.icon, class:"message-img" %>
-    <% end %>
-
-    <div class="message-list-item">
-      <div class="d-flex">
-        <h4><%= entry.user.name %></h4>
-        <p>@yamada01</p>
+    <div class="d-flex message-list">
+      <%= link_to user_path(entry.user) do %>
+        <%= image_tag entry.user.icon, class:"message-img" %>
+      <% end %>
+      <div class="message-list-item">
+        <div class="d-flex">
+          <h4><%= entry.user.name %></h4>
+          <p>@yamada01</p>
+        </div>
+        <p class="message-p"><%= Message.find_by(id: entry.room.message_ids.last)&.body %></p>
       </div>
-      <p class="message-p"><%= Message.find_by(id: entry.room.message_ids.last)&.body %></p>
     </div>
-  </div>
   <% end %>
 <% end %>
-
-

@@ -1,6 +1,5 @@
 <% visitor = notification.visitor %>
 <% visited = notification.visited %>
-
 <div class="col-md-6 mx-auto">
   <div class="form-inline">
     <span>
@@ -12,40 +11,36 @@
       <% end %>
       さんが
     </span>
-
     <% case notification.action %>
-      <% when 'follow' %>
-        あなたをフォローしました
-      <% when 'like' %>
-        <%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>
-        にいいねしました
-      <% when 'repost' %>
-        <%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>
-        をリポストしました
-      <% when 'comment' %>
-        <% if notification.post.user_id == visited.id %>
-          <%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>
-        <% else %>
-          <span>
-            <%= link_to post_path(notification.post) do %>
-              <%= image_tag notification.post.user.icon, class: "icon_mini" %>
-              <strong>
-                <%= notification.post.user.name %> さんの投稿
-              </strong>
-            <% end %>
-          </span>
+    <% when 'follow' %>
+    あなたをフォローしました
+    <% when 'like' %>
+    <%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>
+    にいいねしました
+    <% when 'repost' %>
+    <%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>
+    をリポストしました
+    <% when 'comment' %>
+    <% if notification.post.user_id == visited.id %>
+      <%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>
+    <% else %>
+      <span>
+        <%= link_to post_path(notification.post) do %>
+          <%= image_tag notification.post.user.icon, class: "icon_mini" %>
+          <strong>
+            <%= notification.post.user.name %> さんの投稿
+          </strong>
         <% end %>
-        にコメントしました
-        <p class="notification_comment">
-          [コメント文] <%= Comment.find_by(id: notification.comment_id)&.comment_content %>
-        </p>
+      </span>
     <% end %>
-
-  </div>
-
-  <div class="notification_created_at">
-    <%= time_ago_in_words(notification.created_at).upcase %>前
-  </div>
-
-  <hr>
+    にコメントしました
+    <p class="notification_comment">
+      [コメント文] <%= Comment.find_by(id: notification.comment_id)&.comment_content %>
+    </p>
+  <% end %>
+</div>
+<div class="notification_created_at">
+  <%= time_ago_in_words(notification.created_at).upcase %>前
+</div>
+<hr>
 </div>
