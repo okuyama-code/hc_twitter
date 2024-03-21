@@ -62,8 +62,6 @@ class User < ApplicationRecord
 
 
   def self.from_omniauth(auth)
-    pp "デバック！！！！！！！！！！！！！"
-    pp auth.info
     where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
       user.name = auth.info.name
       user.email = auth.info.email
@@ -71,8 +69,6 @@ class User < ApplicationRecord
       user.date_of_birth = '1995-01-01'
       user.telephone = '08000001111'
       user.username = auth.info.nickname
-      user.icon.attach(io: File.open(Rails.root.join('app/assets/images/icon.png')), filename: 'icon.png')
-      user.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')), filename: 'header.jpg')
     end
   end
 
@@ -80,5 +76,12 @@ class User < ApplicationRecord
 
   def send_welcome_mail
     UserNoticeMailer.send_signup_email(self).deliver_now
+  end
+
+  before_create :attach_default_image
+
+  def attach_default_image
+    user.icon.attach(io: File.open(Rails.root.join('app/assets/images/icon.png')), filename: 'icon.png')
+    user.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')), filename: 'header.jpg')
   end
 end
