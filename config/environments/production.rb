@@ -42,6 +42,7 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :amazon
+  # config.active_storage.service = :local
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
@@ -94,9 +95,10 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  onfig.action_mailer.default_url_options = { protocol: 'https',
-      host: 'floating-garden-19803-96c1af154bf2.herokuapp.com' }
-      
+  config.action_mailer.default_url_options = { protocol: 'https',
+                                              host: 'afternoon-fortress-46408-803c8da5efd5.herokuapp.com' }
+  # https://afternoon-fortress-46408-803c8da5efd5.herokuapp.com/
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',

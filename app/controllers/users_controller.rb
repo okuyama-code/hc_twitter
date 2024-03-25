@@ -47,11 +47,10 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find_by(id: params[:id])
-
   end
 
   def update
-    current_user.update(user_params)
+    @user = current_user.update(user_params)
     flash[:notice] = 'プロフィール情報を編集しました。'
     redirect_to user_path
   end

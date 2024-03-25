@@ -1,5 +1,6 @@
-class BookmarksController < ApplicationController
+# frozen_string_literal: true
 
+class BookmarksController < ApplicationController
   def create
     @bookmark = current_user.bookmarks.create(post_id: params[:post_id])
     redirect_back fallback_location: root_path
@@ -9,7 +10,7 @@ class BookmarksController < ApplicationController
     @post = Post.find(params[:post_id])
     @bookmark = current_user.bookmarks.find_by(post_id: @post.id)
     @bookmark.destroy
-    flash[:notice] = "ブックマークを解除しました"
+    flash[:notice] = 'ブックマークを解除しました'
     redirect_back fallback_location: root_path
   end
 end
