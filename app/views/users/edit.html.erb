@@ -1,0 +1,44 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card card_css">
+        <div class="card-body">
+          <h2 class="text-center">プロフィール編集</h2>
+          <%= form_with model: @user, url: user_path, method: :PATCH, local: true, data: { turbo: false } ,class: "form"  do |f| %>
+            <div class="mb-3">
+              <%= f.label :name, class: "form-label" %>
+              <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+            </div>
+            <div class="mb-3">
+              <%= f.label :username, class: "form-label" %>
+              <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control" %>
+            </div>
+            <div class="mb-3">
+              <%= f.label :self_introduction, class: "form-label" %>
+              <%= f.text_field :self_introduction, autofocus: true, autocomplete: "self_introduction", class: "form-control" %>
+            </div>
+            <div class="mb-3">
+              <%= f.label :location, class: "form-label" %>
+              <%= f.text_field :location, autofocus: true, autocomplete: "location", class: "form-control" %>
+            </div>
+            <div class="mb-3">
+              <%= f.label :website, class: "form-label" %>
+              <%= f.text_field :website, autofocus: true, autocomplete: "website", class: "form-control" %>
+            </div>
+            <div class="mb-3">
+              <%= f.label :icon, class: "form-label" %>
+              <%= f.file_field :icon, autocomplete: "icon", class: "form-control" %>
+            </div>
+            <div class="mb-3">
+              <%= f.label :header, class: "form-label" %>
+              <%= f.file_field :header, autocomplete: "header", class: "form-control" %>
+            </div>
+            <div class="text-center">
+              <%= f.submit "プロフィール情報を編集し保存する", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

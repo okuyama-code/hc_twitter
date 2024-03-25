@@ -61,17 +61,15 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    Rails.logger.debug 'デバック！！！！！！！！！！！！！'
-    Rails.logger.debug auth.info
-    where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
-      user.name = auth.info.name
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-      user.date_of_birth = '1995-01-01'
-      user.telephone = '08000001111'
-      user.username = auth.info.nickname
-      user.icon.attach(io: File.open(Rails.root.join('app/assets/images/icon.png')), filename: 'icon.png')
-      user.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')), filename: 'header.jpg')
+    where(provider: auth.provider, uid: auth.uid).first_or_create! do |u|
+      u.name = auth.info.name
+      u.email = auth.info.email
+      u.password = Devise.friendly_token[0, 20]
+      u.date_of_birth = '1995-01-01'
+      u.telephone = '08000001111'
+      u.username = auth.info.nickname
+      # u.icon.attach(io: File.open(Rails.root.join('app/assets/images/icon.png')), filename: 'icon.png')
+      # u.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')), filename: 'header.jpg')
     end
   end
 
@@ -80,4 +78,12 @@ class User < ApplicationRecord
   def send_welcome_mail
     UserNoticeMailer.send_signup_email(self).deliver_now
   end
+
+  before_create :attach_default_image
+
+  def attach_default_image
+    icon.attach(io: File.open(Rails.root.join('app/assets/images/suisu2.jpg')), filename: 'suisu2.jpg')
+    header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')), filename: 'header.jpg')
+end
+
 end
