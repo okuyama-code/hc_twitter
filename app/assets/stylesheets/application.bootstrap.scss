@@ -87,6 +87,29 @@ a {
 //   background-color: #54a74c;
 // }
 
+.index {
+  margin: 0 20px;
+}
+
+// ================ header ========================
+.header {
+  height: 70px;
+}
+
+.navbar_brand {
+  margin: 30px 0 30px 40px;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.login_btn {
+  color: white;
+  padding: 10px 15px;
+  border: 1px solid white;
+  border-radius: 5px;
+  margin-right: 30px;
+}
+
 
 // ==================== devise =======================================
 .card_css {
@@ -111,6 +134,30 @@ i {
 
 .sidebar {
   border-right: 1px solid #ccc;
+
+}
+
+@media screen and (max-width: 959px) {
+  .main_display {
+    display: flex;
+  }
+
+	.sidebar {
+    width: 100px;
+    border: 1px solid white;
+    padding: 0 30px;
+    height: 470px;
+    border-radius: 5px;
+    
+
+    span {
+      display: none;
+    }
+  }
+
+  .main-area {
+    width: 80%;
+  }
 }
 
 .side_img {

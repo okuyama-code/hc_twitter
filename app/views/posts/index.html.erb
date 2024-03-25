@@ -14,7 +14,6 @@
         <div class="post-body border p-3">
           <div class="flex-between">
             <div>
-              <%# icon %>
               <% if post.user.icon.attached? %>
                 <%= link_to user_path(post.user) do %>
                   <%= image_tag post.user.icon, class: "share_img mx-3 me-4", alt: "..." %>
@@ -24,7 +23,6 @@
                   <img class="home_img mx-3 me-4" src="/assets/icon.png" >
                 <% end %>
               <% end %>
-              <%# usernameなど %>
               <span class="fw-bold fs-3 me-2"><%= post.user.name %></span>
               <span>@<%= post.user.username %></span>
             </div>
@@ -32,11 +30,11 @@
               <% if current_user.id != post.user.id %>
                 <% if post.user.is_followed_by?(current_user) %>
                   <%= link_to user_relationships_path(post.user), data: { "turbo-method": :delete }, class: "follow-link-delete" do %>
-                    <%= post.user.name %>をフォロー解除
+                    フォロー解除
                   <% end %>
                 <% else %>
                   <%= link_to user_relationships_path(post.user), data: { "turbo-method": :post }, class: "follow-link" do %>
-                    <%= post.user.name %>をフォロー
+                    フォロー
                   <% end %>
                 <% end %>
               <% end %>

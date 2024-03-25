@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Twitter clone</title>
+    <title>Board</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,22 +10,21 @@
     <script src="https://kit.fontawesome.com/3e9b46a6cb.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between">
+    <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between header">
       <div class="ml-2">
-        <%= link_to "Colorful SNS", root_path, class: "navbar-brand" %>
+        <%= link_to "エンジニア交流サイト", root_path, class: "navbar_brand" %>
         <% if user_signed_in? && @user %>
           <span><strong class="strong-nav"><%= current_user.email %></strong>がログイン | ID: <strong class="strong-nav"><%= current_user.id %></strong></span>
         <% end %>
       </div>
-      <%# deviseを使っているから使えるヘルパー　user_signed_in? %>
       <ul class="navbar-nav d-flex flex-row">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link btn btn-primary text-white" %>
+            <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: "login_btn" %>
           </li>
         <% else %>
           <li class="nav-item ">
-            <%= link_to 'ログイン', new_user_session_path, class: "nav-link btn btn-primary text-white" %>
+            <%= link_to 'ログイン', new_user_session_path, class: "login_btn" %>
           </li>
           <li class="nav-item ">
             <%= link_to '新規登録', new_user_registration_path, class: "nav-link btn btn-primary text-white" %>
@@ -39,17 +38,10 @@
     <% if flash[:alert] %>
       <div class="alert alert-danger" role="alert"><strong><%= alert %></strong></div>
     <% end %>
-    <div class="link-flex">
-      <%= link_to "letter_openerへ" , "/letter_opener", class: 'btncss' %>
-    </div>
     <% if user_signed_in? %>
-      <div class="container">
-        <div class="row">
-          <%# サイドバー(sidebar) %>
+      <div class="index">
+        <div class="row main_display">
           <div class="col-md-3 d-flex flex-column sidebar">
-            <%= link_to '/', class: 'sidebar-link' do %>
-              <i class="fa-brands fa-x-twitter"></i>
-            <% end %>
             <%= link_to '/', class: 'sidebar-link' do %>
               <p class="item mt-4"><i class="fa-solid fa-house-chimney-window"></i><span>ホーム</span ></p>
             <% end %>
@@ -65,25 +57,7 @@
             <%= link_to user_path(current_user), class: 'sidebar-link' do %>
               <p class="item"><i class="fa-solid fa-id-card"></i><span class="h6">プロフィール</span ></p>
             <% end %>
-            <p class="item"><i class="fa-brands fa-usps"></i><span class="h6">投稿</span ></p>
-            <div class="d-flex">
-              <% if current_user.icon.attached? %>
-                <%= link_to user_path(current_user) do %>
-                  <%= image_tag current_user.icon, class: "side_img me-3", alt: "..." %>
-                <% end %>
-              <% else %>
-                <img class="side_img me-3" src="/assets/icon.png" >
-              <% end %>
-              <div>
-                <% if current_user %>
-                  <h4><%= current_user.name %></h4>
-                  <p>@<%= current_user.username %></p>
-                <% end %>
-              </div>
-            </div>
           </div>
-          <%# col-md-4 sidebar %>
-          <%# コンポーネント　col-md-8 main-area %>
           <div class="col-md-9 main-area">
             <%= yield %>
           </div>
